@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">		
+		<title>MIS Reports</title>					
+	</head>
+	<body >	
+		<!-- Report - 1 -->
+		<div id="mis-report-1">
+			<div class="row">
+			<div class="col-xs-4 pp-form-field " id="service-selection">
+						<label >Select Service: </label>
+						<select id="service-type" name="service-type" class="form-control validate[required]" multiple="multiple">
+							<!-- <option value="">Select Service</option> -->
+						 	<c:forEach items="${serviceTypeList}" var="pType">
+						 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+						 	</c:forEach>
+						</select>
+					</div>
+						<div class="col-xs-4 pp-form-field " id="report-selection">
+						<label >Select Year </label>
+						<select id="statusYear-List" name="statusYear-List" class="form-control validate[required]" multiple="multiple">
+							<!-- <option value="">Select Year</option> -->
+						 	<c:forEach items="${statusYearList}" var="pType">
+						 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+						 	</c:forEach>
+						</select>
+					</div>
+					
+		</div>
+		<div class="row">
+						<div class="col-xs-3 pp-form-field" id="contractTypeDiv">
+							<label for="liquid-damages-leaved-flag">Report Type</label> <select
+								id="reportDisplyType" name="reportDisplyType" class="form-control validate[required]  clear">
+								<option value="">Select Report Type </option>
+								<option value="s">Statistics</option>
+								<option value="d">Detailed</option>
+							</select>
+						</div>
+		     
+		     </div>	
+		</div>
+
+		<!-- Report - 2 -->
+		<div id="mis-report-2">
+			<div class="row">
+					<div class="col-xs-4 pp-form-field " id="service-selection">
+						<label >Select Service: </label>
+						<select id="service-type" name="service-type" class="form-control validate[required]" multiple="multiple">
+							<!-- <option value="">Select Service</option> -->
+						 	<c:forEach items="${serviceTypeList}" var="pType">
+						 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+						 	</c:forEach>
+						</select>
+					</div>
+						<div class="col-xs-4 pp-form-field " id="report-selection">
+						<label >Select Year </label>
+						<select id="statusYear-List" name="statusYear-List" class="form-control validate[required]" multiple="multiple">
+							<!-- <option value="">Select Year</option> -->
+						 	<!-- <c:forEach items="${statusYearList}" var="pType">
+						 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+						 	</c:forEach> -->
+						</select>
+					</div>
+					
+			</div>
+			<div class="row">
+						<div class="col-xs-4 pp-form-field" id="application-status-reportType-Div">
+							<label for="liquid-damages-leaved-flag">Report Type</label> <select
+								id="app-status-reportDisplyType" name="app-status-reportDisplyType" class="form-control validate[required]  clear">
+								<option value="">Select Report Type </option>
+								<option value="s">Statistics</option>
+								<option value="d">Detailed</option>
+							</select>
+						</div>
+		     
+		     </div>		
+			
+			
+			
+		</div>
+		<!-- Report - 3 -->
+		<div id="mis-report-3">
+			<div class="row">
+					<div class="col-xs-4 pp-form-field " id="block-year-selection">
+						<label >Select Block Year</label>
+						<select id="blockYear-List" name="blockYear-List" class="form-control validate[required]" multiple="multiple">
+						</select>
+					</div>
+					<div class="col-xs-4 pp-form-field " id="state-selection">
+						<label >Select State</label>
+						<select id="state-List" name="state-List" class="form-control validate[required]" multiple="multiple">
+                        </select>
+					</div>
+			</div>
+	
+		<div class="row">
+					 <div class="col-xs-4 pp-form-field" id="contractTypeDiv">
+							<label for="liquid-damages-leaved-flag">Report Type</label> <select
+								id="reportDisplyTypeId" name="reportDisplyType" class="form-control validate[required]  clear">
+								<option value="">Select Report Type </option>
+								<option value="s">Statistics</option>
+								<option value="d">Detailed</option>
+							</select>
+						</div>
+						<div class="col-xs-4 pp-form-field" id="requireRowCount-div" style="display:none">
+								<label for="requireRowCount">No.of Records Required</label>
+								<input type="text" name="requireRowCount" id="requireRowCount" class=" form-control validate[custom[integer]] clear" />
+						</div>
+						
+		      </div>
+		   	<div class="row">
+			<div class="col-xs-4 pp-form-field" id="from-amount-div" style="display:none">
+				<label for="from-amount">From Amount</label> <input
+					type="text" name="from-amount" id="from-amount"
+					class=" form-control validate[custom[integer]] clear" />
+			</div>
+			<div class="col-xs-4 pp-form-field" id="to-amount-div" style="display:none" >
+				<label for="to-amount">To Amount</label> <input
+					type="text" name="to-amount" id="to-amount"
+					class=" form-control validate[custom[integer]] clear" />
+			</div>
+		</div>   
+		      
+		      
+		</div>
+		
+		<!-- Country-Donor-Purpose Report-6 -->
+			<div id="mis-report-6">
+				<div class="row">
+					<div class="col-xs-4 pp-form-field">
+						<label >Select Block Year</label>
+						<select id="block-year-6" name="blockYear6" onchange="javascript:getDonorR6();" class="form-control validate[required]" multiple="multiple" size="5"></select>
+					</div>
+					<div class="col-xs-4 pp-form-field">
+						<label for="purpose">Purpose: </label>
+						<select id="purpose-6" name="purpose6" class="form-control validate[required]" multiple="multiple" size="5"></select>
+					</div>					
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field">						
+							<label for="country">Country: </label>
+							<select id="country-6" name="country6" onchange="javascript:getDonorR6();" class="form-control validate[required]" multiple="multiple" size="5"></select>						
+					</div>					
+					<div class="col-xs-6 pp-form-field" id="donor-div" style="display:none;">
+						<label for="Donor">Donor: </label><br/>						
+						<select id="donor-6" name="donor6"  class="validate[required] title-t" title="aa" multiple="multiple">
+							<option value="ALL">ALL</option>
+						</select>						
+						<p class="help-block"><small>Note: For All, please click on 'Select All' otherwise type at least three character in search box to find donor.</small></p>
+					</div>
+					
+				</div>
+			</div>
+		<!-- Country-Donor-Purpose Report -->
+		
+		<!-- Top Donor-District Receipt Report-8 -->
+			<div id="mis-report-8">
+				<div class="row">					
+					<div class="col-xs-8 pp-form-field" id="">
+						  <label><input type="radio" onchange="initParamsReport8(this.value);" name="districtDonor8"  value="0">&nbsp;Donor Wise&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						  <label><input type="radio" onchange="initParamsReport8(this.value);" name="districtDonor8"  value="1">&nbsp;District Wise&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						  <label><input type="radio" onchange="initParamsReport8(this.value);" name="districtDonor8" value="2">&nbsp;State Wise&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						  <label><input type="radio" onchange="initParamsReport8(this.value);" name="districtDonor8" value="3">&nbsp;Country Wise&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						  <label><input type="radio" onchange="initParamsReport8(this.value);" name="districtDonor8" value="4">&nbsp;Association Wise</label>
+					</div>					
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field ">
+						<label >Select Block Year</label>
+						<select id="block-year-8" name="blockYear8" class="form-control validate[required]" multiple="multiple" size="8"></select>
+					</div>
+					<div class="col-xs-4 pp-form-field " id="state-selection">
+						<label >Select State</label>
+						<select id="state-list-8" name="state8" class="form-control validate[required]" multiple="multiple" size="8">
+                        </select>
+					</div>
+					<div class="col-xs-4 pp-form-field " id="country-selection">
+						<label >Select Country</label>
+						<select id="country-list-8" name="country8" class="form-control validate[required]" multiple="multiple" size="8">
+                        </select>
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-xs-2 pp-form-field">
+						<label for="purpose">Records Required: </label>
+						<input type="text" class="form-control" id="record8" name="record8">
+					</div>
+				</div>
+			</div>
+		<!-- Top Donor-District Receipt Report-8 -->
+		
+	<!-- Report - 4 -->
+	
+		<div id="mis-report-4">
+		
+		
+			<div class="row">
+				<div class="col-xs-4 pp-form-field " id="block-year-selection">
+					<label >Select Block Year</label>
+					<select id="blockYear-List" name="blockYear-List" class="form-control validate[required]" multiple="multiple">
+						 <!-- <option value="">Select Year</option> -->
+					 	<c:forEach items="${blockYearList}" var="pType">
+					 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+					 	</c:forEach>
+					</select>
+				</div>
+				<div class="col-xs-4 pp-form-field " id="state-selection">
+					<label >Select State</label>
+					<select id="state-List" name="state-List" class="form-control validate[required]" multiple="multiple">
+						<!-- <option value="">Select Year</option> -->
+					 	<c:forEach items="${blockYearList}" var="pType">
+					 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+					 	</c:forEach>
+					</select>
+				</div>
+	
+
+			</div>
+			<div class="row">
+				<div class="col-xs-4 pp-form-field" >
+					<label for="country">Country: </label>
+					<select id="country" name="country-type" class="form-control validate[required]" multiple="multiple"></select>
+				</div>
+				<div class="col-xs-4 pp-form-field" >
+					<label for="purpose">Purpose: </label>
+					<select id="purpose" name="purpose-type" class="form-control validate[required]" multiple="multiple"></select>
+				</div>
+			</div>
+			</div>
+	
+
+
+		<!-- Report - 5 -->
+		<div id="mis-report-5">
+			<div class="row">
+				<div class="col-xs-4 pp-form-field " id="block-year-selection">
+					<label >Select Block Year</label>
+					<select id="blockYear-List" name="blockYear-List" class="form-control validate[required]" multiple="multiple">
+						
+					</select>
+				</div>
+				<div class="col-xs-4 pp-form-field " id="country-selection">
+					<label >Select Country</label>
+					<select id="country-List" name="country-List" class="form-control validate[required]" multiple="multiple">
+					
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 pp-form-field " id="state-selection">
+					<label >Select State</label>
+					<select id="state-List" name="state-List" class="form-control validate[required]" multiple="multiple">
+						
+					</select>
+				</div>
+			</div>
+		</div>
+	<!-- Report - 7 -->
+		<div id="mis-report-7">
+			<div class="row">
+				<div class="col-xs-4 pp-form-field " id="block-year-selection">
+					<label >Select Block Year</label>
+					<select id="blockYear-List" name="blockYear-List" class="form-control validate[required]" multiple="multiple">
+						
+					</select>
+				</div>
+			
+				<div class="col-xs-4 pp-form-field " id="state-selection">
+					<label >Select State</label>
+					<select id="state-List" name="state-List" class="form-control validate[required]" multiple="multiple">
+						
+					</select>
+				</div>
+				
+				<div class="col-xs-4 pp-form-field " id="religion-wise-selection">
+					<label >Select Religion</label>
+					<select id="religion-List" name="religion-List" class="form-control validate[required]" multiple="multiple">
+						
+					</select>
+				</div>
+			</div>
+		</div>
+
+           <!--  Report 9 -->
+           
+		<div id="mis-report-9">
+			<div class="row">
+				<div class="col-xs-4 pp-form-field " id="block-year-selection">
+					<label >Select Block Year</label>
+					<select id="blockYear-List" name="blockYear-List" class="form-control validate[required]">
+						 <!-- <option value="">Select Year</option> -->
+					 	<c:forEach items="${blockYearList}" var="pType">
+					 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+					 	</c:forEach>
+					</select>
+				</div>
+				<div class="col-xs-4 pp-form-field " id="state-selection">
+					<label >Select State</label>
+					<select id="state-List" name="state-List" class="form-control validate[required]" multiple="multiple">
+						<!-- <option value="">Select Year</option> -->
+					 	<c:forEach items="${blockYearList}" var="pType">
+					 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+					 	</c:forEach>
+					</select>
+				</div>
+	
+
+			</div>
+			<div class="row">
+				<div class="col-xs-4 pp-form-field" >
+					<label for="country">Country: </label>
+					<select id="country" name="country-type" class="form-control validate[required]" multiple="multiple"></select>
+				</div>
+			</div>
+			</div>
+			
+			<!-- Report - 10 -->
+		<div id="mis-report-10">
+			<div class="row">
+				<div class="col-xs-4 pp-form-field " id="block-year-selection">
+					<label >Select Block Year</label>
+					<select id="blockYear-List" name="blockYear-List" class="form-control validate[required]">
+						
+					</select>
+				</div>
+			
+				<div class="col-xs-4 pp-form-field " id="country-selection">
+					<label >Select Country</label>
+					<select id="country-List" name="country-List" class="form-control validate[required]" multiple="multiple">
+					
+					</select>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Report - 11 -->
+		
+		
+		<div id="mis-report-11">
+			<div class="row">
+			
+				<div class="col-xs-8 pp-form-field " id="activity-details-div">
+					<label >Report Format: </label>
+					<table class="checkbox-table">
+						<tbody>
+							<tr>
+								<td>
+									<label class="radio-inline">
+										<input type="radio" id="Pendency-details" val="P" name="userActivityFormat" class="validate[required]" onclick="javascript:hideDateField();"/> Pendency Details
+									</label>
+								</td>
+								<td>
+									<label class="radio-inline">
+										<input type="radio" id="activity-details" val="A" name="userActivityFormat" class="validate[required]" onclick="javascript:UserActivityField();"/> Activity Details
+									</label>
+								</td>
+								<td>
+									<label class="radio-inline">
+										<input type="radio" id="disposed-details" val="D" name="userActivityFormat" class="validate[required]" onclick="javascript:DisposedUserActivity();"/> Disposal Details
+									</label>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 pp-form-field " id="service-selection">
+						<label >Select Service: </label>
+						<select id="service-type" name="service-type" class="form-control validate[required]" multiple="multiple">
+							<!-- <option value="">Select Service</option> -->
+						 	<!-- <c:forEach items="${serviceTypeList}" var="pType">
+						 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+						 	</c:forEach> -->
+						</select>
+				</div>
+			
+				<div class="col-xs-4 pp-form-field " id="user-selection">
+					<label >Select User</label>
+					<select id="user-List" name="user-List" class="form-control validate[required]" multiple="multiple">
+					
+					</select>
+				</div>
+			</div>
+		 <div class="row">
+				<div id="form-to-date" style="display: none">								
+				             <div class="col-xs-3 pp-form-field" id="from-date-div">
+								<label for="from-date">From Date
+								</label> <input type="text" name="from-date" id="fromDate"
+									class="form-control validate[required] clear" />
+							</div>
+							<div class="col-xs-3 pp-form-field" id="to-date-div">
+								<label for="to-date">To Date
+								</label> <input type="text" name="to-date" id="toDate" class="form-control validate[required,date,futureEqualField[fromDate]] clear" />
+
+							</div>
+				
+					</div>
+					
+			</div> 
+		<!-- 	stastics and details -->
+		<div class="row">
+						<div class="col-xs-3 pp-form-field" id="details-div" style="display: none">
+							<label for="liquid-damages-leaved-flag">Report Type</label>
+							 <select id="UserReportDisplyType" name="reportDisplyType" class="form-control validate[required]  clear">
+								<option value="">Select Report Type </option>
+								<option value="s">Statistics</option>
+								<option value="d">Details</option>
+							</select>
+						</div>
+		     
+		     </div>	
+			
+						
+		</div>
+		<!-- UserActivity End -->
+		
+		<!-- Report - 12 -->
+		<!-- //Sudden Rise In Income -->
+	<div id="mis-report-12">
+		<div class="row">
+			<div class="col-xs-4 pp-form-field " id="state-selection">
+				<label>Select State</label> <select id="state-List" name="state-List" class="form-control validate[required]"
+					multiple="multiple">
+
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4 pp-form-field" id="report-required-for-year-div">
+				<label for="report-required-for-year">No. of years to be
+					considered for taking avg :</label> <input type="text"
+					name="report-required-for-year" id="report-required-for-year"
+					class=" form-control  validate[required,maxSize[1] min[2] custom[integer]] clear" />
+			</div>
+			<div class="col-xs-4 pp-form-field" id="ratio-tamt-avgamt-div">
+				<label for="ratio-tamt-avgamt">Ratio b/w total &
+					avg amount (should be >1)</label> <input type="text"
+					name="ratio-tamt-avgamt" id="ratio-tamt-avgamt"
+					class=" form-control  validate[required,custom[integer] maxSize[3] min[2]] clear" />
+			</div>
+
+		</div>
+	</div>
+
+		<!-- Report - 13 -->
+		<!-- Redd Flagged  -->
+	<div id="mis-report-13">
+  			<div class="row">
+  				<div class="col-xs-3 pp-form-field" id="details-div">
+							<label for="liquid-damages-leaved-flag">Report Status Type:</label> <select
+								id="reportStatusDisplayType" name="reportStatusDisplyType" class="form-control validate[required]  clear">
+								<option value="">Select Report Status Type </option>
+								<option value="l" >Live</option>
+								<option value="r" >Removed</option>
+							</select>
+					</div> 
+		  </div> 
+		<div class="row">
+			<div class="col-xs-5 pp-form-field " id="activity-details-div">
+				<label >Red Flag Type: </label>
+					<table class="checkbox-table">
+						<tbody>
+							<tr>
+								<td>
+									<label class="radio-inline">
+										<input type="radio" id="rcnwise-details" val="R" name="userActivityFormat" class="validate[required]" onclick="javascript:UserActivityField();"/> RCN-wise 
+									</label>
+								</td>
+								<td>
+									<label class="radio-inline">
+										<input type="radio" id="assonamewise-details" val="A" name="userActivityFormat" class="validate[required]" onclick="javascript:UserActivityField();"/> Association Name-wise
+									</label>
+								</td>
+								<td>
+									<label class="radio-inline">
+										<input type="radio" id="donornamewise-details" val="D" name="userActivityFormat" class="validate[required]" onclick="javascript:UserActivityField();"/> Donor Name-wise
+									</label>
+								</td>								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>		
+		<div class="row">
+  				<div class="col-xs-3 pp-form-field" id="details-div">
+							<label for="liquid-damages-leaved-flag">Report Type:</label> <select
+								id="reportDisplayType" name="reportDisplyType" class="form-control validate[required]  clear">
+								<option value="">Select Report Type </option>
+								<option value="s" >Statistics</option>
+								<option value="d" >Details</option>
+							</select>
+					</div> 
+					
+					<div class="col-xs-6 pp-form-field " id="service-selection">
+						<label >Red Flag Category: </label>
+						<select id="service-type" name="service-type" class="form-control validate[required]" multiple="multiple">
+							<!-- <option value="">Select Service</option> -->
+						 	<!-- <c:forEach items="${serviceTypeList}" var="pType">
+						 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+						 	</c:forEach> -->
+						</select>
+					</div>					
+		     
+		  </div>	
+
+	</div>
+	<!--   Blue Flaged  -->
+	<div id="mis-report-27">
+  			<div class="row">
+  				<div class="col-xs-3 pp-form-field" id="details-div">
+							<label for="liquid-damages-leaved-flag">Report Status Type:</label> <select
+								id="reportStatusDisplayType" name="reportStatusDisplyType" class="form-control validate[required]  clear">
+								<option value="">Select Report Status Type </option>
+								<option value="l" >Live</option>
+								<option value="r" >Removed</option>
+							</select>
+					</div> 
+		  </div> 
+		
+		<div class="row">
+  				<div class="col-xs-3 pp-form-field" id="details-div">
+							<label for="liquid-damages-leaved-flag">Report Type:</label> <select
+								id="reportDisplayType" name="reportDisplyType" class="form-control validate[required]  clear">
+								<option value="">Select Report Type </option>
+								<option value="s" >Statistics</option>
+								<option value="d" >Details</option>
+							</select>
+					</div> 			
+		     
+		  </div>	
+
+	</div>
+	<!-- MIS report 14 --Associations not filed returns - Starts here  -->
+	<div id="mis-report-14">
+		<div class="row">
+<!-- 					<div class="col-xs-4 pp-form-field" id="block-year-selection">
+						<label >Select Block Year</label>
+						<select id="blockYear-List" name="blockYear-List" onchange="javascript:getSingleSelect();" class="form-control validate[required]" multiple="multiple" size="5"></select>
+					</div>		 -->
+ 			<div class="col-xs-4 pp-form-field " id="block-year-selection">
+					<label >Select Block Year</label>
+						<select id="blockYear-List" name="blockYear-List" class="form-control validate[required]" multiple="multiple">
+						</select>
+			</div> 
+<!-- 					<div class="col-xs-4 pp-form-field " id="state-selection">
+						<label >Select State</label>
+						<select id="state-List" name="state-List" class="form-control validate[required]" multiple="multiple">
+                        </select>
+			</div> -->
+		 </div> 
+	</div>
+	<!-- MIS report 14 --Associations not filed returns - Ends  here  -->
+	
+	<!-- MIS report 15 --Application Pendancy time Rangewise starts here -->
+	<div id="mis-report-15">
+		<div class="row">
+			<div class="col-xs-3 pp-form-field" id="details-div">
+				<label for="liquid-damages-leaved-flag">Report Type:</label>
+				<select id="reportPendancyDisplayType" name="reportPendancyDisplayType" class="form-control validate[required]  clear">
+					<option value="">Select Report Type </option>
+					<option value="s" >Statistics</option>
+					<option value="d" >Details</option>			
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4 pp-form-field " id="">
+				<label >Select Service: </label>
+					<select id="service-type" name="service-type" class="form-control validate[required]" multiple="multiple">
+						<!-- <option value="">Select Service</option> -->
+					 	<c:forEach items="${serviceTypeList}" var="pType">
+				 		<option value='<c:out value="${pType.k}"/>'><c:out value="${pType.v}"/></option>
+				 	</c:forEach>
+					</select>
+			</div>		
+		</div>
+		<div class="row" id="service-selection">
+			<div class="col-xs-2 pp-form-field" id="days-of-pendancy-div1">
+				<label for="days-of-pendancy1">Pending Time Range 1: </label>
+				<input type="text" name="days-of-pendancy1" id="days-of-pendancy1" class="form-control validate[custom[integer] maxSize[4] min[1]] clear" >
+			</div> 
+			<div class="col-xs-2 pp-form-field" id="days-of-pendancy-div2">
+				<label for="days-of-pendancy1">Pending Time Range 2: </label>
+				<input type="text" name="days-of-pendancy2" id="days-of-pendancy2" class="form-control validate[custom[integer] maxSize[4] min[1]] clear" class="form-control validate[custom[integer], futureField[days-of-pendancy2]]">
+			</div> 			
+			<div class="col-xs-2 pp-form-field" id="days-of-pendancy-div3">
+				<label for="days-of-pendancy3">Pending Time Range 3: </label>
+				<input type="text" name="days-of-pendancy3" id="days-of-pendancy3" class="form-control validate[custom[integer] maxSize[4] min[1]] clear" class="form-control text-uppercase validate[custom[date], futureField[visaIssueDate]]">
+			</div> 			
+			<div class="col-xs-2 pp-form-field" id="days-of-pendancy-div4">
+				<label for="days-of-pendancy4">Pending Time Range 4: </label>
+				<input type="text" name="days-of-pendancy4" id="days-of-pendancy4" class="form-control validate[custom[integer] maxSize[4] min[1]] clear">
+			</div> 			
+		</div>		
+	</div>
+	<!-- MIS report 15 --Application Pendancy time Rangewise ends here -->
+
+	<div id="mis-report-26">
+		<div class="row">
+			<div class="col-xs-3 pp-form-field " id="state-selection">
+				<label>Select State</label> <select id="state-List" name="state-List" class="form-control validate[required]" multiple="multiple">
+						
+				</select>
+			</div>
+			<div class="col-xs-3 pp-form-field " id="nature-selection">
+				<label>Select Nature</label> <select id="nature-List" name="nature-List" class="form-control validate[required]" multiple="multiple">	
+				</select>
+			</div>
+			<div class="col-xs-3 pp-form-field " id="relegion-selection">
+				<label>Select Religion</label> <select id="religion-List" name="religion-List" class="form-control validate[required]" multiple="multiple">	
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8 pp-form-field" id="">
+				<label style="font-size: 15px;">Association Status:</label><br>
+				<label style="font-weight: normal;"><input type="radio"	onchange="initAssociationStatus(this.value);" name="associationStatus" value="0">&nbsp;Active&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<label style="font-weight: normal;"><input type="radio"	onchange="initAssociationStatus(this.value);" name="associationStatus" value="1">&nbsp;Cancelled&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<label style="font-weight: normal;"><input type="radio"	onchange="initAssociationStatus(this.value);" name="associationStatus" value="2">&nbsp;Deemed to have Ceased&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<label style="font-weight: normal;"><input type="radio"	onchange="initAssociationStatus(this.value);" name="associationStatus" value="3">&nbsp;Exempted&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<label style="font-weight: normal;"><input type="radio"	onchange="initAssociationStatus(this.value);" name="associationStatus" value="4">&nbsp;Suspended&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			</div>
+		</div>
+	</div>
+
+	<!--  MIS report 16-- Annual Status -->
+			<div id="mis-report-16">
+				<div class="row"> 					
+					<div class="col-xs-3 pp-form-field" id="year-block">
+						<label for="entered-year">No. of block years to be considered : </label>
+						<select id="noOfYear" name="noOfYear" class="form-control validate[required]  clear" onchange="javascript:generateYear();"  >
+					      <option value="">Select  </option>
+					   		<option value="1" >1 </option>
+					  		<option value="2" >2</option>	
+					  		<option value="3" >3</option>
+					  		<option value="4" >4</option>	
+					  		<option value="5" >5</option>
+					  		<option value="6" >6</option>			
+				</select>
+			    </div>	
+			    <input type="hidden" name="yearList" value="${yearList}" id="yearList"/>
+			   </div>
+			</div>
+			<!--  MIS report 17--Registration Expiry  -->
+			<div id="mis-report-17">
+				<div class="row"> 					
+					<div class="col-xs-12 pp-form-field" id="date-between">
+						<label for="expiry-year">Expiry Between  : </label></div></div>
+						<div class="row" id="form-to-date">
+						     <div class="col-xs-3 pp-form-field" id="from-date-div">
+								<label for="from-date">From Date</label> 
+								<input type="text" name="from-date" id="fromDate"
+									class="form-control validate[required] clear" />
+							</div>
+							<div class="col-xs-3 pp-form-field" id="to-date-div">
+								<label for="to-date">To Date
+								</label> <input type="text" name="to-date" id="toDate" class="form-control validate[required,date,futureEqualField[fromDate]] clear" />
+
+							</div>
+			
+					
+			    </div>	
+			   
+			</div>
+			
+			
+			
+			<!--  MIS report 18--Disposal Details -->
+
+	<div id="mis-report-18">
+
+		<div class="row">
+			<div class="col-xs-4 pp-form-field " id="service-selection">
+				<label>Select Service: </label> <select id="service-type"
+					name="service-type" class="form-control validate[required]"
+					multiple="multiple">
+					<option value="">Select Service</option> 
+					<c:forEach items="${serviceTypeList}" var="pType">
+						<option value='<c:out value="${pType.k}"/>'><c:out
+								value="${pType.v}" /></option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>
+		<div class="row" id="form-to-date">
+			<div class="col-xs-3 pp-form-field" id="from-date-div">
+				<label for="from-date">Disposal From</label> <input type="text"
+					name="from-date" id="fromDate"
+					class="form-control validate[required] clear" />
+			</div>
+			<div class="col-xs-3 pp-form-field" id="to-date-div">
+				<label for="to-date">Disposal Till </label> <input type="text"
+					name="to-date" id="toDate"
+					class="form-control validate[required,date,futureEqualField[fromDate]] clear" />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-8 pp-form-field" id="">
+				<label style="font-size: 15px;">Select Report Type</label><br>
+				<label style="font-weight: normal;">
+				<input type="radio" name="reportTypewise" id="reportTypewisem" class="validate[required]" value="M">&nbsp;Monthwise&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<label style="font-weight: normal;">
+				<input type="radio" name="reportTypewise" id="reportTypewisey" class="validate[required]" value="Y">&nbsp;Yearwise&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			</div>
+		</div>
+
+	</div>
+	<!-- Report - 28 -->
+		<div id="mis-report-28">
+		<!-- 	<div class="row">
+			<div class="col-xs-4 pp-form-field " id="state-selection">
+						<label >Select State</label>
+						<select id="state-List" name="state-List" class="form-control validate[required]" multiple="multiple">
+                        </select>
+					</div>
+					
+		</div>
+		<div class="row">
+			<div class="col-xs-8 pp-form-field" id="">
+				<label style="font-size: 15px;">Select Report Type</label><br>
+				<label style="font-weight: normal;">
+				<input type="radio" name="reportTypewise" id="reportTypewisem" class="validate[required]" value="M">&nbsp;Monthwise&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<label style="font-weight: normal;">
+				<input type="radio" name="reportTypewise" id="reportTypewisey" class="validate[required]" value="Y">&nbsp;Yearwise&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			</div>
+		<div class="row">
+						<div class="col-xs-3 pp-form-field" id="contractTypeDiv">
+							<label for="liquid-damages-leaved-flag">Report Type</label> <select
+								id="reportDisplyType" name="reportDisplyType" class="form-control validate[required]  clear">
+								<option value="">Select Report Type </option>
+								<option value="s">Statistics</option>
+								<option value="d">Detailed</option>
+							</select>
+						</div>
+		     
+		     </div>	 -->
+		</div>
+
+
+<!-- Report - 29 -->
+		<div id="mis-report-29">
+			<div class="row">
+			<div class="col-xs-4 pp-form-field " id="state-selection">
+						<label >Select State</label>
+						<select id="state-List" name="state-List" class="form-control validate[required]" multiple="multiple">
+                        </select>
+					</div>
+					
+		</div>
+		<div class="row">
+			<div class="col-xs-8 pp-form-field" id="">
+				<label style="font-size: 15px;">Select Association Type</label><br>
+				<label style="font-weight: normal;">
+				<input type="radio" name="reportTypewise" id="reportTypewisem" class="validate[required]" value="Requested">&nbsp;Not Responded&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<label style="font-weight: normal;">
+				<input type="radio" name="reportTypewise" id="reportTypewisey" class="validate[required]" value="Response">&nbsp;Responded&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			</div>
+		<!-- <div class="row">
+						<div class="col-xs-3 pp-form-field" id="contractTypeDiv">
+							<label for="liquid-damages-leaved-flag">Report Type</label> <select
+								id="reportDisplyType" name="reportDisplyType" class="form-control validate[required]  clear">
+								<option value="">Select Report Type </option>
+								<option value="s">Statistics</option>
+								<option value="d">Detailed</option>
+							</select>
+						</div> -->
+		     
+		     </div>	
+		</div>
+
+
+
+
+</body>	
+</html>

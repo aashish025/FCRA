@@ -1,0 +1,91 @@
+.highlight{
+	background-color: #F5F4F2 !important;	
+}
+.notice-container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  *zoom: 1;
+}
+.notice-container .notice-li {
+  margin-top: 6px;
+}
+.notice-container .notice-li a img {
+  -webkit-border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+}
+/*
+Message-   Red - nb-msg;
+Circular - Yellow;
+Document - Blue;
+FU1 - Purple;
+FU2 - Green;
+*/
+.notice-container li .notice-bubble {
+  *zoom: 1;
+  position: relative;
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  padding: 4px 10px 4px 10px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+}
+/*S - Border Colors of messages box*/
+.notice-container li.nb-msg .notice-bubble{
+	border-color: #009688;
+}
+.notice-container li.nb-doc .notice-bubble{
+	border-color: #8bc34a;
+}
+.notice-container li.nb-crc .notice-bubble{
+	border-color: #ff9800;
+}
+.notice-container li.FU2 .notice-bubble{
+	border-color: #589459;
+}
+.notice-container li.FU1 .notice-bubble{
+	border-color: #944DDB;
+}
+/*E - Border Colors of messages box*/
+
+/*S - Uppercase to from of messages box*/
+.notice-container .notice-bubble .notice-header {
+	font-size: 100%;
+	text-transform:none;
+}
+/*E - Uppercase to from of messages box*/
+
+/*S - Actions Styling*/
+.notice-container li .notice-bubble .notice-header .actions{
+	float: right;
+}
+.notice-container li .notice-bubble .notice-header .actions i{
+	cursor:pointer;
+	opacity:0.4;
+}
+.notice-container li .notice-bubble .notice-header .actions i:hover{
+	opacity:1;
+}
+/*E - Actions Styling*/
+
+.notice-container li .notice-bubble .notice-desc{
+	/*border-bottom: 1px solid #e0e0e0;*/
+	display:none;
+	margin-top: 7px;
+	margin-left:0px;
+	color: #666666;
+}
+.notice-container li .notice-bubble  .title{	
+	color: #000000;	
+}
+.notice-container li .notice-bubble .notice-desc .time {
+/*	padding-left:10px;*/
+	color: #000000;		
+	font-size: 75%;
+}
+
+.notice-container .notice-li {
+	line-height: 18px !important;
+}

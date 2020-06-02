@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sample" pageWidth="595" pageHeight="842" columnWidth="475" leftMargin="60" rightMargin="60" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="appId" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="regNumber" class="java.lang.String"/>
+	<parameter name="regDate" class="java.lang.String"/>
+	<parameter name="assoName" class="java.lang.String"/>
+	<parameter name="assoAddress" class="java.lang.String"/>
+	<parameter name="accNumber" class="java.lang.String"/>
+	<parameter name="bankDetails" class="java.lang.String"/>
+	<parameter name="assoNature" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="submissionDate" class="java.lang.String"/>
+	<parameter name="officerName" class="java.lang.String"/>
+	<parameter name="officerDesg" class="java.lang.String"/>
+	<parameter name="officerContact" class="java.lang.String"/>
+	<parameter name="validFrom" class="java.lang.String"/>
+	<parameter name="bankAddress" class="java.lang.String"/>
+	<parameter name="officeAddress" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select sysdate from dual]]>
+	</queryString>
+	<field name="SYSDATE" class="java.sql.Timestamp"/>
+	<variable name="Para1" class="java.lang.String">
+		<variableExpression><![CDATA["      With reference to your application dated <b>"+$P{submissionDate}+"</b> seeking renewal of registration under the Foreign Contribution (Regulation) Act, 2010, I am directed to convey the approval of competent authority for renewal of registration of your Association in terms of the provisions contained in Section 16 of Foreign Contribution (Regulation) Act, 2010 read with Rule 12 of Foreign Contribution (Regulation) Rules, 2011 as amended from time to time, as follows:-"]]></variableExpression>
+	</variable>
+	<variable name="Para2" class="java.lang.String">
+		<variableExpression><![CDATA["The association shall receive foreign contribution only in its designated/exclusive bank account <b>"+$P{accNumber}+"</b> in <b>"+$P{bankDetails}+"</b>, <b>"+$P{bankAddress}+"</b> as mentioned in its application for online application for grant of renewal of  registration."]]></variableExpression>
+	</variable>
+	<variable name="Para3" class="java.lang.String">
+		<variableExpression><![CDATA["In terms of section 18 of the Foreign Contribution (Regulation) Act, 2010 read with Rules 17 of the Foreign Contribution (Regulation) Rules, 2011, as amended from time to time, you are advised to furnish intimations online within the prescribed time to the Central Government of the amounts of each foreign contribution received by you, the source and the manner in which the foreign contribution was utilised, as per the provisions of the Act and the Rules. An association is required to furnish the return even when the particulars are 'NIL'. The FC-4 form is required to be submitted online on this Ministry's website https://fcraonline.nic. The Bank Account mentioned in your application should be used for receiving foreign contribution and no other amount should be credited to this account. The Association should immediately intimate online, within 15 days, in Form FC-6 to this Ministry regarding any change in the name of the Association, aims and objects, its address and Bank/Bank Account."]]></variableExpression>
+	</variable>
+	<variable name="Para4" class="java.lang.String">
+		<variableExpression><![CDATA["The association cannot bring out any publication (registered under PRB Act, 1867) or act as correspondent, columnist, editor, printer or publisher of a registered newspaper or engage in the production or broadcast of audio news or audio visual news or current affairs programmes through electronic mode or any other electronic form or any other mode of mass communication at a later stage thereby attracting provisions of the Section 3(1) (g) and (h) of the FC(R) Act, 2010. In addition to this, the association is forbidden from getting involved in any activity of political nature."]]></variableExpression>
+	</variable>
+	<variable name="Para5" class="java.lang.String">
+		<variableExpression><![CDATA["You are requested to note the provisions of Section 7 of FC(R) Act, 2010 and Rule 24 of FC(R) Rules, 2011 and ensure that before any funds are passed on to any person/association in India that the recipient is (i) eligible to accept foreign contribution under the Act, i.e., recipient association is registered under the Act, or has obtained Prior Permission of the Government under Section 11 of the Act, and (ii) the person/association is not prohibited under the Act."]]></variableExpression>
+	</variable>
+	<variable name="Para6" class="java.lang.String">
+		<variableExpression><![CDATA["Physical inspection of the activities done by the Association may be carried out at any time by this Ministry. "]]></variableExpression>
+	</variable>
+	<variable name="Para7" class="java.lang.String">
+		<variableExpression><![CDATA["You are requested to familiarize yourself with the provisions of Foreign Contribution (Regulation) Act, 2010 and Foreign Contribution (Regulation) Rules, 2011, as amended from time to time, available at this Ministry’s website https://fcraonline.nic.in/ to ensure strict compliance of the Act/ Rules. Failure to comply with any of the provisions of said Act/ Rules will make you liable for action under the relevant provisions of the Foreign Contribution (Regulation) Act, 2010."]]></variableExpression>
+	</variable>
+	<variable name="Para8" class="java.lang.String">
+		<variableExpression><![CDATA["This renewed certificate is valid for a period of five years with effect from <b>"+$P{validFrom}+"</b>."]]></variableExpression>
+	</variable>
+	<variable name="Para9" class="java.lang.String">
+		<variableExpression><![CDATA["The email containing the renewed registration certificate may be sent immediately to the Bank mentioned above."]]></variableExpression>
+	</variable>
+	<variable name="Para10" class="java.lang.String">
+		<variableExpression><![CDATA["The renewal of registration is subject to compliance of the provisions of Foreign Contribution (Regulation) Act, 2010/ Foreign Contribution (Regulation) Rules, 2011, as amended from time to time, by the association and also to the final outcome of enquiry/ case, if any, pending against the association."]]></variableExpression>
+	</variable>
+	<variable name="Para11" class="java.lang.String">
+		<variableExpression><![CDATA["This is a digitally signed certificate to be validated digitally using the signature panel using Adobe Acrobat Reader (Ver 5.0 or above). The digital intimation is authenticated by a digital signature obtained from a certifying authority under the Information Technology Act 2000."]]></variableExpression>
+	</variable>
+	<variable name="SIGNATURE_FIELD" class="java.lang.String">
+		<variableExpression><![CDATA["SIGNATURE_FIELD"]]></variableExpression>
+	</variable>
+	<variable name="para2" class="java.lang.String">
+		<variableExpression><![CDATA[" Banks are requested to verify online the validity of the certificate using fcraonline.nic.in."]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="20" width="475" height="85"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[	Government of India
+	Ministry of Home Affairs
+	Foreigners Division
+	(FCRA Wing)
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="0" width="475" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["No. <b>"+$P{appId}+"</b>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="669" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="142" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[Sir/Madam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="47" y="192" width="109" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Registration Number :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="47" y="212" width="109" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Nature :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="169" y="192" width="306" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{regNumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="169" y="212" width="306" height="20"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoNature}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="162" width="475" height="20"/>
+				<textElement textAlignment="Justified" markup="styled">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Para1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="363" y="579" width="112" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Yours faithfully]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-2" y="632" width="477" height="20"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>"+$P{officerName}+"<br/>"+$P{officerDesg}+"<br/>Tel. "+$P{officerContact}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="73" width="475" height="20"/>
+				<textElement markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["To,<br/><b>The Chief Functionary,<br/>"+$P{assoName}+"</b><br/><b>"+$P{assoAddress}+"</b>"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="238" y="46" width="237" height="20"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dated: <b>"+$P{regDate}+"</b>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="112" width="475" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject:   Renewal of Registration under Foreign Contribution (Regulation) Act, 2010.]]></text>
+			</staticText>
+			<frame>
+				<reportElement positionType="Float" x="0" y="242" width="475" height="20"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="20" y="0" width="455" height="20"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Para2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="20" height="20"/>
+					<textElement/>
+					<text><![CDATA[2.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="272" width="475" height="20"/>
+				<staticText>
+					<reportElement x="0" y="0" width="20" height="20"/>
+					<textElement/>
+					<text><![CDATA[3.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="20" y="0" width="455" height="20"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Para3}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="302" width="475" height="20"/>
+				<staticText>
+					<reportElement x="0" y="0" width="20" height="20"/>
+					<textElement/>
+					<text><![CDATA[4.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="20" y="0" width="455" height="20"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Para4}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="332" width="475" height="20"/>
+				<staticText>
+					<reportElement x="0" y="0" width="20" height="20"/>
+					<textElement/>
+					<text><![CDATA[5.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="20" y="0" width="455" height="20"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Para5}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="362" width="475" height="20"/>
+				<staticText>
+					<reportElement x="0" y="0" width="20" height="20"/>
+					<textElement/>
+					<text><![CDATA[6.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="20" y="0" width="455" height="20"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Para6}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="392" width="475" height="20"/>
+				<staticText>
+					<reportElement x="0" y="0" width="20" height="20"/>
+					<textElement/>
+					<text><![CDATA[7.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="20" y="0" width="455" height="20"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Para7}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="422" width="475" height="20"/>
+				<staticText>
+					<reportElement x="0" y="0" width="20" height="20"/>
+					<textElement/>
+					<text><![CDATA[8.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="20" y="0" width="455" height="20"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Para8}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="452" width="475" height="20"/>
+				<staticText>
+					<reportElement x="0" y="0" width="20" height="20"/>
+					<textElement/>
+					<text><![CDATA[9.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="20" y="0" width="455" height="20"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Para9}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="482" width="475" height="20"/>
+				<staticText>
+					<reportElement x="0" y="0" width="20" height="20"/>
+					<textElement/>
+					<text><![CDATA[10.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement positionType="Float" x="20" y="0" width="455" height="20"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Para10}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="20" y="512" width="455" height="20"/>
+				<textElement textAlignment="Justified" markup="styled"/>
+				<textFieldExpression><![CDATA[$V{Para11}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="512" width="20" height="20"/>
+				<textElement markup="styled"/>
+				<text><![CDATA[11.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="327" y="632" width="121" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				<anchorNameExpression><![CDATA[$V{SIGNATURE_FIELD}]]></anchorNameExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="20" y="544" width="456" height="20"/>
+				<textElement markup="html"/>
+				<textFieldExpression><![CDATA[$V{para2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="3" y="545" width="18" height="20"/>
+				<textElement/>
+				<text><![CDATA[12.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="169" y="0" width="306" height="46"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{officeAddress}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

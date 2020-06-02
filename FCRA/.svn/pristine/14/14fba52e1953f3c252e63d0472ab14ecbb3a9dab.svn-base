@@ -1,0 +1,651 @@
+package utilities.communication;
+
+import java.io.File;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.owasp.esapi.ESAPI;
+
+import utilities.KVPair;
+import utilities.Commons;
+import utilities.communication.mail.MailScheduler;
+import utilities.notifications.Closeable;
+import utilities.notifications.Notification;
+import utilities.notifications.Status;
+import utilities.notifications.Type;
+import utilities.communication.sms.SMSScheduler;
+
+public class AutoNotifier extends Commons {
+	private String applicationId;
+	private String errorCode;
+	private String notificationType; // 1 - SMS, 2 - Mail, 3 -SMS+Mail
+	private Integer status;
+	
+	private String officeName;
+	private String officeCode;
+	private String svcCode;
+	
+	// Mail details 
+	private String fromAddress;
+	private String toAddress;
+	private String emailSubject;
+	private String emailMessage;
+	private File doc;
+	private String docName;
+	private byte[] attachment;
+	private String attachmentName;
+
+	// SMS details 
+	private String smsMessage;
+	private String phoneNumber;
+	
+	private String smsErrorMessage;
+	private String emailErrorMessage;
+	
+	// OTP Details
+	private String otpValue;
+	private String myUserId;
+	
+	// Multiple Attachment for Communication
+	
+	private List<KVPair<String, byte[]>> attachmentList;
+	
+	/*
+	 * Status Values
+	 * 1 -> granted
+	 * 2 -> clarification requested
+	 * 3 -> denied	 
+	 * 4 -> OTP
+	 * 7- Exemption for Annual Return Penalty
+	 * 8- ACCEPT
+	 */
+	private void prepareAlertMessages(String applicationId, Integer status, Connection connection,String mailContent) throws Exception{		
+		switch(status) {
+		case 1:		
+			smsMessage = " Your application  "+applicationId+" has been granted.";
+			emailMessage = mailContent;
+			emailSubject = "Intimation under FCRA";
+			break;
+		case 2:
+			smsMessage = " A clarification has been requested for application "+applicationId+".Please log on to https://fcraonline.nic.in to see the details and take necessary action.";
+			emailMessage = mailContent;
+			emailSubject = "Intimation under FCRA";
+			break;
+		case 3:			
+			smsMessage = "Your application  "+applicationId+" has been denied.";
+			emailMessage = mailContent;
+			emailSubject = "Intimation under FCRA";
+			break;
+		case 4:			
+			//smsMessage = "Your application  "+applicationId+" has been denied.";
+			String content="Dear User,<br><br>&nbsp;&nbsp;&nbsp;We just received a request to reset the password for your FCRA Portal account.<br>"
+					+ "&nbsp;&nbsp;&nbsp;Please reset your password using OTP (Reference No. "+applicationId+") given below :<br>&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;"
+					+ "OTP : <b>"+otpValue+"</b><br><br>Regards<br>FCRA Portal Support";
+			emailMessage = content;
+			emailSubject = "Reset Password request for FCRA Portal";
+			break;
+		case 5:
+			smsMessage = " A clarification has been requested for application "+applicationId+".Please log on to https://fcraonline.nic.in to see the details and take necessary action.";
+			emailMessage = mailContent;
+			emailSubject = "Reminder - Intimation under FCRA";
+			break;
+		case 99:			
+			emailMessage = mailContent;	
+			smsMessage=mailContent;
+			break;		
+		case 6:		
+			smsMessage="";
+			//pullMailSubjectAndBody();
+		case 7:
+			smsMessage 	 = 	mailContent;
+			emailMessage =  mailContent;
+			emailSubject = "Intimation under FCRA";
+			break;
+		case 8:			
+			emailMessage =  mailContent;
+			emailSubject = "Intimation under FCRA";
+			break;
+		}
+		
+	}
+	
+	private void pullMobileNumbers(String applicationId, 
+			   Connection connection) throws Exception {
+		/*if(cfroApplicationId != null){
+			
+			query=new StringBuffer("select mobile from t_address_details where application_id=? and address_id=2");
+			statement=connection.prepareStatement(query.toString());
+			statement.setString(1, cfroApplicationId);
+			resultSet=statement.executeQuery();
+			if(resultSet.next()){
+				phoneNumber = resultSet.getString(1);
+			}
+			statement.close();
+		}
+		else {
+			query = new StringBuffer("SELECT MOBILE_NO_IN_INDIA_LONGSTAY FROM (select * from T_APPLICANT_DETAILS_ONLINE union select * from T_APPLICANT_ONLINE_CLOSED) WHERE application_id=? ");
+			statement=connection.prepareStatement(query.toString());
+			statement.setString(1, onlineApplicationId);
+			resultSet=statement.executeQuery();
+			if(resultSet.next()){
+				phoneNumber = resultSet.getString(1);
+			}
+			statement.close();
+		}*/
+						
+	}
+	
+	private void pullMailIds(String applicationId,
+			   Connection connection,String officeCode) throws Exception {
+	/*	switch(status){
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 7:
+			if(applicationId != null){
+				query=new StringBuffer("select email_id from tm_office where office_code=?");
+				statement=connection.prepareStatement(query.toString());
+				statement.setString(1, officeCode);
+				resultSet=statement.executeQuery();
+				if(resultSet.next()){
+					toAddress = resultSet.getString(1);
+				}
+				statement.close();
+			}
+			else {
+				query = new StringBuffer("SELECT E_MAIL_ID FROM (select * from T_APPLICANT_DETAILS_ONLINE union select * from T_APPLICANT_ONLINE_CLOSED) WHERE application_id=? ");
+				statement=connection.prepareStatement(query.toString());
+				statement.setString(1, applicationId);
+				resultSet=statement.executeQuery();
+				if(resultSet.next()){
+					toAddress = resultSet.getString(1);
+				}
+				statement.close();
+			}
+			break;
+		case 6:
+			
+		} */		
+		query = new StringBuffer("select email_id from tm_office where office_code=?");
+		statement=connection.prepareStatement(query.toString());
+		statement.setString(1, officeCode);
+		resultSet=statement.executeQuery();
+		if(resultSet.next()){
+			fromAddress  = resultSet.getString(1).split(",")[0];
+		}
+		if(nob(fromAddress)){
+			fromAddress="no-reply-MHAFCRA@nic.in";
+		}
+		resultSet.close();
+		statement.close();
+	} 
+	public List<Notification> pushAutoNotifications(String applicationId, 
+									   Integer status,									    
+									   String notificationType,
+									   String email,
+									   Connection connection,String officeCode,String mailContent){
+		try{
+			this.notificationType = notificationType;
+			this.connection = connection;
+			this.applicationId = applicationId;
+			this.status=status;
+			this.toAddress=email;
+			this.officeCode=officeCode;			
+			pullOfficeName(applicationId,connection);
+			pullMailIds(applicationId,connection,officeCode);
+			prepareAlertMessages(applicationId, status,connection,mailContent);
+			pullMobileNumbers(applicationId, connection);			
+			pushAutoNotifications();
+		} catch(Exception e){
+			ps(e);
+		}
+		return notifyList;
+	}
+	public List<Notification> pushAutoNotificationsMultiple(String applicationId, 
+			   Integer status,									    
+			   String notificationType,
+			   String email,
+			   Connection connection,String officeCode,String mailContent){
+		try{
+			this.notificationType = notificationType;
+			this.connection = connection;
+			this.applicationId = applicationId;
+			this.status=status;
+			this.toAddress=email;
+			this.officeCode=officeCode;			
+			pullOfficeName(applicationId,connection);
+			pullMailIds(applicationId,connection,officeCode);
+			prepareAlertMessages(applicationId, status,connection,mailContent);
+			pullMobileNumbers(applicationId, connection);			
+			pushAutoNotificationsMultiple();
+		} catch(Exception e){
+			ps(e);
+		}
+		return notifyList;
+}
+	private void pullOfficeName(String applicationId, Connection connection) throws Exception{
+		query=new StringBuffer("SELECT ASSO_NAME || ', ' || ASSO_ADDRESS || ', ' || ASSO_TOWN_CITY FROM T_FC8_ENTRY WHERE UNIQUE_FILENO=?");
+		statement=connection.prepareStatement(query.toString());
+		statement.setString(1, applicationId);
+		resultSet=statement.executeQuery();
+		if(resultSet.next()){
+			officeName=resultSet.getString(1);
+		}
+		resultSet.close();
+		statement.close();
+	}
+	
+	
+	private Boolean validateSMSInputs() {
+    	if(ESAPI.validator().isValidInput("phoneNumber",phoneNumber , "Mobile", 10, false) == false)
+    	{
+    		//notifyList.add(new Notification("Error: ", "Please provide a valid Mobile Number",Status.ERROR,Type.STICKY,Closeable.TRUE,10000));
+    		smsErrorMessage = "Invalid Mobile Number";
+    		return false;
+    	}
+    	if(ESAPI.validator().isValidInput("smsMessage",smsMessage , "WordSS", 500, true) == false)
+    	{
+    		//notifyList.add(new Notification("Error: ", "Maximum 500 characters allowed.",Status.ERROR,Type.STICKY,Closeable.TRUE,10000));
+    		smsErrorMessage = "SMS Message length cannot exceed 500 characters";
+    		return false;
+    	}
+    	return true;
+		
+	}
+	private Boolean validateMailInputs() {
+    	if(ESAPI.validator().isValidInput("fromAddress",fromAddress , "Email", 100, false) == false)
+    	{
+    		//notifyList.add(new Notification("Error: ", "Please provide a valid from address'",Status.ERROR,Type.BAR,Closeable.TRUE,10000));
+    		emailErrorMessage = "Sender mail id is invalid";
+    		return false;
+    	}
+    	if(ESAPI.validator().isValidInput("toAddress",toAddress , "WordSS", 200, false) == false)
+    	{
+    		//notifyList.add(new Notification("Error: ", "Please provide a valid to address'",Status.ERROR,Type.BAR,Closeable.TRUE,10000));
+    		emailErrorMessage = "Recipient mail id is invalid";
+    		return false;
+    	}
+    	if(ESAPI.validator().isValidInput("emailSubject",emailSubject , "WordSS", 200, true) == false)
+    	{
+    		//notifyList.add(new Notification("Error: ", "Maximum 200 characters allowed.",Status.ERROR,Type.BAR,Closeable.TRUE,10000));
+    		emailErrorMessage = "Email subject cannot exceed 200 characters";
+    		return false;
+    	}
+    	/*
+    	if(ESAPI.validator().isValidInput("emailMessage",emailMessage , "MailBody", 4000, true) == false)
+    	{
+    		//notifyList.add(new Notification("Error: ", "Maximum 2000 characters allowed.",Status.ERROR,Type.BAR,Closeable.TRUE,10000));
+    		emailErrorMessage = "Email message cannot exceed 4000 characters";
+    		return false;
+    	} */
+    	return true;		
+	}
+	private String pushAutoNotifications() throws Exception{
+		if(notificationType == null || notificationType.equals(""))
+		{
+			notifyList.add(new Notification("Error: ", "Invalid Notification Type. Please select SMS/Mail/Both",Status.ERROR,Type.BAR,Closeable.TRUE,10000));
+		}
+		try{
+			//begin();
+			if(notificationType.equalsIgnoreCase("1")){
+				if(validateSMSInputs()) {
+					pushAutoSMS();
+					notifyList.add(new Notification("Success: ", "SMS has been sent to :"+phoneNumber,Status.SUCCESS,Type.STICKY,Closeable.TRUE,10000));
+				}
+				else {
+					notifyList.add(new Notification("Error: ", "SMS sending failed : "+smsErrorMessage,Status.ERROR,Type.STICKY,Closeable.TRUE,10000));
+				}
+					
+			}
+			else if(notificationType.equalsIgnoreCase("2")){
+				if(validateMailInputs()){
+					pushAutoMail();
+					notifyList.add(new Notification("Success! ", "Mail(s) have been sent to following email address(es) <br/>"+toAddress.replaceAll(",", ",<br/>"), Status.SUCCESS, Type.STICKY, Closeable.TRUE, 10000));
+				}
+				else {
+					notifyList.add(new Notification("Error: ", "Mail sending failed : "+emailErrorMessage,Status.ERROR,Type.STICKY,Closeable.TRUE,10000));
+				}
+			}
+			else if(notificationType.equalsIgnoreCase("3")){
+				try{
+					if(validateSMSInputs()) {
+						pushAutoSMS();
+						notifyList.add(new Notification("Success: ", "SMS has been sent to :"+phoneNumber,Status.SUCCESS,Type.STICKY,Closeable.TRUE,10000));
+					}
+					else {
+						notifyList.add(new Notification("Error: ", "SMS sending failed : "+smsErrorMessage,Status.ERROR,Type.STICKY,Closeable.TRUE,10000));
+					}
+				}
+				catch(Exception e){
+					ps(e);
+					errorStatus(Type.STICKY);
+				}
+				try{
+					if(validateMailInputs()){
+						pushAutoMail();
+						notifyList.add(new Notification("Success! ", "Mail(s) have been sent to following email address(es) <br/>"+toAddress.replaceAll(",", ",<br/>"), Status.SUCCESS, Type.STICKY, Closeable.TRUE, 10000));
+					}
+					else {
+						notifyList.add(new Notification("Error: ", "Mail sending failed : "+emailErrorMessage,Status.ERROR,Type.STICKY,Closeable.TRUE,10000));
+					}
+				}
+				catch(Exception e){
+					ps(e);
+					errorStatus(Type.STICKY);
+				}			
+			}
+			else{
+				notifyList.add(new Notification("Error: ", "Invalid Notification Type. Please select SMS/Mail/Both",Status.ERROR,Type.BAR,Closeable.TRUE,10000));
+			}
+		}
+		catch(Exception e){
+			ps(e);
+			errorStatus(Type.STICKY);
+		}
+		//finish();
+		return "success";
+	}
+	private String pushAutoNotificationsMultiple() throws Exception{
+		if(notificationType == null || notificationType.equals(""))
+		{
+			notifyList.add(new Notification("Error: ", "Invalid Notification Type. Please select SMS/Mail/Both",Status.ERROR,Type.BAR,Closeable.TRUE,10000));
+		}
+		try{
+			//begin();
+			if(notificationType.equalsIgnoreCase("1")){
+				if(validateSMSInputs()) {
+					pushAutoSMS();
+					notifyList.add(new Notification("Success: ", "SMS has been sent to :"+phoneNumber,Status.SUCCESS,Type.STICKY,Closeable.TRUE,10000));
+				}
+				else {
+					notifyList.add(new Notification("Error: ", "SMS sending failed : "+smsErrorMessage,Status.ERROR,Type.STICKY,Closeable.TRUE,10000));
+				}
+					
+			}
+			else if(notificationType.equalsIgnoreCase("2")){
+				if(validateMailInputs()){
+					pushAutoMailMultiple();
+					notifyList.add(new Notification("Success! ", "Mail(s) have been sent to following email address(es) <br/>"+toAddress.replaceAll(",", ",<br/>"), Status.SUCCESS, Type.STICKY, Closeable.TRUE, 10000));
+				}
+				else {
+					notifyList.add(new Notification("Error: ", "Mail sending failed : "+emailErrorMessage,Status.ERROR,Type.STICKY,Closeable.TRUE,10000));
+				}
+			}
+			else if(notificationType.equalsIgnoreCase("3")){
+				try{
+					if(validateSMSInputs()) {
+						pushAutoSMS();
+						notifyList.add(new Notification("Success: ", "SMS has been sent to :"+phoneNumber,Status.SUCCESS,Type.STICKY,Closeable.TRUE,10000));
+					}
+					else {
+						notifyList.add(new Notification("Error: ", "SMS sending failed : "+smsErrorMessage,Status.ERROR,Type.STICKY,Closeable.TRUE,10000));
+					}
+				}
+				catch(Exception e){
+					ps(e);
+					errorStatus(Type.STICKY);
+				}
+				try{
+					if(validateMailInputs()){
+						pushAutoMailMultiple();
+						notifyList.add(new Notification("Success! ", "Mail(s) have been sent to following email address(es) <br/>"+toAddress.replaceAll(",", ",<br/>"), Status.SUCCESS, Type.STICKY, Closeable.TRUE, 10000));
+					}
+					else {
+						notifyList.add(new Notification("Error: ", "Mail sending failed : "+emailErrorMessage,Status.ERROR,Type.STICKY,Closeable.TRUE,10000));
+					}
+				}
+				catch(Exception e){
+					ps(e);
+					errorStatus(Type.STICKY);
+				}			
+			}
+			else{
+				notifyList.add(new Notification("Error: ", "Invalid Notification Type. Please select SMS/Mail/Both",Status.ERROR,Type.BAR,Closeable.TRUE,10000));
+			}
+		}
+		catch(Exception e){
+			ps(e);
+			errorStatus(Type.STICKY);
+		}
+		//finish();
+		return "success";
+	}
+	private void pushAutoSMS() throws Exception{
+		String smsId = SMSScheduler.schedule(phoneNumber, smsMessage, connection);
+		
+		query=new StringBuffer("insert into T_APPLICATION_AUTOSMS_DETAILS(SMS_ID, APPLICATION_ID, " +
+				"SENT_ON, SENT_BY) values(?,?,sysdate, ?)");
+		statement=connection.prepareStatement(query.toString());
+		statement.setString(1, smsId);
+		statement.setString(2, applicationId);
+		statement.setString(3, myUserId);
+		statement.execute();
+		statement.close();		
+	}
+
+	private void pushAutoMail() throws Exception{
+		List<KVPair<String,byte[]>> attachments=new ArrayList<KVPair<String,byte[]>>();
+		if(!nob(attachmentName) && attachment!=null && !attachment.equals(null)){
+			attachments.add(new KVPair<String,byte[]>(attachmentName, attachment));
+		}
+		
+		String mailId = MailScheduler.schedule(fromAddress, toAddress, emailSubject, emailMessage, attachments, null, null, connection);
+		
+		query=new StringBuffer("insert into T_APPLICATION_AUTOMAIL_DETAILS(MAIL_ID, APPLICATION_ID, " +
+				"SENT_ON, SENT_BY) values(?,?,sysdate, ?)");
+		statement=connection.prepareStatement(query.toString());
+		statement.setString(1, mailId);
+		statement.setString(2, applicationId);
+		statement.setString(3, myUserId);
+		statement.execute();
+		statement.close();
+	}
+	private void pushAutoMailMultiple() throws Exception{
+		/*List<KVPair<String,byte[]>> attachments=new ArrayList<KVPair<String,byte[]>>();
+		if(!nob(attachmentName) && attachment!=null && !attachment.equals(null)){
+			attachments.add(new KVPair<String,byte[]>(attachmentName, attachment));
+		}*/
+		
+		String mailId = MailScheduler.schedule(fromAddress, toAddress, emailSubject, emailMessage, attachmentList, null, null, connection);
+		
+		query=new StringBuffer("insert into T_APPLICATION_AUTOMAIL_DETAILS(MAIL_ID, APPLICATION_ID, " +
+				"SENT_ON, SENT_BY) values(?,?,sysdate, ?)");
+		statement=connection.prepareStatement(query.toString());
+		statement.setString(1, mailId);
+		statement.setString(2, applicationId);
+		statement.setString(3, myUserId);
+		statement.execute();
+		statement.close();
+	}
+	/*Type 6 specific*/
+	
+	private String pullMailSubjectAndBody(String svcCode) throws Exception{
+		String mailContent="",certHeader="",certName="";
+		
+		if(svcCode.equals("01")){
+			certHeader="Intimations of Registration Under FCRA";
+			certName="registration certificate";			
+		}else if(svcCode.equals("02")){
+			certHeader="Intimations of grant of Prior Permission under FCRA, 2010";
+			certName="prior permission certificate";			
+		}
+		else if(svcCode.equals("03")){
+			certHeader="Intimation of Renewal of Registration under FCRA, 2010";
+			certName="renewed registration certificate";			
+		}		
+		mailContent="<center><b>"+certHeader+"</b></center><br/>To,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name<br>"
+				+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date<br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+				+ "Please find attached the "+certName+" granted under FCRA, 2010 to your association (Name and address to be picked up by the system)."
+				+ "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This e-mail may immediately be sent to your bank in which your"
+				+ " designated FCRA bank account is being maintained.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+				+ "Adobe Acrobat Reader version (any version) can be used to open this attachment. Please note that you will not be able to open this file or "
+				+ "view the file properly with any version lower than Adobe Acrobat Reader 5.0. The attached digital communication is authenticated by a digital "
+				+ "signature obtained from a certifying authority under the Information Technology Act, 2000.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+				+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The digital intimation is authenticated by a digital signature obtained from a certifying authority "
+				+ "under the Information Technology Act, 2000.<br><br><b>(ARUN KUMAR DHYANI)</b><br><b>Under Secretary to the Govt. of India</b><br><br><br>"
+				+ "This Email is system generated. Please do not reply to this email ID.<br><br>For any query, please send email at the e-mail IDs mentioned in "
+				+ "FCRA website <b>https://fcraonline.nic.in </b></p>";
+		return mailContent;
+	}
+	
+	/*Type 6 specific*/
+	
+	
+	
+	public String getNotificationType() {
+		return notificationType;
+	}
+
+	public void setNotificationType(String notificationType) {
+		this.notificationType = notificationType;
+	}
+
+	public String getSmsMessage() {
+		return smsMessage;
+	}
+
+	public void setSmsMessage(String smsMessage) {
+		this.smsMessage = smsMessage;
+	}
+
+	public String getEmailMessage() {
+		return emailMessage;
+	}
+
+	public void setEmailMessage(String emailMessage) {
+		this.emailMessage = emailMessage;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getEmailSubject() {
+		return emailSubject;
+	}
+
+	public void setEmailSubject(String emailSubject) {
+		this.emailSubject = emailSubject;
+	}
+	public String getErrorCode() {
+		return errorCode;
+	}
+
+	public void setErrorCode(String errorCode) {
+		this.errorCode = errorCode;
+	}
+	/* Common - Start*/
+	public String getProcessTime() {
+		return processTime;
+	}
+	public void setProcessTime(String processTime) {
+		this.processTime = processTime;
+	}
+	public String getApplicationId() {
+		return applicationId;
+	}
+	public void setApplicationId(String applicationId) {
+		this.applicationId = applicationId.toUpperCase();
+	}
+	public String getFunctionFlag() {
+		return functionFlag;
+	}
+	public void setFunctionFlag(String functionFlag) {
+		this.functionFlag = functionFlag;
+	}
+	public String getRequestType() {
+		return requestType;
+	}
+	public void setRequestType(String requestType) {
+		this.requestType = requestType;
+	}
+	public String getResponseType() {
+		return responseType;
+	}
+	public void setResponseType(String responseType) {
+		this.responseType = responseType;
+	}
+	public List<Notification> getNotifyList() {
+		return notifyList;
+	}
+	public void setNotifyList(List<Notification> notifyList) {
+		this.notifyList = notifyList;
+	}
+	public String getFromAddress() {
+		return fromAddress;
+	}
+	public void setFromAddress(String fromAddress) {
+		this.fromAddress = fromAddress;
+	}
+	public File getDoc() {
+		return doc;
+	}
+	public void setDoc(File doc) {
+		this.doc = doc;
+	}
+	public String getDocName() {
+		return docName;
+	}
+	public void setDocName(String docName) {
+		this.docName = docName;
+	}
+	public String getToAddress() {
+		return toAddress;
+	}
+
+	public void setToAddress(String toAddress) {
+		this.toAddress = toAddress;
+	}
+
+	
+
+	public String getAttachmentName() {
+		return attachmentName;
+	}
+
+	public void setAttachmentName(String attachmentName) {
+		this.attachmentName = attachmentName;
+	}
+
+	public byte[] getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(byte[] attachment) {
+		this.attachment = attachment;
+	}
+
+	public String getOtpValue() {
+		return otpValue;
+	}
+
+	public void setOtpValue(String otpValue) {
+		this.otpValue = otpValue;
+	}
+
+	public String getMyUserId() {
+		return myUserId;
+	}
+
+	public void setMyUserId(String myUserId) {
+		this.myUserId = myUserId;
+	}
+
+	public List<KVPair<String, byte[]>> getAttachmentList() {
+		return attachmentList;
+	}
+
+	public void setAttachmentList(List<KVPair<String, byte[]>> attachmentList) {
+		this.attachmentList = attachmentList;
+	}
+
+}

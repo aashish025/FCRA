@@ -1,0 +1,53 @@
+/*!
+ * Bootstrap Grid v1.0.0
+ */
+ 
+ .boot-grid-container {
+ 	margin : 5px;
+ 	padding: 5px 10px;
+ 	//border:1px solid #3276b1;
+ }
+ 
+ 
+ .boot-grid-table th,
+ .boot-grid-table td {
+    border: 1px solid #ddd !important;
+  }
+  
+  .boot-grid-titlebar {
+  	border-bottom : none;
+  }
+ 
+ .boot-grid-header {
+ }
+ 
+ .boot-grid-body {
+ }
+ 
+ .boot-grid-toolbar {
+ }
+
+  .boot-grid-toolbar {
+  	
+  }
+  
+  .boot-grid-toolbar > span > button {
+  	border : 0;
+  	//padding:2px 4px;
+  }
+
+  .boot-grid-toolbar > span > button:hover {
+  	border : 1px solid #CCCCCC;
+  }
+
+  .boot-grid-tools {
+  	
+  }
+
+  .boot-grid-paging {
+  	padding : 15px;
+  }
+  
+  .clickable {
+	cursor:pointer;
+  }

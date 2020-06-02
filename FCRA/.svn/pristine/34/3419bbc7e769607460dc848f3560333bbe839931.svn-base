@@ -1,0 +1,5380 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building Details</title>
+</head>
+<body>
+
+
+
+	<!-- Registration -->
+	<div id="registration-details">
+			&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+											<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#association-Detail">Association Detail</a></li>
+			<li><a data-toggle="tab" href="#executive-committee">Executive
+					Committee</a></li>
+			<li><a data-toggle="tab" href="#ecdetail">EC Detail and
+					Other</a></li>
+			<li><a data-toggle="tab" href="#bankdetail">Bank Details</a></li>
+			<li><a data-toggle="tab" href="#otherdetail">Other Details</a></li>
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="association-Detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="chiefFunctionaryName-label">
+						Chief Functionary Name :
+						<p class="text-danger" id="chiefFunctionaryName"></p>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="Name-label">
+						Name in full:
+						<p class="text-danger" id="associationName"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="Town-label">
+						Town/City:
+						<p class="text-danger" id="town"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="state-label">
+						State:
+						<p class="text-danger" id="state"></p>
+					</div>
+
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="district-label">
+						District:
+						<p class="text-danger" id="district"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="associationPhoneNumber-label">
+						Telephone no. of Association (with STD Code):
+						<p class="text-danger" id="associationPhoneNumber"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="email-label">
+						e-Mail address of the association:
+						<p class="text-danger" id="email"></p>
+					</div>
+
+
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="website-label">
+						Official Website address, if any :
+						<p class="text-danger" id="website"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field"
+						id="chiefFunctionaryMobile-label">
+						Mobile no. of Chief Functionary:
+						<p class="text-danger" id="chiefFunctionaryMobile"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="chiefFunctionaryPhoneNumber-label">
+						Telephone no. of Chief Functionary (with STD Code):
+						<p class="text-danger" id="chiefFunctionaryPhoneNumber"></p>
+					</div>
+
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Registration :</span>
+				</div>
+				<div class="row">
+				<div class="col-xs-3 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="fcraRegistrationDate-label">
+						FCRA Registration Date:
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				
+				</div>
+				
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field" id="registeredUnderAct-label">
+						Name of Act like Societies Registration Act, 1860, Indian Trust
+						Act, 1882, Companies Act, 1956 / Companies Act, 2013, etc under
+						which the :
+						<p class="text-danger" id="registeredUnderAct"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="registrationNumber-label">
+						Registration Number:
+						<p class="text-danger" id="registrationNumber"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="placeOfRegistration-label">
+						Place of registration: 
+						<p class="text-danger" id="placeOfRegistration"></p>
+					</div>
+
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="dateOfRegistration-label">
+						Date of registration:
+						<p class="text-danger" id="dateOfRegistration"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="panNumber-label">
+						PAN (Permanent Account Number)of Association : 
+						<p class="text-danger" id="panNumber"></p>
+					</div>
+			</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Other Details :</span>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field" id="nature-label">
+						Nature Of Association:
+						<p class="text-danger" id="nature"></p>
+					</div>
+					<div class="col-xs-6 pp-form-field" id="associationAim-label">
+						Main aim(s) and object(s) of the Association:
+						<p class="text-danger" id="associationAim"></p>
+					</div>
+
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Darpan Details :</span>
+				</div>
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="darpanId-label">
+						Darpan Id:
+						<p class="text-danger" id="darpanId"></p>
+					</div>
+					<div class="col-xs-6 pp-form-field" id="darpanPanNo-label">
+						Darpan pan no.:
+						<p class="text-danger" id="darpanPanNo"></p>
+					</div>
+				
+				</div>
+
+			</div>
+
+			<div id="executive-committee" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Name and Address of the Members of
+						executive committee/Governing Council etc. of the Association</span>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12" id="executive-committee-table"></div>
+
+				</div>
+
+			</div>
+
+			<!--/////////////////////////////////////////////////////////////////  -->
+			<div id="ecdetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Whether any current chif patron chif functionary and
+						member of the Executive committee/governing council/office bearer
+						of the association has in the discharge of his/her official
+						function or Private conduct :</span>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberConvictedByCourt-label">
+						Been convicted by any court of law:
+						<p class="text-danger" id="memberConvictedByCourt"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberUnderProsecution-label">
+						Under prosecution for any offence pending against him/her :
+						<p class="text-danger" id="memberUnderProsecution"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberFoundGuiltyOfMisutilization-label">
+						Been found guilty of diversion or mis-utilisation of funds of the
+						Association or any other Association in the past :
+						<p class="text-danger" id="memberFoundGuiltyOfMisutilization"></p>
+					</div>
+
+
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="memberProhibitedFromAcceptingForeignContribution-label">
+						Has been prohibited from accepting foregin contribution: 
+						<p class="text-danger"
+							id="memberProhibitedFromAcceptingForeignContribution"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="memberKeyFunctionaryOfOtherAssn-label">
+						Is a current key functionary of any other association:
+						<p class="text-danger" id="memberKeyFunctionaryOfOtherAssn"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberKeyFunctionaryOfOtherAssnSec1314-label">
+						Is a current key functionary of any other association against whom
+						an order under section 13 or 14 of the foreign Contribution
+						(Regulation) Act,
+						<p class="text-danger" id="memberKeyFunctionaryOfOtherAssnSec1314"></p>
+					</div>
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="detailsOfDiscrepancies-label">
+						Note : If any of the replies to (a) to (f) above is "yes", then
+						full details of the case must be given :
+						<p class="text-danger" id="detailsOfDiscrepancies"></p>
+					</div>
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Whether the Appliciant Association:</span>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 pp-form-field"
+						id="branchOfForeignOrganisation-label">
+						Is a branch / unit association of a foregin beased organisation or
+						another assocation already registered or granted prior permission
+						under Act.
+						<p class="text-danger" id="branchOfForeignOrganisation"></p>
+					</div>
+
+
+
+				</div>
+
+				<div class="row" style="display: none"
+					id="branchOfForeignOrganisation-detail">
+					<div class="col-xs-3 pp-form-field"
+						id="nameOfForeignOrganisation-label">
+						Name:
+						<p class="text-danger" id="nameOfForeignOrganisation"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="addressOfForeignOrganisation-label">
+						Address of the organization:
+						<p class="text-danger" id="addressOfForeignOrganisation"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="regnOrPriorPermnNumberOfForeignOrganisation-label">
+						Registration  / Prior Permission Number :
+						<p class="text-danger"
+							id="regnOrPriorPermnNumberOfForeignOrganisation"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfRegnOrPriorPermnForeignOrganisation-label">
+						Date :
+						<p class="text-danger"
+							id="dateOfRegnOrPriorPermnForeignOrganisation"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6 pp-form-field" id="attractsSection10-label">
+						attract section 10 of the Act and if so, details of the order
+						passed by the Central Government under section 11(3) of the Act :
+						<p class="text-danger" id="attractsSection10"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="orderNumberUnderSection11_3-label">
+						Number :
+						<p class="text-danger" id="orderNumberUnderSection11_3"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfOrderUnderSection11_3-label">
+						Date :
+						<p class="text-danger" id="dateOfOrderUnderSection11_3"></p>
+					</div>
+
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 pp-form-field"
+						id="directedToSeekPriorPermission-label">
+						has been directed in terms of section 9 (d) of the Act to seek
+						prior permission by the Central Govenment .If so, the number and
+						date of the
+						<p class="text-danger" id="directedToSeekPriorPermission"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="orderNumberSeekingPriorPermission-label">
+						Number :
+						<p class="text-danger" id="orderNumberSeekingPriorPermission"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfOrderSeekingPriorPermission-label">
+						Date :
+						<p class="text-danger" id="dateOfOrderSeekingPriorPermission"></p>
+					</div>
+
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 pp-form-field" id="proceededAgainstFCRA-label">
+						Had earlier been proceeded against as per provision of the Foreign
+						Contribution ( Regulation ) Act 1976 ( 49 of 1976  ) / Foreign
+						Contribution (Regulation) Act 2010 ( 42 of 2010 )
+						<p class="text-danger" id="proceededAgainstFCRA"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="proceededAgainstFCRADetails-label">
+						Detail:
+						<p class="text-danger" id="proceededAgainstFCRADetails"></p>
+					</div>
+
+
+
+
+				</div>
+
+
+
+			</div>
+			<!--/////////////////////////////////////////////////////////////////  -->
+			<div id="bankdetail" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Details of designated FC bank account for reciept
+						contribution </span>
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="accountNumber-label">
+						Account No:
+						<p class="text-danger" id="accountNumber"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="bankId-label">
+						Bank Name:
+						<p class="text-danger" id="bankId"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Adress :
+						<p class="text-danger" id="receipientBankDetails_address"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="town-label">
+						 Town/City:
+						<p class="text-danger" id="receipientBankDetails_town"></p>
+					</div>
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="state-label">
+						State:
+						<p class="text-danger" id="receipientBankDetails_state"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="district-label">
+						 District:
+						<p class="text-danger" id="receipientBankDetails_district"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode:-label">
+						Pin Code:
+						<p class="text-danger" id="receipientBankDetails_pincode"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="ifscCode-label">
+						 IFSC Code: 
+						<p class="text-danger" id="receipientBankDetails_ifscCode"></p>
+					</div>
+
+				</div>
+
+			</div>
+       <!--  Mail and SMS Details -->
+       	<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+         </div>
+
+			<!--ss otherdetail /////////////////////////////////////////////////////////////////  -->
+
+			<div id="otherdetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Whether</span>
+				</div>
+				<div class="row ">
+					<div class="col-xs-6 pp-form-field"
+						id="grantedPriorPermissionEarlier-label">
+						The association was granted prior permission to receive foreign
+						contribution under the Foreign Contribution (Regulation) Act, 1976
+						(49 of 1976)/ Foreign Contribution (Regulation) Act 2010 (42 of
+						2010) in the past:
+						<p class="text-danger" id="grantedPriorPermissionEarlier"></p>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field"
+						id="memberConvictedByCourt-label">
+						If so, the Ministry of Home Affaris letter number with date
+						granting such prior permission :
+						<p class="text-danger" id="memberConvictedByCourt"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="letterNumberOfGrantingPriorPermission-label">
+						Number :
+						<p class="text-danger" id="letterNumberOfGrantingPriorPermission"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfGrantingPriorPermission-label">
+						Date :
+						<p class="text-danger" id="dateOfGrantingPriorPermission"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-6 pp-form-field"
+						id="filedAnnualReturnsForPriorPermissionGiven-label">
+						the account of the receipt and utilisation of the foreign
+						contribution received above was sent to the Central Government in
+						the prescribed Form:
+						<p class="text-danger"
+							id="filedAnnualReturnsForPriorPermissionGiven"></p>
+					</div>
+
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field" id="">
+						If so, Date  of submission of yearly accounts thereof :
+						<p class="text-danger" id=""></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfSubmissionOfAnnualReturnsForPriorPermissionGiven-label">
+						Date :
+						<p class="text-danger"
+							id="dateOfSubmissionOfAnnualReturnsForPriorPermissionGiven"></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 pp-form-field"
+						id="receivedForeignContributionWithoutPriorPermissionEarlier-label">
+						the Association has received foreign contribution without prior
+						permission under the Foreign Contribution (Regulation) Act,
+						1976(49 of 1976) / Foreign Contribution (Regulation) Act 2010 (42
+						of 2010) in the past:  
+						<p class="text-danger"
+							id="receivedForeignContributionWithoutPriorPermissionEarlier"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6 pp-form-field" id="">
+						If so, full particulars of the foreign contribution received along
+						with complete address of the bank branch and bank account number
+						in which deposited:
+						<p class="text-danger" id=""></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="receivedForeignContributionCurrencyDesc-label">
+						Currency :
+						<p class="text-danger"
+							id="receivedForeignContributionCurrencyDesc"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="receivedForeignContributionCurrencyOther-label">
+						Other :
+						<p class="text-danger"
+							id="receivedForeignContributionCurrencyOther"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="receivedForeignContributionAmount-label">
+						Amount :
+						<p class="text-danger" id="receivedForeignContributionAmount"></p>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="">
+						Bank Details(Bank Details For Receiving Money Without Prior
+						Permission) :
+						<p class="text-danger" id=""></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="accountNumber-label">
+						Account No :
+						<p class="text-danger" id="withoutpp-accountNumber"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="bankName-label">
+						Bank Name :
+						<p class="text-danger" id="withoutpp-bankName"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="withoutpp-address"></p>
+					</div>
+
+				</div>
+
+
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field"
+						id="violationHasBeenCondoned-label">
+						said violation has been condoned/ compounded by the Central
+						Government: if so, the number and date of the relevant order:
+						<p class="text-danger" id="violationHasBeenCondoned"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="orderNumberForCondonation-label">
+						Number :
+						<p class="text-danger" id="orderNumberForCondonation"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfOrderOfCondonation-label">
+						Date :
+						<p class="text-danger" id="dateOfOrderOfCondonation"></p>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-xs-6 pp-form-field"
+						id="associationProhibitedFromAcceptingForeignContribution-label">
+						Association has been prohibited from accepting foreign
+						contribution under the Foreign Contribution (Regulation) Ac, 1976
+						(49 of 1976)/Foreign Contribution(REgulation) Act 2010 (42 of
+						2010):
+						<p class="text-danger"
+							id="associationProhibitedFromAcceptingForeignContribution"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="associationProhibitedFromAcceptingForeignContributionDetails-label">
+						Details :
+						<p class="text-danger"
+							id="associationProhibitedFromAcceptingForeignContributionDetails"></p>
+					</div>
+
+
+				</div>
+
+
+				<div class="row">
+
+					<div class="col-xs-6 pp-form-field"
+						id="appliedForRegistrationInPast-label">
+						the Association had applied for registration under the Foreign
+						contribution (Regulation) Act, 1976(49 of 1976) / Foreign
+						Contribution (Regulation) Act 2010 (42 of 2010) in the past:
+						<p class="text-danger" id="appliedForRegistrationInPast"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6 pp-form-field"
+						id="memberConvictedByCourt-label">
+						If so, TheNumber and Date of Submission of Application for
+						Registration :
+						<p class="text-danger" id="memberConvictedByCourt"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="applicationNumberForRegistrationInPast-label">
+						Number :
+						<p class="text-danger" id="applicationNumberForRegistrationInPast"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfSubmissionForRegistrationInPast-label">
+						Date :
+						<p class="text-danger" id="dateOfSubmissionForRegistrationInPast"></p>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+
+					<div class="col-xs-6 pp-form-field"
+						id="memberConvictedByCourt-label">
+						The Number and Date of Submission of Last Communication, If any,
+						received from the Ministry :
+						<p class="text-danger" id="memberConvictedByCourt"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="letterNumberOfLastCommnForRegistrationInPast-label">
+						Number :
+						<p class="text-danger"
+							id="letterNumberOfLastCommnForRegistrationInPast"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfLastCommnForRegistrationInPast-label">
+						Date :
+						<p class="text-danger" id="dateOfLastCommnForRegistrationInPast"></p>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+
+					<div class="col-xs-4 pp-form-field"
+						id="registrationInPastRefused-label">
+						The Registration was Refused:
+						<p class="text-danger" id="registrationInPastRefused"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="applicationOfRegistrationInPastPending-label">
+						The Application for Registration is still pending:
+						<p class="text-danger" id="applicationOfRegistrationInPastPending"></p>
+					</div>
+				</div>
+
+
+
+				<div class="row">
+
+					<div class="col-xs-6 pp-form-field"
+						id="appliedForPriorPermissionInPast-label">
+						the Association had applied for registration under the Foreign
+						contribution (Regulation) Act, 1976(49 of 1976) / Foreign
+						Contribution (Regulation) Act 2010 (42 of 2010) in the past:
+						<p class="text-danger" id="appliedForPriorPermissionInPast"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6 pp-form-field"
+						id="memberConvictedByCourt-label">
+						If so, The Number and Date of Submission of Application for Prior
+						Permission :
+						<p class="text-danger" id="memberConvictedByCourt"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="applicationNumberForPriorPermissionInPast-label">
+						Number :
+						<p class="text-danger"
+							id="applicationNumberForPriorPermissionInPast"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfSubmissionForPriorPermissionInPast-label">
+						Date :
+						<p class="text-danger"
+							id="dateOfSubmissionForPriorPermissionInPast"></p>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+
+					<div class="col-xs-6 pp-form-field"
+						id="memberConvictedByCourt-label">
+						The Number and Date of Submission of Last Communication, If any,
+						received from the Ministry :
+						<p class="text-danger" id="memberConvictedByCourt"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="letterNumberOfLastCommnForPriorPermissionInPast-label">
+						Number :
+						<p class="text-danger"
+							id="letterNumberOfLastCommnForPriorPermissionInPast"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfLastCommnForPriorPermissionInPast-label">
+						Date :
+						<p class="text-danger"
+							id="dateOfLastCommnForPriorPermissionInPast"></p>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+
+					<div class="col-xs-4 pp-form-field"
+						id="priorPermissionInPastRefused-label">
+						The Prior Permission was Refused:
+						<p class="text-danger" id="priorPermissionInPastRefused"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="applicationOfPriorPermissionInPastPending-label">
+						The Application for Prior Permission is still pending:
+						<p class="text-danger"
+							id="applicationOfPriorPermissionInPastPending"></p>
+					</div>
+				</div>
+
+
+				<div class="row">
+
+					<div class="col-xs-6 pp-form-field"
+						id="associationHasLinkRefusedRegistration-label">
+						whether the Association has close links with any other
+						Association(s), or its unit(s) or branches, which has been refused
+						registration/ prior permission under the Foreign Contribution
+						(Regulation) Act, 1976 (49 of 1946)/Foreign Contribution
+						(Regulation) Act 2010 (42 of 2010):
+						<p class="text-danger" id="associationHasLinkRefusedRegistration"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="associationHasLinkProhibitedFromAcceptingForeignContribution-label">
+						Prohibited from accepting foreign contribution::
+						<p class="text-danger"
+							id="associationHasLinkProhibitedFromAcceptingForeignContribution"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="associationHasLinkSuspendedOrCancelledRegistration-label">
+						Suspended or whose registration has been cancelled: :
+						<p class="text-danger"
+							id="associationHasLinkSuspendedOrCancelledRegistration"></p>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-xs-6 pp-form-field"
+						id="memberConvictedByCourt-label">
+						if answer to any of (a) to (c) is yes, please give full
+						particulars of the other association :
+						<p class="text-danger" id="memberConvictedByCourt"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="linkAssociationName-label">
+						Association Name :
+						<p class="text-danger" id="linkAssociationName"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="linkAssociationAddress-label">
+						Name of Association
+						<p class="text-danger" id="linkAssociationAddress"></p>
+					</div>
+
+				</div>
+
+
+
+
+			</div>
+
+
+
+			<!--  	<form action="" id="document-download-form">
+				<input type="hidden" name="propertyId" id="doc-property-id"/>
+			</form> -->
+		</div>
+	</div>
+
+	<!-- prior permission-->
+
+	<div id="prior-permission">
+			&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+											<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#association-Detail">Association Detail</a></li>
+			<li><a data-toggle="tab" href="#executive-committee">Executive
+					Committee</a></li>
+			<li><a data-toggle="tab" href="#ecdetail">EC Detail and
+					Other</a></li>
+			<li><a data-toggle="tab" href="#bankdetail">Bank Details</a></li>
+			<li><a data-toggle="tab" href="#donorcommit">Donor
+					Commitment</a></li>
+			<li><a data-toggle="tab" href="#donordetail">Donor Deatils</a></li>
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+
+		</ul>
+
+		<div class="tab-content">
+			<div id="association-Detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="chiefFunctionaryName-label">
+						Chief Functionary Name :
+						<p class="text-danger" id="chiefFunctionaryName"></p>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="Name-label">
+						Name in full:
+						<p class="text-danger" id="associationName"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="Town-label">
+						Town/City:
+						<p class="text-danger" id="town"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="state-label">
+						State:
+						<p class="text-danger" id="state"></p>
+					</div>
+
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="district-label">
+						District:
+						<p class="text-danger" id="district"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="associationPhoneNumber-label">
+						Telephone no. of Association (with STD Code):
+						<p class="text-danger" id="associationPhoneNumber"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="email-label">
+						e-Mail address of the association:
+						<p class="text-danger" id="email"></p>
+					</div>
+
+
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="website-label">
+						Official Website address, if any
+						<p class="text-danger" id="website"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field"
+						id="chiefFunctionaryMobile-label">
+						Mobile no. of Chief Functionary:
+						<p class="text-danger" id="chiefFunctionaryMobile"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="chiefFunctionaryPhoneNumber-label">
+						Telephone no. of Chief Functionary (with STD Code):
+						<p class="text-danger" id="chiefFunctionaryPhoneNumber"></p>
+					</div>
+
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Registration</span>
+				</div>
+				
+				<div class="row" style="font-weight: bold">
+				<div class="col-xs-3 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="fcraRegistrationDate-label">
+						FCRA Registration Date:
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				
+				</div>
+				
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field" id="registeredUnderAct-label">
+						Name of Act like Societies Registration Act, 1860, Indian Trust
+						Act, 1882, Companies Act, 1956 / Companies Act, 2013, etc under
+						which the :
+						<p class="text-danger" id="registeredUnderAct"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="registrationNumber-label">
+						Registration Number:
+						<p class="text-danger" id="registrationNumber"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="placeOfRegistration-label">
+						Place of registration: 
+						<p class="text-danger" id="placeOfRegistration"></p>
+					</div>
+
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="dateOfRegistration-label">
+						Date of registration:
+						<p class="text-danger" id="dateOfRegistration"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="panNumber-label">
+						PAN (Permanent Account Number)of Association : 
+						<p class="text-danger" id="panNumber"></p>
+					</div>
+              </div>
+				<div class="bs-callout bs-callout-info">
+					<span>Other Details</span>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field" id="nature-label">
+						Nature Of Association:
+						<p class="text-danger" id="nature"></p>
+					</div>
+					<div class="col-xs-6 pp-form-field" id="associationAim-label">
+						Main aim(s) and object(s) of the Association:
+						<p class="text-danger" id="associationAim"></p>
+					</div>
+
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Darpan Details :</span>
+				</div>
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="darpanId-label">
+						Darpan Id:
+						<p class="text-danger" id="darpanId"></p>
+					</div>
+					<div class="col-xs-6 pp-form-field" id="darpanPanNo-label">
+						Darpan pan no.:
+						<p class="text-danger" id="darpanPanNo"></p>
+					</div>
+				
+				</div>
+
+			</div>
+
+			<div id="executive-committee" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Name and Address of the Members of
+						executive committee/Governing Council etc. of the Association</span>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12" id="executive-committee-table"></div>
+
+				</div>
+
+			</div>
+
+			<!--/////////////////////////////////////////////////////////////////  -->
+			<div id="ecdetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Whether any current chif patron chif functionary and
+						member of the Executive committee/governing council/office bearer
+						of the association has in the discharge of his/her official
+						function or Private conduct :</span>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberConvictedByCourt-label">
+						Been convicted by any court of law:
+						<p class="text-danger" id="memberConvictedByCourt"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberUnderProsecution-label">
+						Under prosecution for any offence pending against him/her :
+						<p class="text-danger" id="memberUnderProsecution"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberFoundGuiltyOfMisutilization-label">
+						Been found guilty of diversion or mis-utilisation of funds of the
+						Association or any other Association in the past :
+						<p class="text-danger" id="memberFoundGuiltyOfMisutilization"></p>
+					</div>
+
+
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="memberProhibitedFromAcceptingForeignContribution-label">
+						Has been prohibited from accepting foregin contribution: 
+						<p class="text-danger"
+							id="memberProhibitedFromAcceptingForeignContribution"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="memberKeyFunctionaryOfOtherAssn-label">
+						Is a current key functionary of any other association:
+						<p class="text-danger" id="memberKeyFunctionaryOfOtherAssn"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberKeyFunctionaryOfOtherAssnSec1314-label">
+						Is a current key functionary of any other association against whom
+						an order under section 13 or 14 of the foreign Contribution
+						(Regulation) Act,
+						<p class="text-danger" id="memberKeyFunctionaryOfOtherAssnSec1314"></p>
+					</div>
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="detailsOfDiscrepancies-label">
+						Note : If any of the replies to (a) to (f) above is "yes", then
+						full details of the case must be given :
+						<p class="text-danger" id="detailsOfDiscrepancies"></p>
+					</div>
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Whether the Appliciant Association:</span>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 pp-form-field"
+						id="branchOfForeignOrganisation-label">
+						Is a branch / unit association of a foregin beased organisation or
+						another assocation already registered or granted prior permission
+						under Act.
+						<p class="text-danger" id="branchOfForeignOrganisation"></p>
+					</div>
+
+
+
+				</div>
+
+				<div class="row" style="display: none"
+					id="branchOfForeignOrganisation-detail">
+					<div class="col-xs-3 pp-form-field"
+						id="nameOfForeignOrganisation-label">
+						Name:
+						<p class="text-danger" id="nameOfForeignOrganisation"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="addressOfForeignOrganisation-label">
+						Address of the organization:
+						<p class="text-danger" id="addressOfForeignOrganisation"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="regnOrPriorPermnNumberOfForeignOrganisation-label">
+						Registration  / Prior Permission Number :
+						<p class="text-danger"
+							id="regnOrPriorPermnNumberOfForeignOrganisation"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfRegnOrPriorPermnForeignOrganisation-label">
+						Date :
+						<p class="text-danger"
+							id="dateOfRegnOrPriorPermnForeignOrganisation"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6 pp-form-field" id="attractsSection10-label">
+						attract section 10 of the Act and if so, details of the order
+						passed by the Central Government under section 11(3) of the Act :
+						<p class="text-danger" id="attractsSection10"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="orderNumberUnderSection11_3-label">
+						Number :
+						<p class="text-danger" id="orderNumberUnderSection11_3"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfOrderUnderSection11_3-label">
+						Date :
+						<p class="text-danger" id="dateOfOrderUnderSection11_3"></p>
+					</div>
+
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 pp-form-field"
+						id="directedToSeekPriorPermission-label">
+						has been directed in terms of section 9 (d) of the Act to seek
+						prior permission by the Central Govenment .If so, the number and
+						date of the
+						<p class="text-danger" id="directedToSeekPriorPermission"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="orderNumberSeekingPriorPermission-label">
+						Number :
+						<p class="text-danger" id="orderNumberSeekingPriorPermission"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfOrderSeekingPriorPermission-label">
+						Date :
+						<p class="text-danger" id="dateOfOrderSeekingPriorPermission"></p>
+					</div>
+
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 pp-form-field" id="proceededAgainstFCRA-label">
+						Had earlier been proceeded against as per provision of the Foreign
+						Contribution ( Regulation ) Act 1976 ( 49 of 1976  ) / Foreign
+						Contribution (Regulation) Act 2010 ( 42 of 2010 )
+						<p class="text-danger" id="proceededAgainstFCRA"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="proceededAgainstFCRADetails-label">
+						Detail:
+						<p class="text-danger" id="proceededAgainstFCRADetails"></p>
+					</div>
+
+
+
+
+				</div>
+
+
+
+			</div>
+			<!--/////////////////////////////////////////////////////////////////  -->
+			<div id="bankdetail" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Details of designated FC bank account for reciept
+						contribution </span>
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="accountNumber-label">
+						Account No:
+						<p class="text-danger" id="accountNumber"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="bankId-label">
+						Bank Name:
+						<p class="text-danger" id="bankId"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Adress :
+						<p class="text-danger" id="receipientBankDetails_address"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="town-label">
+						 Town/City :
+						<p class="text-danger" id="receipientBankDetails_town"></p>
+					</div>
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="state-label">
+						State:
+						<p class="text-danger" id="receipientBankDetails_state"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="district-label">
+						 District:
+						<p class="text-danger" id="receipientBankDetails_district"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode:-label">
+						Pin Code:
+						<p class="text-danger" id="receipientBankDetails_pincode"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="ifscCode-label">
+						 IFSC Code: 
+						<p class="text-danger" id="receipientBankDetails_ifscCode"></p>
+					</div>
+
+				</div>
+
+			</div>
+
+			<!--Donor Commitment div -->
+			<div id="donorcommit" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Donor Commitment Details</span>
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field"
+						id="natureOfContributionDesc-label">
+						Nature of the foreign contribution:
+						<p class="text-danger" id="natureOfContributionDesc"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="amount-label">
+						Amount:
+						<p class="text-danger" id="amount"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="currencyDesc-label">
+						Currency:
+						<p class="text-danger" id="currencyDesc"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="currencyOther-label">
+						Currency(Other):
+						<p class="text-danger" id="currencyOther"></p>
+					</div>
+
+				</div>
+
+
+
+
+
+				<div class="row">
+
+					<div class="col-xs-6 pp-form-field" id="projectDetails-label">
+						Name of the project/ Activity, Address of implementation with
+						brief details of the project and budget break up:
+						<p class="text-danger" id="projectDetails"></p>
+					</div>
+
+
+					<div class="col-xs-6 pp-form-field" id="purposeDesc-label">
+						Purpose:
+						<p class="text-danger" id="purposeDesc"></p>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- end of donor commitment div  -->
+
+			<!--Donor Details div -->
+			<div id="donordetail" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Donor Details</span>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12" id="donor_details_table"></div>
+
+				</div>
+
+			</div>
+			
+			<!--mail and SMS -->
+				<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+                   </div>
+
+			<!-- end of Donor Details div -->
+
+			<!--  	<form action="" id="document-download-form">
+				<input type="hidden" name="propertyId" id="doc-property-id"/>
+			</form> -->
+		</div>
+	</div>
+
+	<!-- Renewal -->
+	<div id="renewal-details">
+			&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+											<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#association-Detail">Association Details</a></li>
+			<li><a data-toggle="tab" href="#executive-committee">Executive
+					Committee</a></li>
+			<li><a data-toggle="tab" href="#ecdetail">EC Details and
+					Other</a></li>
+			<li><a data-toggle="tab" href="#bankdetail">Bank Details</a></li>
+			<li><a data-toggle="tab" href="#fcra-details">FCRA Details</a></li>
+			<li><a data-toggle="tab" href="#annual-return-submitted-details">Annual Return Details</a></li>
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+			
+		</ul>
+
+		<div class="tab-content">
+			<div id="association-Detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="chiefFunctionaryName-label">
+						Chief Functionary Name :
+						<p class="text-danger" id="chiefFunctionaryName"></p>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="Name-label">
+						Name in full:
+						<p class="text-danger" id="associationName"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="Town-label">
+						Town/City:
+						<p class="text-danger" id="town"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="state-label">
+						State:
+						<p class="text-danger" id="state"></p>
+					</div>
+
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="district-label">
+						District:
+						<p class="text-danger" id="district"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="associationPhoneNumber-label">
+						Telephone no. of Association (with STD Code):
+						<p class="text-danger" id="associationPhoneNumber"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="email-label">
+						e-Mail address of the association:
+						<p class="text-danger" id="email"></p>
+					</div>
+
+
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="website-label">
+						Official Website address, if any :
+						<p class="text-danger" id="website"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field"
+						id="chiefFunctionaryMobile-label">
+						Mobile no. of Chief Functionary:
+						<p class="text-danger" id="chiefFunctionaryMobile"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="chiefFunctionaryPhoneNumber-label">
+						Telephone no. of Chief Functionary (with STD Code):
+						<p class="text-danger" id="chiefFunctionaryPhoneNumber"></p>
+					</div>
+
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Registration</span>
+				</div>
+				<div class="row" style="font-weight: bold">
+				<div class="col-xs-3 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="fcraRegistrationDate-label">
+						FCRA Registration Date:
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field" id="registeredUnderAct-label">
+						Name of Act like Societies Registration Act, 1860, Indian Trust
+						Act, 1882, Companies Act, 1956 / Companies Act, 2013, etc under
+						which the :
+						<p class="text-danger" id="registeredUnderAct"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="registrationNumber-label">
+						Registration Number:
+						<p class="text-danger" id="registrationNumber"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="placeOfRegistration-label">
+						Place of registration: 
+						<p class="text-danger" id="placeOfRegistration"></p>
+					</div>
+
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="dateOfRegistration-label">
+						Date of registration:
+						<p class="text-danger" id="dateOfRegistration"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="panNumber-label">
+						PAN (Permanent Account Number)of Association : 
+						<p class="text-danger" id="panNumber"></p>
+					</div>
+               </div>
+				<div class="bs-callout bs-callout-info">
+					<span>Other Details</span>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field" id="nature-label">
+						Nature Of Association:
+						<p class="text-danger" id="nature"></p>
+					</div>
+					<div class="col-xs-6 pp-form-field" id="associationAim-label">
+						Main aim(s) and object(s) of the Association:
+						<p class="text-danger" id="associationAim"></p>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div id="executive-committee" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Name and Address of the Members of
+						executive committee/Governing Council etc. of the Association</span>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12" id="executive-committee-table"></div>
+
+				</div>
+
+			</div>
+
+			<!--/////////////////////////////////////////////////////////////////  -->
+			<div id="ecdetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Whether any current chif patron chif functionary and
+						member of the Executive committee/governing council/office bearer
+						of the association has in the discharge of his/her official
+						function or Private conduct :</span>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberConvictedByCourt-label">
+						Been convicted by any court of law:
+						<p class="text-danger" id="memberConvictedByCourt"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberUnderProsecution-label">
+						Under prosecution for any offence pending against him/her
+						<p class="text-danger" id="memberUnderProsecution"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberFoundGuiltyOfMisutilization-label">
+						Been found guilty of diversion or mis-utilisation of funds of the
+						Association or any other Association in the past :
+						<p class="text-danger" id="memberFoundGuiltyOfMisutilization"></p>
+					</div>
+
+
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="memberProhibitedFromAcceptingForeignContribution-label">
+						Has been prohibited from accepting foregin contribution: 
+						<p class="text-danger"
+							id="memberProhibitedFromAcceptingForeignContribution"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="memberKeyFunctionaryOfOtherAssn-label">
+						Is a current key functionary of any other association:
+						<p class="text-danger" id="memberKeyFunctionaryOfOtherAssn"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field"
+						id="memberKeyFunctionaryOfOtherAssnSec1314-label">
+						Is a current key functionary of any other association against whom
+						an order under section 13 or 14 of the foreign Contribution
+						(Regulation) Act,
+						<p class="text-danger" id="memberKeyFunctionaryOfOtherAssnSec1314"></p>
+					</div>
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="detailsOfDiscrepancies-label">
+						Note : If any of the replies to (a) to (f) above is "yes", then
+						full details of the case must be given :
+						<p class="text-danger" id="detailsOfDiscrepancies"></p>
+					</div>
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Whether the Appliciant Association:</span>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 pp-form-field"
+						id="branchOfForeignOrganisation-label">
+						Is a branch / unit association of a foregin beased organisation or
+						another assocation already registered or granted prior permission
+						under Act.
+						<p class="text-danger" id="branchOfForeignOrganisation"></p>
+					</div>
+
+
+
+				</div>
+
+				<div class="row" style="display: none"
+					id="branchOfForeignOrganisation-detail">
+					<div class="col-xs-3 pp-form-field"
+						id="nameOfForeignOrganisation-label">
+						Name:
+						<p class="text-danger" id="nameOfForeignOrganisation"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="addressOfForeignOrganisation-label">
+						Address of the organization:
+						<p class="text-danger" id="addressOfForeignOrganisation"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="regnOrPriorPermnNumberOfForeignOrganisation-label">
+						Registration  / Prior Permission Number :
+						<p class="text-danger"
+							id="regnOrPriorPermnNumberOfForeignOrganisation"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfRegnOrPriorPermnForeignOrganisation-label">
+						Date :
+						<p class="text-danger"
+							id="dateOfRegnOrPriorPermnForeignOrganisation"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6 pp-form-field" id="attractsSection10-label">
+						attract section 10 of the Act and if so, details of the order
+						passed by the Central Government under section 11(3) of the Act :
+						<p class="text-danger" id="attractsSection10"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="orderNumberUnderSection11_3-label">
+						Number :
+						<p class="text-danger" id="orderNumberUnderSection11_3"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfOrderUnderSection11_3-label">
+						Date :
+						<p class="text-danger" id="dateOfOrderUnderSection11_3"></p>
+					</div>
+
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 pp-form-field"
+						id="directedToSeekPriorPermission-label">
+						has been directed in terms of section 9 (d) of the Act to seek
+						prior permission by the Central Govenment .If so, the number and
+						date of the
+						<p class="text-danger" id="directedToSeekPriorPermission"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="orderNumberSeekingPriorPermission-label">
+						Number :
+						<p class="text-danger" id="orderNumberSeekingPriorPermission"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="dateOfOrderSeekingPriorPermission-label">
+						Date :
+						<p class="text-danger" id="dateOfOrderSeekingPriorPermission"></p>
+					</div>
+
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 pp-form-field" id="proceededAgainstFCRA-label">
+						Had earlier been proceeded against as per provision of the Foreign
+						Contribution ( Regulation ) Act 1976 ( 49 of 1976  ) / Foreign
+						Contribution (Regulation) Act 2010 ( 42 of 2010 )
+						<p class="text-danger" id="proceededAgainstFCRA"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="proceededAgainstFCRADetails-label">
+						Detail:
+						<p class="text-danger" id="proceededAgainstFCRADetails"></p>
+					</div>
+
+
+
+
+				</div>
+
+
+
+			</div>
+			<!--/////////////////////////////////////////////////////////////////  -->
+			<div id="bankdetail" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Details of designated FC bank account for reciept
+						contribution </span>
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="accountNumber-label">
+						Account No:
+						<p class="text-danger" id="accountNumber"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="bankId-label">
+						Bank Name:
+						<p class="text-danger" id="bankId"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Adress :
+						<p class="text-danger" id="receipientBankDetails_address"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="town-label">
+						 Town/City :
+						<p class="text-danger" id="receipientBankDetails_town"></p>
+					</div>
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="state-label">
+						State:
+						<p class="text-danger" id="receipientBankDetails_state"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="district-label">
+						 District:
+						<p class="text-danger" id="receipientBankDetails_district"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode:-label">
+						Pin Code:
+						<p class="text-danger" id="receipientBankDetails_pincode"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="ifscCode-label">
+						 IFSC Code: 
+						<p class="text-danger" id="receipientBankDetails_ifscCode"></p>
+					</div>
+
+				</div>
+
+			</div>
+			
+			<div id="fcra-details" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Details of FCRA Registration</span>
+				</div>
+				
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" >
+						Name of Association:
+						<p class="text-danger" id="fcra-association-name"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" >
+						Address :
+						<p class="text-danger" id="fcra-address"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" >
+						Town/City:
+						<p class="text-danger" id="fcra-town"></p>
+					</div>
+				</div>
+
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" >
+						State:
+						<p class="text-danger" id="fcra-state"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" >
+						District:
+						<p class="text-danger" id="fcra-district"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field">
+						Pin Code:
+						<p class="text-danger" id="fcra-pincode"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" >
+						FCRA Registration Number :
+						<p class="text-danger" id="fcra-rcn"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" >
+						Registration Date:
+						<p class="text-danger" id="fcra-reg-date"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field">
+						Registration Valid Upto:
+						<p class="text-danger" id="fcra-valid-upto"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" >
+						Nature:
+						<p class="text-danger" id="fcra-nature"></p>
+					</div>
+				</div>
+				
+				<div class="bs-callout bs-callout-info">
+					<span>Details of Recipient bank</span>
+				</div>
+				
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field">
+						Account No:
+						<p class="text-danger" id="fcra-account-number"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" >
+						Bank Name:
+						<p class="text-danger" id="fcra-bankId"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field">
+						Adress :
+						<p class="text-danger" id="fcra-bank-address"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field">
+						 Town/City :
+						<p class="text-danger" id="fcra-bank-town"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field">
+						State:
+						<p class="text-danger" id="fcra-bank-state"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field">
+						 District:
+						<p class="text-danger" id="fcra-bank-district"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field">
+						Pin Code:
+						<p class="text-danger" id="fcra-bank-pincode"></p>
+					</div>
+				</div>
+			</div>
+			<div id="annual-return-submitted-details" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Details of Annual Return Submitted</span>
+				</div>
+				<div class="col-xs-6" id="annual-returns-table"></div>
+			</div>
+			
+			<!--  Mail and SMS -->
+				<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+               </div>
+			<!--  	<form action="" id="document-download-form">
+				<input type="hidden" name="propertyId" id="doc-property-id"/>
+			</form> -->
+		</div>
+	</div>
+
+	<!-- Annual Returns -->
+	<div id="annual-returns-details">
+			&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+											<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#association-Detail">Association Detail</a></li>
+			<li><a data-toggle="tab" href="#fc-received">FC Received</a></li>
+			<li><a data-toggle="tab" href="#purpose-wise">Purpose Wise</a></li>
+			<li><a data-toggle="tab" href="#donor-wise">Donor Wise</a></li>
+			<li><a data-toggle="tab" href="#utilisation-detail">Utilisation</a></li>
+			<li><a data-toggle="tab" href="#fc-bank-account">FC Bank
+					Account</a></li>
+			<li><a data-toggle="tab" href="#fc-utilisation-bank-accounts">FC
+					Utilisation Bank Accounts</a></li>
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+					
+		</ul>
+
+		<div class="tab-content">
+			<div id="association-Detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row" style="font-weight: bold">
+				<div class="col-xs-3 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="fcraRegistrationDate-label">
+						FCRA Registration Date:
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				
+				</div>
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="chiefFunctionaryName-label">
+						Chief Functionary Name :
+						<p class="text-danger" id="chiefFunctionaryName"></p>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="Name-label">
+						Name in full:
+						<p class="text-danger" id="associationName"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="Town-label">
+						Town/City:
+						<p class="text-danger" id="town"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="state-label">
+						State:
+						<p class="text-danger" id="state"></p>
+					</div>
+
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="district-label">
+						District:
+						<p class="text-danger" id="district"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="nature-label">
+						Nature Of Association:
+						<p class="text-danger" id="nature"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="religionDesc-label">
+						Religion:
+						<p class="text-danger" id="religionDesc"></p>
+					</div>
+
+
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="associationAim-label">
+						Main aim(s) and object(s) of the Association:
+						<p class="text-danger" id="associationAim"></p>
+					</div>
+					
+
+
+				</div>
+
+			</div>
+
+			<div id="fc-received" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of receipt and utilization of
+						foeigncontribution</span>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field" id="blockYear-label">
+						Block year :
+						<p class="text-danger" id="blockYear"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field" id="amountBroughtForward-label">
+						Brought forward foreign contribution at the begining of the year
+						(Rs.):
+						<p class="text-danger" id="amountBroughtForward"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="otherReceipt-label">
+						Interest or other receipt during the year:
+						<p class="text-danger" id="otherReceipt"></p>
+					</div>
+
+
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Foreign Contribution received during the financial
+						year:</span>
+				</div>
+				<div class="row">
+
+					<div class="col-xs-4 pp-form-field"
+						id="foreignContributionDirect-label">
+						(i) Directly from foreign source :
+						<p class="text-danger" id="foreignContributionDirect"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="foreignContributionTransfer-label">
+						(ii) As transfer from a local source
+						<p class="text-danger" id="foreignContributionTransfer"></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Total Foreign Contribution :
+						<p class="text-danger" id="totalForeignContribution"></p>
+					</div>
+				</div>
+
+			</div>
+			<div id="purpose-wise" class="tab-pane fade">
+				<div class="row">
+					<div class="col-xs-6" id="purpose-wise-table"></div>
+				</div>
+			</div>
+			<div id="donor-wise" class="tab-pane fade">
+				<div class="row">
+					<div class="col-xs-12" id="donor-wise-table"></div>
+				</div>
+			</div>
+			<div id="utilisation-detail" class="tab-pane fade">
+				<!-- <div class="bs-callout bs-callout-info">
+					<span>Details of designated FC bank account for reciept
+						contribution </span>
+				</div> -->
+
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field" id="blockYear-label">
+						Block Year:
+						<p class="text-danger" id="blockYear2"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field"
+						id="totalUtilizationForProjects-label">
+						Total utilization for projects as per aims and objectives of the
+						association (Rs.):
+						<p class="text-danger" id="totalUtilizationForProjects"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field"
+						id="totalAdministrativeExpenses-label">
+						Total Administrative Expenses as provided in Rule 5, FCRR 2011
+						(Rs.):
+						<p class="text-danger" id="totalAdministrativeExpenses"></p>
+					</div>
+
+
+				</div>
+				<div class="row ">
+					<div class="col-xs-4 pp-form-field"
+						id="totalInvestedInTermDeposits-label">
+						Total invested in term deposits (Rs.): 
+						<p class="text-danger" id="totalInvestedInTermDeposits"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field" id="totalPurchase-label">
+						Total purchase of fresh assets (Rs.):
+						<p class="text-danger" id="totalPurchase"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field" id="totalUtilization-label">
+						Total utilization in the year(a+b+c+d):
+						<p class="text-danger" id="totalUtilization"></p>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field" id="balance-label">
+						Balance of unutilized foreign contribution, in cash/bank, at the
+						end of the year(Rs.):
+						<p class="text-danger" id="balance"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="totalNumberOfForeignersWorking-label">
+						Total number of foreigners working (salaried/ in honorary
+						capacity): 
+						<p class="text-danger" id="totalNumberOfForeignersWorking"></p>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div id="fc-bank-account" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Details of designated FC bank account for reciept of
+						foreign contribution(As on 31st March of the year ending) </span>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field" id="blockYear-label">
+						Block Year:
+						<p class="text-danger" id="blockYear3"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field" id="accountNumber-label">
+						Account No:
+						<p class="text-danger" id="receipientBankDetails-accountNumber"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="bankName-label">
+						Bank Name:
+						<p class="text-danger" id="receipientBankDetails-bankName"></p>
+					</div>
+
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field" id="address-label">
+						Branch name and Adress :
+						<p class="text-danger" id="receipientBankDetails-address"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field" id="town-label">
+						Town/City:
+						<p class="text-danger" id="receipientBankDetails-town"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="stateDesc-label">
+						State:
+						<p class="text-danger" id="receipientBankDetails-stateDesc"></p>
+					</div>
+
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field" id="districtDesc-label">
+						District:
+						<p class="text-danger" id="receipientBankDetails-districtDesc"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="receipientBankDetails-pincode"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="ifscCode-label">
+						IFSC Code:
+						<p class="text-danger" id="receipientBankDetails-ifscCode"></p>
+					</div>
+
+
+				</div>
+
+			</div>
+			<div id="fc-utilisation-bank-accounts" class="tab-pane fade">
+
+				<div class="row">
+					<div class="col-xs-12" id="fc-utilization-bank-accounts-table"></div>
+
+				</div>
+
+
+
+			</div>
+			
+          <!--  Mail and SMS -->
+
+		   <div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+         </div>
+
+			<!--  	<form action="" id="document-download-form">
+				<input type="hidden" name="propertyId" id="doc-property-id"/>
+			</form> -->
+		</div>
+	</div>
+
+	<!-- Gift Contribution -->
+	<div id="gift-contribution-details">
+			&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+											<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#applicant-Detail">Application
+					Detail</a></li>
+			<li><a data-toggle="tab" href="#fc1-Detail">Foreign
+					Contribution Details</a></li>
+		    <li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>			
+
+		</ul>
+
+		<div class="tab-content">
+			<div id="applicant-Detail" class="tab-pane fade in active">
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Applicant</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="name-label">
+						Name of the recipient in full:
+						<p class="text-danger" id="name"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="dateOfBirth-label">
+						Date of Birth:
+						<p class="text-danger" id="dateOfBirth"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="nameOfFatherSpouse-label">
+						Name of Father/Spouse :
+						<p class="text-danger" id="nameOfFatherSpouse"></p>
+					</div>
+				</div>
+
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="town-label">
+						town:
+						<p class="text-danger" id="town"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="stateDesc-label">
+						State:
+						<p class="text-danger" id="stateDesc"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="districtDesc-label">
+						District:
+						<p class="text-danger" id="districtDesc"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="phoneNumber-label">
+						Telephone no. of Applicant (with STD Code):
+						<p class="text-danger" id="phoneNumber"></p>
+					</div>
+				</div>
+
+
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="mobile-label">
+						Mobile no. of Applicant:
+						<p class="text-danger" id="mobile"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="email-label">
+						e-Mail address of the Applicant:
+						<p class="text-danger" id="email"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="panNumber-label">
+						Permanent Account Number (PAN) of the recipient in India:
+						<p class="text-danger" id="panNumber"></p>
+					</div>
+
+				</div>
+			</div>
+
+			<div id="fc1-Detail" class="tab-pane fade in">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Foreign Contribution Details</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="amountReceived-label">
+						Amount of foreign contribution received, if it exceeds Rs. 1 lakh
+						Rupees or equivalent in a financial year:
+						<p class="text-danger" id="amountReceived"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="bankDetails-label">
+						Number of the Bank Draft or telegraphic transfer or other
+						communication including the Bank Details:
+						<p class="text-danger" id="bankDetails"></p>
+					</div>
+				</div>
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details of the relative:</span>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="relativeName-label">
+						Name :
+						<p class="text-danger" id="relativeName"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="relativeNationalityDesc-label">
+						Nationality :
+						<p class="text-danger" id="relativeNationalityDesc"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="relativeCountryOfResidenceDesc-label">
+						Country of residence:
+						<p class="text-danger" id="relativeCountryOfResidenceDesc"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="relativeEmail-label">
+						Email :
+						<p class="text-danger" id="relativeEmail"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field"
+						id="relativePassportNumber-label">
+						Passport Number :
+						<p class="text-danger" id="relativePassportNumber"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="relativeRelation-label">
+						Relationship with recipient:
+						<p class="text-danger" id="relativeRelation"></p>
+					</div>
+				</div>			
+			</div>
+			
+			
+			
+			<!-- SMS and Mail -->
+			<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+           </div>
+		</div>
+	</div>
+
+
+	<!-- Article Contribution -->
+	<div id="article-contribution-details">
+			&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+											<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#tab_content3"
+				id="application-tab" role="tab" data-toggle="tab"
+				aria-expanded="true">Application Details</a></li>
+			<li role="presentation" class=""><a href="#tab_content4"
+				role="tab" id="article-tab" data-toggle="tab" aria-expanded="false">Foriegn
+					Contribution Details</a></li>
+					
+		    <li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>			
+		</ul>
+		<div id="myTabContent" class="tab-content">
+			<div role="tabpanel" class="tab-pane fade active in"
+				id="tab_content3" aria-labelledby="application-tab">
+
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Applicant</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="name-label">
+						Name of the recipient in full:
+						<p class="text-danger" id="name"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="town-label">
+						town:
+						<p class="text-danger" id="town"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="stateDesc-label">
+						State:
+						<p class="text-danger" id="stateDesc"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="districtDesc-label">
+						District:
+						<p class="text-danger" id="districtDesc"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="phoneNumber-label">
+						Telephone no. of Applicant (with STD Code):
+						<p class="text-danger" id="phoneNumber"></p>
+					</div>
+				</div>
+
+
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="mobile-label">
+						Mobile no. of Applicant:
+						<p class="text-danger" id="mobile"></p>
+					</div>
+
+
+					<div class="col-xs-3 pp-form-field" id="email-label">
+						e-Mail address of the Applicant:
+						<p class="text-danger" id="email"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="panNumber-label">
+						Permanent Account Number (PAN) of the recipient in India:
+						<p class="text-danger" id="panNumber"></p>
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+
+			<div role="tabpanel" class="tab-pane fade" id="tab_content4"
+				aria-labelledby="article-tab">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Article Details</span>
+				</div>
+
+
+				<div class="row" style="font-weight: bold">
+					<div class="col-xs-3 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration/Prior Permission number and Date, if any:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="fcraRegistrationDate-label">
+						Registration Date :
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="receivedDate-label">
+						Received Date :
+						<p class="text-danger" id="receivedDate"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="articleName-label">
+						Name of Article :
+						<p class="text-danger" id="articleName"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="articleDescription-label">
+						Article Description :
+						<p class="text-danger" id="articleDescription"></p>
+					</div>
+				</div>
+
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="relativeName-label">
+						Name of the person from whom received :
+						<p class="text-danger" id="relativeName"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="relativeAddress-label">
+						Address of the person from whom received :
+						<p class="text-danger" id="relativeAddress"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="purpose-label">
+						Purpose :
+						<p class="text-danger" id="purpose"></p>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="quantity-label">
+						Quantity :
+						<p class="text-danger" id="quantity"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="value-label">
+						Approximate Value (Rs.):
+						<p class="text-danger" id="value"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="modeOfUtilization-label">
+						Mode of  Utilisation/ Disposal (if disposed to whom):
+						<p class="text-danger" id="modeOfUtilization"></p>
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+		
+		
+		
+		<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+         </div>
+		</div>
+		
+	</div>
+
+
+
+	<!-- Fund Transfer -->
+	<div id="fund-transfer-details">
+			&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+											<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#association-Detail">Association Detail</a></li>
+			<li><a data-toggle="tab" href="#basictransfer-details">Basic
+					Transfer Details</a></li>
+			<li><a data-toggle="tab" href="#bank-details">Bank Details</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="association-Detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="chiefFunctionaryName-label">
+						Chief Functionary Name :
+						<p class="text-danger" id="chiefFunctionaryName"></p>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="Name-label">
+						Name in full:
+						<p class="text-danger" id="associationName"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="Town-label">
+						Town/City:
+						<p class="text-danger" id="town"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="state-label">
+						State:
+						<p class="text-danger" id="state"></p>
+					</div>
+
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="district-label">
+						District:
+						<p class="text-danger" id="district"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="nature-label">
+						Nature Of Association:
+						<p class="text-danger" id="nature"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="religionDesc-label">
+						Religion:
+						<p class="text-danger" id="religionDesc"></p>
+					</div>
+
+
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="associationAim-label">
+						Main aim(s) and object(s) of the Association:
+						<p class="text-danger" id="associationAim"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="fcraRegistrationDate-label">
+						FCRA Registration Date:
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Receipient Bank Details</span>
+				</div>
+				<div class="row ">
+					<div class="col-xs-4 pp-form-field" id="accountNumber-label">
+						Account No:
+						<p class="text-danger" id="receipientBankDetails-accountNumber"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="bankName-label">
+						Bank Name:
+						<p class="text-danger" id="receipientBankDetails-bankName"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="address-label">
+						Branch name and Adress :
+						<p class="text-danger" id="receipientBankDetails-address"></p>
+					</div>
+
+
+				</div>
+				<div class="row ">
+
+
+
+
+					<div class="col-xs-4 pp-form-field" id="town-label">
+						Town/City:
+						<p class="text-danger" id="receipientBankDetails-town"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="stateDesc-label">
+						State:
+						<p class="text-danger" id="receipientBankDetails-stateDesc"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="districtDesc-label">
+						District:
+						<p class="text-danger" id="receipientBankDetails-districtDesc"></p>
+					</div>
+
+
+				</div>
+				<div class="row ">
+					<div class="col-xs-4 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="receipientBankDetails-pincode"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="ifscCode-label">
+						IFSC Code:
+						<p class="text-danger" id="receipientBankDetails-ifscCode"></p>
+					</div>
+				</div>
+
+
+			</div>
+
+			<div id="basictransfer-details" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of transfree assocation</span>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field" id="blockYear-label">
+						Name :
+						<p class="text-danger"
+							id="receipientAssociationDetails-associationName"></p>
+					</div>
+
+
+					<div class="col-xs-4 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="receipientAssociationDetails-address"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="town-label">
+						Town/City :
+						<p class="text-danger" id="receipientAssociationDetails-town"></p>
+					</div>
+
+
+				</div>
+				<div class="row">
+
+					<div class="col-xs-4 pp-form-field" id="state-label">
+						State :
+						<p class="text-danger" id="receipientAssociationDetails-stateDesc"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="districtDesc-label">
+						District :
+						<p class="text-danger"
+							id="receipientAssociationDetails-districtDesc"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="pincode-label">
+						Pin Code :
+						<p class="text-danger" id="receipientAssociationDetails-pincode"></p>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-xs-4 pp-form-field"
+						id="associationPhoneNumber-label">
+						Official Telephone No of Association(with Std Code):
+						<p class="text-danger"
+							id="receipientAssociationDetails-associationPhoneNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="email-label">
+						Official Email Address:
+						<p class="text-danger" id="receipientAssociationDetails-email"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Telephone no. of Chief Functionary(With STD Code):
+						<p class="text-danger"
+							id="receipientAssociationDetails-chiefFunctionaryPhoneNumber"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Mobile No of Chief Functionary:
+						<p class="text-danger"
+							id="receipientAssociationDetails-chiefFunctionaryMobile"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="panNumber-label">
+						PAN(Parmanent Account Number) of the Association :
+						<p class="text-danger" id="receipientAssociationDetails-panNumber"></p>
+					</div>
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Regestration Details of Transferee association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Name of Act like Societies Registration Act, 1860, Indian Trust
+						Act,1882,Companies Act,1956 Companies Act,2013, etc under which
+						the association is registered:
+						<p class="text-danger"
+							id="receipientAssociationDetails-registeredUnderAct"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Registraion Number :
+						<p class="text-danger"
+							id="receipientAssociationDetails-registrationNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Place Of Registration :
+						<p class="text-danger"
+							id="receipientAssociationDetails-placeOfRegistration"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Date Of Registration:
+						<p class="text-danger"
+							id="receipientAssociationDetails-dateOfRegistration"></p>
+					</div>
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Amount of Foreign Contribution to be transfered : </span>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field"
+						id="amountToBeTransferred-label">
+						Amount(In Rupees):
+						<p class="text-danger" id="amountToBeTransferred"></p>
+					</div>
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Purpose for the Proposed transfer of Forign
+						Contribution </span>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field" id="purposeDesc-label">
+						Purpose :
+						<p class="text-danger" id="purposeDesc"></p>
+					</div>
+				</div>
+
+			</div>
+			<div id="bank-details" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Bank Details and Exclucive assignated account number
+						opend by the recipient, In which FC is proposed to be transfered </span>
+				</div>
+
+				<div class="row ">
+					<div class="col-xs-4 pp-form-field" id="accountNumber-label">
+						Account No:
+						<p class="text-danger" id="accountNumber"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="bankName-label">
+						Bank Name:
+						<p class="text-danger" id="bankName"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="address-label">
+						Branch name and Adress :
+						<p class="text-danger" id="bank-detail-address"></p>
+					</div>
+
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field" id="town-label">
+						Town/City:
+						<p class="text-danger" id="bank-detail-town"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="stateDesc-label">
+						State:
+						<p class="text-danger" id="stateDesc"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="districtDesc-label">
+						District:
+						<p class="text-danger" id="bank-detail-districtDesc"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-4 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="bank-detail-pincode"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="ifscCode-label">
+						IFSC Code:
+						<p class="text-danger" id="ifscCode"></p>
+					</div>
+
+
+				</div>
+
+				</div>
+		</div>
+	</div>
+
+	<!-- Security Contribution -->
+	<div id="security-contribution-details">
+					&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:0px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:0px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:0px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+											<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+
+		<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#tab_content5"
+				id="application-tab" role="tab" data-toggle="tab"
+				aria-expanded="true">Application Details</a></li>
+			<li role="presentation" class=""><a href="#tab_content6"
+				role="tab" id="security-tab" data-toggle="tab" aria-expanded="false">Foriegn
+					Contribution Details</a></li>
+		</ul>
+
+		<div id="myTabContent" class="tab-content">
+			<div role="tabpanel" class="tab-pane fade active in"
+				id="tab_content5" aria-labelledby="application-tab">
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Applicant</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="name-label">
+						Name of the recipient in full:
+						<p class="text-danger" id="name"></p>
+					</div>
+				</div>
+
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="town-label">
+						town:
+						<p class="text-danger" id="town"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="stateDesc-label">
+						State:
+						<p class="text-danger" id="stateDesc"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="districtDesc-label">
+						District:
+						<p class="text-danger" id="districtDesc"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="phoneNumber-label">
+						Telephone no. of Applicant (with STD Code):
+						<p class="text-danger" id="phoneNumber"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="mobile-label">
+						Mobile no. of Applicant:
+						<p class="text-danger" id="mobile"></p>
+					</div>
+					<div class="col-xs-3 pp-form-field" id="email-label">
+						e-Mail address of the Applicant:
+						<p class="text-danger" id="email"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="panNumber-label">
+						Permanent Account Number (PAN) of the recipient in India:
+						<p class="text-danger" id="panNumber"></p>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div role="tabpanel" class="tab-pane fade" id="tab_content6"
+				aria-labelledby="security-tab">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Security Details</span>
+				</div>
+				<div class="row" style="font-weight: bold">
+					<div class="col-xs-3 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="fcraRegistrationDate-label">
+						Registration Date :
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="receivedDate-label">
+						Received Date :
+						<p class="text-danger" id="receivedDate"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="securityNature-label">
+						Nature of security received :
+						<p class="text-danger" id="securityNature"></p>
+					</div>
+
+
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-3 pp-form-field" id="relativeName-label">
+						Name of the person from whom received:
+						<p class="text-danger" id="relativeName"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="relativeAddress-label">
+						Address of the person from whom received:
+						<p class="text-danger" id="relativeAddress"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-3 pp-form-field" id="nominalValue-label">
+						Nominal Value(Rs.):
+						<p class="text-danger" id="nominalValue"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="marketValue-label">
+						Market value(Rs.):
+						<p class="text-danger" id="marketValue"></p>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="rbiPermissionDetails-label">
+						Reserve Bank of India permission details:
+						<p class="text-danger" id="rbiPermissionDetails"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="modeOfUtilization-label">
+						Mode of  Utilisation/ Disposal (if disposed to whom):
+						<p class="text-danger" id="modeOfUtilization"></p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!-- Election Contribution -->
+		<div id="election-contribution-details">
+					&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:0px; align="left"></B>&nbsp;  &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:0px;"></B>&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:0px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+											<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+			<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#tab_content7"
+					id="application-tab" role="tab" data-toggle="tab"
+					aria-expanded="true">Application Details</a></li>
+				<li role="presentation" class=""><a href="#tab_content8"
+					role="tab" id="election-tab" data-toggle="tab"
+					aria-expanded="false">Foreign Contribution Details</a></li>
+			</ul>
+
+			<div id="myTabContent" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade active in"
+					id="tab_content7" aria-labelledby="application-tab">
+
+
+					<div class="bs-callout bs-callout-info">
+						<span>Details Of Applicant</span>
+					</div>
+					<div class="row">
+						<div class="col-xs-3 pp-form-field" id="name-label">
+							Name of the recipient in full:
+							<p class="text-danger" id="name"></p>
+						</div>
+					</div>
+					<div class="row ">
+
+						<div class="col-xs-3 pp-form-field" id="dateOfBirth-label">
+							Date of Birth:
+							<p class="text-danger" id="dateOfBirth"></p>
+						</div>
+
+						<div class="col-xs-3 pp-form-field" id="nameOfFatherSpouse-label">
+							Name of Father/Spouse :
+							<p class="text-danger" id="nameOfFatherSpouse"></p>
+						</div>
+					</div>
+
+					<div class="row ">
+						<div class="col-xs-3 pp-form-field" id="address-label">
+							Address :
+							<p class="text-danger" id="address"></p>
+						</div>
+
+						<div class="col-xs-3 pp-form-field" id="town-label">
+							town:
+							<p class="text-danger" id="town"></p>
+						</div>
+
+						<div class="col-xs-3 pp-form-field" id="stateDesc-label">
+							State:
+							<p class="text-danger" id="stateDesc"></p>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-xs-3 pp-form-field" id="districtDesc-label">
+							District:
+							<p class="text-danger" id="districtDesc"></p>
+						</div>
+
+						<div class="col-xs-3 pp-form-field" id="pincode-label">
+							Pin Code:
+							<p class="text-danger" id="pincode"></p>
+						</div>
+
+						<div class="col-xs-3 pp-form-field" id="phoneNumber-label">
+							Telephone no. of Applicant (with STD Code):
+							<p class="text-danger" id="phoneNumber"></p>
+						</div>
+					</div>
+
+
+					<div class="row ">
+						<div class="col-xs-3 pp-form-field" id="mobile-label">
+							Mobile no. of Applicant:
+							<p class="text-danger" id="mobile"></p>
+						</div>
+
+
+						<div class="col-xs-3 pp-form-field" id="email-label">
+							e-Mail address of the Applicant:
+							<p class="text-danger" id="email"></p>
+						</div>
+
+						<div class="col-xs-6 pp-form-field"
+							id="dateOnWhichNominated-label">
+							Date on which duly nominated as a candidate for election to a
+							Legislature and particulars of Legislature:
+							<p class="text-danger" id="dateOnWhichNominated"></p>
+						</div>
+					</div>
+				</div>
+
+
+				<div role="tabpanel" class="tab-pane fade" id="tab_content8"
+					aria-labelledby="election-tab">
+
+					<div class="bs-callout bs-callout-info">
+						<span>Election Contribution Details</span>
+					</div>
+					<div class="row">
+
+						<div class="col-xs-3 pp-form-field"
+							id="natureOfContribution-label">
+							Foreign contribution nature :
+							<p class="text-danger" id="natureOfContribution"></p>
+						</div>
+
+						<div class="col-xs-3 pp-form-field" id="value-label">
+							Value (Rs.) :
+							<p class="text-danger" id="value"></p>
+						</div>
+
+						<div class="col-xs-3 pp-form-field" id="purpose-label">
+							Purpose:
+							<p class="text-danger" id="purpose"></p>
+						</div>
+
+
+					</div>
+
+
+					<div class="bs-callout bs-callout-info">
+						<span>Donor Details</span>
+					</div>
+
+					<div class="row ">
+
+						<div class="col-xs-3 pp-form-field" id="donorName-label">
+							Donor Name:
+							<p class="text-danger" id="donorName"></p>
+						</div>
+
+						<div class="col-xs-3 pp-form-field" id="donorAddress-label">
+							Donor Address:
+							<p class="text-danger" id="donorAddress"></p>
+						</div>
+						<div class="col-xs-3 pp-form-field" id="donorEmail-label">
+							Donor e-mail Address:
+							<p class="text-danger" id="donorEmail"></p>
+						</div>
+					</div>
+					<div class="row ">
+
+						<div class="col-xs-3 pp-form-field"
+							id="donorNationalityDesc-label">
+							Donor Nationality:
+							<p class="text-danger" id="donorNationalityDesc"></p>
+						</div>
+
+						<div class="col-xs-3 pp-form-field"
+							id="donorCountryOfResidenceDesc-label">
+							Country of residence:
+							<p class="text-danger" id="donorCountryOfResidenceDesc"></p>
+						</div>
+
+						<div class="col-xs-3 pp-form-field" id="donorRelation-label">
+							Relationship with Donar:
+							<p class="text-danger" id="donorRelation"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3 pp-form-field" id="utilizationDetails-label">
+							Utilisation details:
+							<p class="text-danger" id="utilizationDetails"></p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+<!-- Change of Name and Address  -->
+	<div id="change-of-name-address-details">
+
+		&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+							<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#change-detail">Change of Name And/Or Address Details</a></li>
+			<!--  	
+			<li><a data-toggle="tab" href="#utilisationbankdetail">Utilisation Bank Details</a></li>
+			<li><a data-toggle="tab" href="#view-association-key-member">Key Members of the Association :</a></li>
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+			-->
+		</ul>
+
+		<div class="tab-content">
+			<div id="change-detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field" id="chiefFunctionaryName-label">
+						Chief Functionary Name :
+						<p class="text-danger" id="chiefFunctionaryName"></p>
+					</div>
+					   <div class="col-xs-4 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="fcraRegistrationDate-label">
+						FCRA Registration Date:
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				</div>
+								<div class="row">
+					
+					<div class="col-xs-4 pp-form-field"
+						id="associationPhoneNumber-label">
+						Official Telephone No of Association(with Std Code):
+						<p class="text-danger" id="associationPhoneNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="email-label">
+						Official Email Address:
+						<p class="text-danger" id="email"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Telephone no. of Chief Functionary(With STD Code):
+						<p class="text-danger" id="chiefFunctionaryPhoneNumber"></p>
+					</div>
+				</div>
+				<div class="row">
+				<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Mobile No of Chief Functionary:
+						<p class="text-danger" id="chiefFunctionaryMobile"></p>
+					</div>
+			</div>
+			
+			
+				 <div class="bs-callout bs-callout-info">
+					<span>Change of name of the Association:</span>
+				</div>
+				<div class="row">
+				<div class="col-xs-8 pp-form-field" id="changeOfNameOrAim-label">
+						Change of name of the Association:
+						<p class="text-danger" id="changeOfNameOrAim"></p>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field" id="associationName-label">
+						Association Name:
+						<p class="text-danger" id="associationName"></p>
+					</div>
+
+					<div class="col-xs-6 pp-form-field" style="display:none" id="new-associationName-label" >
+						New Association Name :
+						<p class="text-danger" id="new-associationName"></p>
+					</div>
+             </div>
+             <!--  
+             <div class="row">
+					<div class="col-xs-6 pp-form-field" id="associationAim-label">
+						Main aim(s) and objects(s) of the Association:
+						<p class="text-danger" id="associationAim"></p>
+					</div>
+
+					<div class="col-xs-6 pp-form-field" id="new-associationAim-label" style="display:none">
+						Main aim(s) and objects(s) of the Association:
+						<p class="text-danger" id="change-associationAim"></p>
+					</div>
+
+			  </div>
+-->
+	 <div class="bs-callout bs-callout-info">
+					<span>Change of address within the state for which registration/ Prior permission granted under the above Act:</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-6 pp-form-field" id="changeOfAddress-label">
+						Change of address within the state for which registration/ Prior permission granted under the above Act:
+						<p class="text-danger" id="changeOfAddress"></p>
+					</div>
+				
+				</div>
+                <div class="row">
+                		<div class="col-xs-6 pp-form-field" id="address-label">
+						Existing Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+
+					<div class="col-xs-6 pp-form-field" id="new-address-label" style="display:none">
+						New Address :
+						<p class="text-danger" id="new-address"></p>
+					</div>
+                </div>
+                <div class="row">
+					<div class="col-xs-6 pp-form-field" id="town-label" >
+						 Town/City :
+						<p class="text-danger" id="town"></p>
+					</div>
+                 <div class="col-xs-6 pp-form-field" id="new-town-label" style="display:none">
+						Town/City :
+						<p class="text-danger" id="new-town"></p>
+					</div>
+               </div>
+                <div class="row">
+                	<div class="col-xs-6 pp-form-field" id="stateDesc-label">
+							State:
+							<p class="text-danger" id="stateDesc"></p>
+						</div>
+					<div class="col-xs-6 pp-form-field" id="new-stateDesc-label" style="display:none">
+							State:
+							<p class="text-danger" id="new-stateDesc"></p>
+					</div>
+                </div>
+                <div class="row">
+                 <div class="col-xs-6 pp-form-field" id="district-label">
+						District:
+						<p class="text-danger" id="district"></p>
+					</div>
+					<div class="col-xs-6 pp-form-field" id="new-district-label" style="display:none">
+						District:
+						<p class="text-danger" id="new-district"></p>
+					</div>
+                </div>
+           
+           <div class="row">
+           	<div class="col-xs-6 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+           	<div class="col-xs-6 pp-form-field" id="new-pincode-label" style="display:none">
+						Pin Code:
+						<p class="text-danger" id="new-pincode"></p>
+					</div>
+           
+           </div>
+ 
+
+			</div>
+
+			<div id="utilisationbankdetail" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Existing Utilisation Bank Detail</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="existing-utilization-bank-accounts-table"></div>
+
+				</div>
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="changeOfUtilizationBank-label">
+						Change detail of Utilisation Bank Account for the purpose of utilization of foreign contribution :
+							<p class="text-danger" id="changeOfUtilizationBank"></p>
+						</div>
+				</div>
+			<div class="bs-callout bs-callout-info" id="updated-utilization-bank-accounts-table-label">
+					<span>Updated Utilisation Bank Detail</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="updated-utilization-bank-accounts-table"></div>
+
+				</div>
+            </div>
+            
+            
+				<div id="view-association-key-member" class="tab-pane fade">
+					<div class="bs-callout bs-callout-info">
+						<span>Details furnish the names and addresses of the members of the Executive Committee/ Governing Council etc. of the Association, including the Chief Functionary :
+						</span>
+					</div>
+					<div class="row">
+					<div class="col-xs-12" id="existing-association-member-table"></div>
+
+				</div>
+			
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="changeOfCommitteeMembers-label">
+						Change Key Memebers of the Association Required :
+							<p class="text-danger" id="changeOfCommitteeMembers"></p>
+						</div>
+				
+				</div>
+				
+				
+               <div class="bs-callout bs-callout-info" id="updated-association-member-table-lebel" style="display:none">
+						<span>Updated Details furnish the names and addresses of the members of the Executive Committee/ Governing Council etc. of the Association, including the Chief Functionary :
+						</span>
+					</div>
+			   <div class="row">
+					<div class="col-xs-12" id="updated-association-member-table"></div>
+
+				</div>
+
+				</div>
+				
+				
+				<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+            </div>
+            
+		</div>
+	</div> 
+
+<!-- Change of Name and Address Closed -->
+
+<!-- Change of Fc cum Utilisation Account or Bank Change -->
+
+	<div id="change-of-fc-cum-utl-bank-details">
+
+		&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+							<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#change-detail">Change of Fc Receipt-cum-utilisation Bank Detail</a></li>
+				  
+			<li><a data-toggle="tab" href="#utilisationbankdetail">Utilisation Bank Details</a></li>
+			<li><a data-toggle="tab" href="#view-association-key-member">Key Members of the Association :</a></li>
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+			
+		</ul>
+
+		<div class="tab-content">
+			<div id="change-detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field" id="chiefFunctionaryName-label">
+						Chief Functionary Name :
+						<p class="text-danger" id="chiefFunctionaryName"></p>
+					</div>
+					   <div class="col-xs-4 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="fcraRegistrationDate-label">
+						FCRA Registration Date:
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				</div>
+								<div class="row">
+					
+					<div class="col-xs-4 pp-form-field"
+						id="associationPhoneNumber-label">
+						Official Telephone No of Association(with Std Code):
+						<p class="text-danger" id="associationPhoneNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="email-label">
+						Official Email Address:
+						<p class="text-danger" id="email"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Telephone no. of Chief Functionary(With STD Code):
+						<p class="text-danger" id="chiefFunctionaryPhoneNumber"></p>
+					</div>
+				</div>
+				<div class="row">
+				<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Mobile No of Chief Functionary:
+						<p class="text-danger" id="chiefFunctionaryMobile"></p>
+					</div>
+			</div>
+          
+           <div class="bs-callout bs-callout-info">
+					<span>Change of designated bank/ branch/ bank account number for receipt cum-utilization of foreign contribution:</span>
+				</div>
+				
+				<div class="row">
+				  <div class="col-xs-6 pp-form-field" id="changeOfReceipientBank-label">
+							Change of designated bank/ branch/ bank account number for receipt cum-utilization of foreign contribution:
+							<p class="text-danger" id="changeOfReceipientBank"></p>
+						</div>
+				</div>
+				<div class="row ">
+              <div class="col-xs-6 pp-form-field" id="existingBank-label">
+							Existing Bank Details:
+							<p class="text-danger" id="existingBank"></p>
+						</div>
+						<div class="col-xs-6 pp-form-field" id="new-Bank-label" style="display:none">
+							New Bank Details:
+							<p class="text-danger" id="new-Bank"></p>
+						</div>
+                </div>				
+				<div class="row ">
+              <div class="col-xs-6 pp-form-field" id="accountNumber-label">
+							Account No:
+							<p class="text-danger" id="accountNumber"></p>
+						</div>
+						<div class="col-xs-6 pp-form-field" id="new-accountNumber-label" style="display:none">
+							Account No:
+							<p class="text-danger" id="new-accountNumber"></p>
+						</div>
+                </div>
+                <div class="row">
+                <div class="col-xs-6 pp-form-field" id="bankName-label">
+							Bank Name:
+							<p class="text-danger" id="bankName"></p>
+						</div>
+						<div class="col-xs-6 pp-form-field" id="new-bankName-label" style="display:none">
+							Bank Name:
+							<p class="text-danger" id="new-bankName"></p>
+						</div>
+                </div>
+             
+					<div class="row ">
+					
+					  <div class="col-xs-6 pp-form-field" id="branch-address-label">
+							Branch name and Adress :
+							<p class="text-danger" id="branch-address"></p>
+						</div>
+						<div class="col-xs-6 pp-form-field" id="new-branch-address-label" style="display:none">
+							Branch name and Adress :
+							<p class="text-danger" id="new-branch-address"></p>
+						</div>
+                    </div>
+                    
+                    <div class="row">
+                       <div class="col-xs-6 pp-form-field" id="bank-town-label">
+							Town/City:
+							<p class="text-danger" id="bank-town"></p>
+				       </div>
+                      <div class="col-xs-6 pp-form-field" id="new-bank-town-label" style="display:none">
+							Town/City:
+							<p class="text-danger" id="new-bank-town"></p>
+				       </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-xs-6 pp-form-field" id="bank-stateDesc-label">
+							State:
+							<p class="text-danger" id="bank-stateDesc"></p>
+						</div>
+                    <div class="col-xs-6 pp-form-field" id="new-bank-stateDesc-label" style="display:none">
+							State:
+							<p class="text-danger" id="new-bank-stateDesc"></p>
+						</div>
+                    </div>
+                    
+					<div class="row ">
+                    		<div class="col-xs-6 pp-form-field" id="bank-districtDesc-label">
+							District:
+							<p class="text-danger" id="bank-districtDesc"></p>
+						</div>
+							<div class="col-xs-6 pp-form-field" id="new-districtDesc-label" style="display:none">
+							District:
+							<p class="text-danger" id="new-districtDesc"></p>
+						</div>
+
+                  </div>
+                  <div class="row">
+                   <div class="col-xs-6 pp-form-field" id="bank-pincode-label">
+							Pin Code:
+							<p class="text-danger" id="bank-pincode"></p>
+						</div>
+                  <div class="col-xs-6 pp-form-field" id="new-bank-pincode-label" style="display:none">
+							Pin Code:
+							<p class="text-danger" id="new-bank-pincode"></p>
+						</div>
+                  </div>
+					<div class="row ">
+                      	<div class="col-xs-6 pp-form-field" id="bank-ifscCode-label">
+							IFSC Code:
+							<p class="text-danger" id="bank-ifscCode"></p>
+						</div>
+
+						<div class="col-xs-6 pp-form-field" id="new-bank-ifscCode-label" style="display:none">
+							IFSC Code:
+							<p class="text-danger" id="new-bank-ifscCode"></p>
+						</div>
+					</div>
+              
+
+			</div>
+
+			<div id="utilisationbankdetail" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Existing Utilisation Bank Detail</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="existing-utilization-bank-accounts-table"></div>
+
+				</div>
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="changeOfUtilizationBank-label">
+						Change detail of Utilisation Bank Account for the purpose of utilization of foreign contribution :
+							<p class="text-danger" id="changeOfUtilizationBank"></p>
+						</div>
+				</div>
+			<div class="bs-callout bs-callout-info" id="updated-utilization-bank-accounts-table-label">
+					<span>Updated Utilisation Bank Detail</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="updated-utilization-bank-accounts-table"></div>
+
+				</div>
+            </div>
+            
+            
+				<div id="view-association-key-member" class="tab-pane fade">
+					<div class="bs-callout bs-callout-info">
+						<span>Details furnish the names and addresses of the members of the Executive Committee/ Governing Council etc. of the Association, including the Chief Functionary :
+						</span>
+					</div>
+					<div class="row">
+					<div class="col-xs-12" id="existing-association-member-table"></div>
+
+				</div>
+			
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="changeOfCommitteeMembers-label">
+						Change Key Memebers of the Association Required :
+							<p class="text-danger" id="changeOfCommitteeMembers"></p>
+						</div>
+				
+				</div>
+				
+				
+               <div class="bs-callout bs-callout-info" id="updated-association-member-table-lebel" style="display:none">
+						<span>Updated Details furnish the names and addresses of the members of the Executive Committee/ Governing Council etc. of the Association, including the Chief Functionary :
+						</span>
+					</div>
+			   <div class="row">
+					<div class="col-xs-12" id="updated-association-member-table"></div>
+
+				</div>
+
+				</div>
+				
+				
+				<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+            </div>
+            
+		</div>
+	</div> 
+
+
+<!-- Change of Fc cum Utilisation Account or Bank Change Closed-->
+
+
+<!-- Change of opening of Utilistaion Accounts -->
+
+	<div id="change-of-opening-utilization-accounts-details">
+
+		&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+							<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#change-detail">Change Bpening of Utilization Aank Account Detail</a></li>
+			
+			<li><a data-toggle="tab" href="#utilisationbankdetail">Utilisation Bank Details</a></li>
+			<li><a data-toggle="tab" href="#view-association-key-member">Key Members of the Association :</a></li>
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+			
+		</ul>
+
+		<div class="tab-content">
+			<div id="change-detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field" id="chiefFunctionaryName-label">
+						Chief Functionary Name :
+						<p class="text-danger" id="chiefFunctionaryName"></p>
+					</div>
+					   <div class="col-xs-4 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="fcraRegistrationDate-label">
+						FCRA Registration Date:
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				</div>
+								<div class="row">
+					
+					<div class="col-xs-4 pp-form-field"
+						id="associationPhoneNumber-label">
+						Official Telephone No of Association(with Std Code):
+						<p class="text-danger" id="associationPhoneNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="email-label">
+						Official Email Address:
+						<p class="text-danger" id="email"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Telephone no. of Chief Functionary(With STD Code):
+						<p class="text-danger" id="chiefFunctionaryPhoneNumber"></p>
+					</div>
+				</div>
+				<div class="row">
+				<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Mobile No of Chief Functionary:
+						<p class="text-danger" id="chiefFunctionaryMobile"></p>
+					</div>
+			</div>
+			
+	         <div class="bs-callout bs-callout-info">
+					<span>Change of designated bank/ branch/ bank account number for utilization of foreign contribution:</span>
+				</div>
+				
+				<div class="row">
+				  <div class="col-xs-6 pp-form-field" id="changeOfReceipientBank-label">
+							Change of designated bank/ branch/ bank account number for utilization of foreign contribution:
+							<p class="text-danger" id="changeOfReceipientBank"></p>
+						</div>
+				</div>
+				<div class="row ">
+              <div class="col-xs-6 pp-form-field" id="accountNumber-label">
+							Account No:
+							<p class="text-danger" id="accountNumber"></p>
+						</div>
+						<div class="col-xs-6 pp-form-field" id="new-accountNumber-label" style="display:none">
+							Account No:
+							<p class="text-danger" id="new-accountNumber"></p>
+						</div>
+                </div>
+                <div class="row">
+                <div class="col-xs-6 pp-form-field" id="bankName-label">
+							Bank Name:
+							<p class="text-danger" id="bankName"></p>
+						</div>
+						<div class="col-xs-6 pp-form-field" id="new-bankName-label" style="display:none">
+							Bank Name:
+							<p class="text-danger" id="new-bankName"></p>
+						</div>
+                </div>
+             
+					<div class="row ">
+					
+					  <div class="col-xs-6 pp-form-field" id="branch-address-label">
+							Branch name and Adress :
+							<p class="text-danger" id="branch-address"></p>
+						</div>
+						<div class="col-xs-6 pp-form-field" id="new-branch-address-label" style="display:none">
+							Branch name and Adress :
+							<p class="text-danger" id="new-branch-address"></p>
+						</div>
+                    </div>
+                    
+                    <div class="row">
+                       <div class="col-xs-6 pp-form-field" id="bank-town-label">
+							Town/City:
+							<p class="text-danger" id="bank-town"></p>
+				       </div>
+                      <div class="col-xs-6 pp-form-field" id="new-bank-town-label" style="display:none">
+							Town/City:
+							<p class="text-danger" id="new-bank-town"></p>
+				       </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-xs-6 pp-form-field" id="bank-stateDesc-label">
+							State:
+							<p class="text-danger" id="bank-stateDesc"></p>
+						</div>
+                    <div class="col-xs-6 pp-form-field" id="new-bank-stateDesc-label" style="display:none">
+							State:
+							<p class="text-danger" id="new-bank-stateDesc"></p>
+						</div>
+                    </div>
+                    
+					<div class="row ">
+                    		<div class="col-xs-6 pp-form-field" id="bank-districtDesc-label">
+							District:
+							<p class="text-danger" id="bank-districtDesc"></p>
+						</div>
+							<div class="col-xs-6 pp-form-field" id="new-districtDesc-label" style="display:none">
+							District:
+							<p class="text-danger" id="new-districtDesc"></p>
+						</div>
+
+                  </div>
+                  <div class="row">
+                   <div class="col-xs-6 pp-form-field" id="bank-pincode-label">
+							Pin Code:
+							<p class="text-danger" id="bank-pincode"></p>
+						</div>
+                  <div class="col-xs-6 pp-form-field" id="new-bank-pincode-label" style="display:none">
+							Pin Code:
+							<p class="text-danger" id="new-bank-pincode"></p>
+						</div>
+                  </div>
+					<div class="row ">
+                      	<div class="col-xs-6 pp-form-field" id="bank-ifscCode-label">
+							IFSC Code:
+							<p class="text-danger" id="bank-ifscCode"></p>
+						</div>
+
+						<div class="col-xs-6 pp-form-field" id="new-bank-ifscCode-label" style="display:none">
+							IFSC Code:
+							<p class="text-danger" id="new-bank-ifscCode"></p>
+						</div>
+					</div>
+              
+
+			</div>
+
+			<div id="utilisationbankdetail" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Existing Utilisation Bank Detail</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="existing-utilization-bank-accounts-table"></div>
+
+				</div>
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="changeOfUtilizationBank-label">
+						Change detail of Utilisation Bank Account for the purpose of utilization of foreign contribution :
+							<p class="text-danger" id="changeOfUtilizationBank"></p>
+						</div>
+				</div>
+			<div class="bs-callout bs-callout-info" id="updated-utilization-bank-accounts-table-label">
+					<span>Updated Utilisation Bank Detail</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="updated-utilization-bank-accounts-table"></div>
+
+				</div>
+            </div>
+            
+            
+				<div id="view-association-key-member" class="tab-pane fade">
+					<div class="bs-callout bs-callout-info">
+						<span>Details furnish the names and addresses of the members of the Executive Committee/ Governing Council etc. of the Association, including the Chief Functionary :
+						</span>
+					</div>
+					<div class="row">
+					<div class="col-xs-12" id="existing-association-member-table"></div>
+
+				</div>
+			
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="changeOfCommitteeMembers-label">
+						Change Key Memebers of the Association Required :
+							<p class="text-danger" id="changeOfCommitteeMembers"></p>
+						</div>
+				
+				</div>
+				
+				
+               <div class="bs-callout bs-callout-info" id="updated-association-member-table-lebel" style="display:none">
+						<span>Updated Details furnish the names and addresses of the members of the Executive Committee/ Governing Council etc. of the Association, including the Chief Functionary :
+						</span>
+					</div>
+			   <div class="row">
+					<div class="col-xs-12" id="updated-association-member-table"></div>
+
+				</div>
+
+				</div>
+				
+				
+				<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+            </div>
+            
+		</div>
+	</div> 
+
+<!-- Change of Opening of utilisation account closed -->	
+
+<!-- Change in Committee Members -->
+	<div id="change-of-committee-members-details">
+
+		&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+							<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#change-detail">Change Detail</a></li>
+			<li><a data-toggle="tab" href="#utilisationbankdetail">Utilisation Bank Details</a></li>
+			<li><a data-toggle="tab" href="#view-association-key-member">Key Members of the Association :</a></li>
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="change-detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field" id="chiefFunctionaryName-label">
+						Chief Functionary Name :
+						<p class="text-danger" id="chiefFunctionaryName"></p>
+					</div>
+					   <div class="col-xs-4 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="fcraRegistrationDate-label">
+						FCRA Registration Date:
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				</div>
+								<div class="row">
+					
+					<div class="col-xs-4 pp-form-field"
+						id="associationPhoneNumber-label">
+						Official Telephone No of Association(with Std Code):
+						<p class="text-danger" id="associationPhoneNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="email-label">
+						Official Email Address:
+						<p class="text-danger" id="email"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Telephone no. of Chief Functionary(With STD Code):
+						<p class="text-danger" id="chiefFunctionaryPhoneNumber"></p>
+					</div>
+				</div>
+				<div class="row">
+				<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Mobile No of Chief Functionary:
+						<p class="text-danger" id="chiefFunctionaryMobile"></p>
+					</div>
+			</div>
+
+  			</div>
+
+			<div id="utilisationbankdetail" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Existing Utilisation Bank Detail</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="existing-utilization-bank-accounts-table"></div>
+
+				</div>
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="changeOfUtilizationBank-label">
+						Change detail of Utilisation Bank Account for the purpose of utilization of foreign contribution :
+							<p class="text-danger" id="changeOfUtilizationBank"></p>
+						</div>
+				</div>
+			<div class="bs-callout bs-callout-info" id="updated-utilization-bank-accounts-table-label">
+					<span>Updated Utilisation Bank Detail</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="updated-utilization-bank-accounts-table"></div>
+
+				</div>
+            </div>
+            
+            
+				<div id="view-association-key-member" class="tab-pane fade">
+					<div class="bs-callout bs-callout-info">
+						<span>Details furnish the names and addresses of the members of the Executive Committee/ Governing Council etc. of the Association, including the Chief Functionary :
+						</span>
+					</div>
+					<div class="row">
+					<div class="col-xs-12" id="existing-association-member-table"></div>
+
+				</div>
+			
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="changeOfCommitteeMembers-label">
+						Change Key Memebers of the Association Required :
+							<p class="text-danger" id="changeOfCommitteeMembers"></p>
+						</div>
+				
+				</div>
+				
+				
+               <div class="bs-callout bs-callout-info" id="updated-association-member-table-lebel" style="display:none">
+						<span>Updated Details furnish the names and addresses of the members of the Executive Committee/ Governing Council etc. of the Association, including the Chief Functionary :
+						</span>
+					</div>
+			   <div class="row">
+					<div class="col-xs-12" id="updated-association-member-table"></div>
+
+				</div>
+
+				</div>
+				
+				
+				<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+            </div>
+            
+		</div>
+	</div> 
+
+
+<!-- Change in Committee Members Closed-->
+
+<!--  Change Of Details  -->
+
+	<div id="change-of-details">
+
+		&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+							<!-- Model Design -->
+		<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#change-detail">Change Detail</a></li>
+			<li><a data-toggle="tab" href="#utilisationbankdetail">Utilisation Bank Details</a></li>
+			<li><a data-toggle="tab" href="#view-association-key-member">Key Members of the Association :</a></li>
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="change-detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 pp-form-field" id="chiefFunctionaryName-label">
+						Chief Functionary Name :
+						<p class="text-danger" id="chiefFunctionaryName"></p>
+					</div>
+					   <div class="col-xs-4 pp-form-field"
+						id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="fcraRegistrationDate-label">
+						FCRA Registration Date:
+						<p class="text-danger" id="fcraRegistrationDate"></p>
+					</div>
+				</div>
+								<div class="row">
+					
+					<div class="col-xs-4 pp-form-field"
+						id="associationPhoneNumber-label">
+						Official Telephone No of Association(with Std Code):
+						<p class="text-danger" id="associationPhoneNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="email-label">
+						Official Email Address:
+						<p class="text-danger" id="email"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Telephone no. of Chief Functionary(With STD Code):
+						<p class="text-danger" id="chiefFunctionaryPhoneNumber"></p>
+					</div>
+				</div>
+				<div class="row">
+				<div class="col-xs-4 pp-form-field"
+						id="totalForeignContribution-label">
+						Mobile No of Chief Functionary:
+						<p class="text-danger" id="chiefFunctionaryMobile"></p>
+					</div>
+			</div>
+			
+			
+				 <div class="bs-callout bs-callout-info">
+					<span>Change of name and/ or aims and objects of the Association:</span>
+				</div>
+				<div class="row">
+				<div class="col-xs-8 pp-form-field" id="changeOfNameOrAim-label">
+						Change of name and/ or aims and objects of the Association:
+						<p class="text-danger" id="changeOfNameOrAim"></p>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-6 pp-form-field" id="associationName-label">
+						Association Name:
+						<p class="text-danger" id="associationName"></p>
+					</div>
+
+					<div class="col-xs-6 pp-form-field" style="display:none" id="new-associationName-label" >
+						New Association Name :
+						<p class="text-danger" id="new-associationName"></p>
+					</div>
+             </div>
+             <div class="row">
+					<div class="col-xs-6 pp-form-field" id="associationAim-label">
+						Main aim(s) and objects(s) of the Association:
+						<p class="text-danger" id="associationAim"></p>
+					</div>
+
+					<div class="col-xs-6 pp-form-field" id="new-associationAim-label" style="display:none">
+						Main aim(s) and objects(s) of the Association:
+						<p class="text-danger" id="change-associationAim"></p>
+					</div>
+
+			  </div>
+			  
+			  	<div class="bs-callout bs-callout-info">
+					<span>Change of Association Nature:</span>
+			</div>
+				<div class="row">
+				<div class="col-xs-8 pp-form-field" id="changeOfNature-label">
+						Change of Nature of the Association:
+						<p class="text-danger" id="changeOfNature"></p>
+					</div>
+				</div>
+			
+			<div class="row">
+				<div class="col-xs-6 pp-form-field" id="associationNature-label" style="display:none">
+						Association Nature :
+						<p class="text-danger" id="associationNature"></p>
+					</div>
+
+					<div class="col-xs-6 pp-form-field" id="new-associationNature-label" style="display:none">
+						New Association Nature :
+						<p class="text-danger" id="change-associationNature"></p>
+					</div>
+			</div> 
+		 <div class="row">
+				<div class="col-xs-6 pp-form-field" id="associationReligion-label" style="visibility: hidden;" >
+						Related Religion :
+						<p class="text-danger" id="associationReligion"></p>
+					</div>
+                  <!--  	<div class="col-xs-6 pp-form-field" id="dummyForShift-label" style="display:none">
+                   	
+					</div> -->
+					<div class="col-xs-6 pp-form-field" id="new-associationReligion-label" style="visibility: hidden;">
+						New Related Religion :
+						<p class="text-danger" id="change-associationReligion"></p>
+					</div>
+			</div> 
+			  
+
+	 <div class="bs-callout bs-callout-info">
+					<span>Change of address within the state for which registration/ Prior permission granted under the above Act:</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-6 pp-form-field" id="changeOfAddress-label">
+						Change of address within the state for which registration/ Prior permission granted under the above Act:
+						<p class="text-danger" id="changeOfAddress"></p>
+					</div>
+				
+				</div>
+                <div class="row">
+                		<div class="col-xs-6 pp-form-field" id="address-label">
+						Existing Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+
+					<div class="col-xs-6 pp-form-field" id="new-address-label" style="display:none">
+						New Address :
+						<p class="text-danger" id="new-address"></p>
+					</div>
+                </div>
+                <div class="row">
+					<div class="col-xs-6 pp-form-field" id="town-label" >
+						 Town/City :
+						<p class="text-danger" id="town"></p>
+					</div>
+                 <div class="col-xs-6 pp-form-field" id="new-town-label" style="display:none">
+						Town/City :
+						<p class="text-danger" id="new-town"></p>
+					</div>
+               </div>
+                <div class="row">
+                	<div class="col-xs-6 pp-form-field" id="stateDesc-label">
+							State:
+							<p class="text-danger" id="stateDesc"></p>
+						</div>
+					<div class="col-xs-6 pp-form-field" id="new-stateDesc-label" style="display:none">
+							State:
+							<p class="text-danger" id="new-stateDesc"></p>
+					</div>
+                </div>
+                <div class="row">
+                 <div class="col-xs-6 pp-form-field" id="district-label">
+						District:
+						<p class="text-danger" id="district"></p>
+					</div>
+					<div class="col-xs-6 pp-form-field" id="new-district-label" style="display:none">
+						District:
+						<p class="text-danger" id="new-district"></p>
+					</div>
+                </div>
+           
+           <div class="row">
+           	<div class="col-xs-6 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+           	<div class="col-xs-6 pp-form-field" id="new-pincode-label" style="display:none">
+						Pin Code:
+						<p class="text-danger" id="new-pincode"></p>
+					</div>
+           
+           </div>
+           
+           <div class="bs-callout bs-callout-info">
+					<span>Change of designated bank/ branch/ bank account number for receipt and utilization of foreign contribution:</span>
+				</div>
+				
+				<div class="row">
+				  <div class="col-xs-6 pp-form-field" id="changeOfReceipientBank-label">
+							Change of designated bank/ branch/ bank account number for receipt and utilization of foreign contribution:
+							<p class="text-danger" id="changeOfReceipientBank"></p>
+						</div>
+				</div>
+				<div class="row ">
+              <div class="col-xs-6 pp-form-field" id="accountNumber-label">
+							Account No:
+							<p class="text-danger" id="accountNumber"></p>
+						</div>
+						<div class="col-xs-6 pp-form-field" id="new-accountNumber-label" style="display:none">
+							Account No:
+							<p class="text-danger" id="new-accountNumber"></p>
+						</div>
+                </div>
+                <div class="row">
+                <div class="col-xs-6 pp-form-field" id="bankName-label">
+							Bank Name:
+							<p class="text-danger" id="bankName"></p>
+						</div>
+						<div class="col-xs-6 pp-form-field" id="new-bankName-label" style="display:none">
+							Bank Name:
+							<p class="text-danger" id="new-bankName"></p>
+						</div>
+                </div>
+             
+					<div class="row ">
+					
+					  <div class="col-xs-6 pp-form-field" id="branch-address-label">
+							Branch name and Adress :
+							<p class="text-danger" id="branch-address"></p>
+						</div>
+						<div class="col-xs-6 pp-form-field" id="new-branch-address-label" style="display:none">
+							Branch name and Adress :
+							<p class="text-danger" id="new-branch-address"></p>
+						</div>
+                    </div>
+                    
+                    <div class="row">
+                       <div class="col-xs-6 pp-form-field" id="bank-town-label">
+							Town/City:
+							<p class="text-danger" id="bank-town"></p>
+				       </div>
+                      <div class="col-xs-6 pp-form-field" id="new-bank-town-label" style="display:none">
+							Town/City:
+							<p class="text-danger" id="new-bank-town"></p>
+				       </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-xs-6 pp-form-field" id="bank-stateDesc-label">
+							State:
+							<p class="text-danger" id="bank-stateDesc"></p>
+						</div>
+                    <div class="col-xs-6 pp-form-field" id="new-bank-stateDesc-label" style="display:none">
+							State:
+							<p class="text-danger" id="new-bank-stateDesc"></p>
+						</div>
+                    </div>
+                    
+					<div class="row ">
+                    		<div class="col-xs-6 pp-form-field" id="bank-districtDesc-label">
+							District:
+							<p class="text-danger" id="bank-districtDesc"></p>
+						</div>
+							<div class="col-xs-6 pp-form-field" id="new-districtDesc-label" style="display:none">
+							District:
+							<p class="text-danger" id="new-districtDesc"></p>
+						</div>
+
+                  </div>
+                  <div class="row">
+                   <div class="col-xs-6 pp-form-field" id="bank-pincode-label">
+							Pin Code:
+							<p class="text-danger" id="bank-pincode"></p>
+						</div>
+                  <div class="col-xs-6 pp-form-field" id="new-bank-pincode-label" style="display:none">
+							Pin Code:
+							<p class="text-danger" id="new-bank-pincode"></p>
+						</div>
+                  </div>
+					<div class="row ">
+                      	<div class="col-xs-6 pp-form-field" id="bank-ifscCode-label">
+							IFSC Code:
+							<p class="text-danger" id="bank-ifscCode"></p>
+						</div>
+
+						<div class="col-xs-6 pp-form-field" id="new-bank-ifscCode-label" style="display:none">
+							IFSC Code:
+							<p class="text-danger" id="new-bank-ifscCode"></p>
+						</div>
+					</div>
+              
+
+			</div>
+
+			<div id="utilisationbankdetail" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Existing Utilisation Bank Detail</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="existing-utilization-bank-accounts-table"></div>
+
+				</div>
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="changeOfUtilizationBank-label">
+						Change detail of Utilisation Bank Account for the purpose of utilization of foreign contribution :
+							<p class="text-danger" id="changeOfUtilizationBank"></p>
+						</div>
+				</div>
+			<div class="bs-callout bs-callout-info" id="updated-utilization-bank-accounts-table-label">
+					<span>Updated Utilisation Bank Detail</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12" id="updated-utilization-bank-accounts-table"></div>
+
+				</div>
+            </div>
+            
+            
+				<div id="view-association-key-member" class="tab-pane fade">
+					<div class="bs-callout bs-callout-info">
+						<span>Details furnish the names and addresses of the members of the Executive Committee/ Governing Council etc. of the Association, including the Chief Functionary :
+						</span>
+					</div>
+					<div class="row">
+					<div class="col-xs-12" id="existing-association-member-table"></div>
+
+				</div>
+			
+				<div class="row">
+				<div class="col-xs-6 pp-form-field" id="changeOfCommitteeMembers-label">
+						Change Key Memebers of the Association Required :
+							<p class="text-danger" id="changeOfCommitteeMembers"></p>
+						</div>
+				
+				</div>
+				
+				
+               <div class="bs-callout bs-callout-info" id="updated-association-member-table-lebel" style="display:none">
+						<span>Updated Details furnish the names and addresses of the members of the Executive Committee/ Governing Council etc. of the Association, including the Chief Functionary :
+						</span>
+					</div>
+			   <div class="row">
+					<div class="col-xs-12" id="updated-association-member-table"></div>
+
+				</div>
+
+				</div>
+				
+				
+				<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+            </div>
+            
+		</div>
+	</div> 
+
+<!-- Change of Details Closed  -->
+<!--Hospitality  -->
+<div id="hospitality-details">
+			&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:20px; align="left"></B>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:20px;"></B>&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:20px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+					
+						<!-- Model Design -->
+						<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+								            
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+					
+					
+					
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#applicant-Detail">Details of Applicant</a></li>
+			<li><a data-toggle="tab" href="#hospitality-detail">Details of hospitality</a></li>
+			<li><a data-toggle="tab" href="#host-details">Details of Host(s)</a></li>
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="applicant-Detail" class="tab-pane fade in active">
+
+				<div class="bs-callout bs-callout-info">
+					<span>Details of the Applicant:</span>
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field" id="applicantName-label">
+						Name in full:
+						<p class="text-danger" id="applicantName"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="dateOfBirth-label">
+						Date of Birth:
+						<p class="text-danger" id="dateOfBirth"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="nameOfFatherSpouse-label">
+						Name of father/husband:
+						<p class="text-danger" id="nameOfFatherSpouse"></p>
+					</div>
+
+				</div>
+				<div class="bs-callout bs-callout-info">
+					<span>Contact Details:</span>
+				</div>
+
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field" id="daddress-label">
+						Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="town-label">
+						Town/City:
+						<p class="text-danger" id="town"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="stateDesc-label">
+						State:
+						<p class="text-danger" id="stateDesc"></p>
+					</div>
+				
+				</div>
+				<div class="row ">
+
+					<div class="col-xs-4 pp-form-field" id="districtDesc-label">
+						District: 
+						<p class="text-danger" id="districtDesc"></p>
+					</div>
+			<div class="col-xs-4 pp-form-field"
+						id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="phoneNumber-label">
+						Telephone no. of Applicant (with STD Code):
+						<p class="text-danger" id="phoneNumber"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-4 pp-form-field" id="email-label">
+						E-Mail address of the Applicant:
+						<p class="text-danger" id="email"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="mobile-label">
+						Mobile no. of Applicant:
+						<p class="text-danger" id="mobile"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="applicantOrganization-label">
+						Applicant Organization:
+						<p class="text-danger" id="applicantOrganization"></p>
+					</div>
+
+
+				</div>
+				<div class="row ">
+                     <div class="col-xs-4 pp-form-field" id="applicantDesignation-label">
+						Applicant Designation:
+						<p class="text-danger" id="applicantDesignation"></p>
+					</div>
+               </div>
+               <div class="bs-callout bs-callout-info">
+					<span>Passport particulars:</span>
+				</div>
+				<div class="row ">
+					<div class="col-xs-4 pp-form-field" id="passportAvailable-label">
+						 Are  Passport particulars already in possesion ? :
+						<p class="text-danger" id="passportAvailable"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="passportNumber-label" style="display:none">
+						 Passport Number:
+						<p class="text-danger" id="passportNumber"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="passportPlaceOfIssue-label" style="display:none" >
+						Place of Issue: 
+						<p class="text-danger" id="passportPlaceOfIssue"></p>
+					</div>
+				</div>
+			  	<div class="row ">
+					<div class="col-xs-4 pp-form-field" id="passportDateOfIssue-label" style="display:none">
+						  Date of Issue::
+						<p class="text-danger" id="passportDateOfIssue"></p>
+					</div>
+
+	<div class="col-xs-4 pp-form-field" id="passportDateOfExpiry-label" style="display:none">
+						 Date of Valid upto : 
+						<p class="text-danger" id="passportDateOfExpiry"></p>
+					</div>
+				</div>	
+			 <div class="bs-callout bs-callout-info">
+					<span>Forwarding Details : </span>
+				</div>	
+	<div class="row ">
+					<div class="col-xs-4 pp-form-field" id="forwardingLetterNumber-label" >
+						 Forwarding (O.M) Letter No.  :
+						<p class="text-danger" id="forwardingLetterNumber"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="forwardingLetterDate-label">
+						  Date of Letter:
+						<p class="text-danger" id="forwardingLetterDate"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="forwardingOfficerName-label">
+						Name of Forwarding Officer: 
+						<p class="text-danger" id="forwardingOfficerName"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-4 pp-form-field" id="forwardingOfficerDesignation-label">
+						 Designation :
+						<p class="text-danger" id="forwardingOfficerDesignation"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="forwardingOfficerOfficeAddress-label">
+						Office Address:
+						<p class="text-danger" id="forwardingOfficerOfficeAddress"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="forwardingOfficerTown-label">
+					Town/City  : 
+						<p class="text-danger" id="forwardingOfficerTown"></p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-xs-4 pp-form-field" id="forwardingOfficerStateDesc-label">
+					State:
+						<p class="text-danger" id="forwardingOfficerStateDesc"></p>
+					</div>
+
+					<div class="col-xs-4 pp-form-field" id="forwardingOfficerDistrictDesc-label">
+						 District:
+						<p class="text-danger" id="forwardingOfficerDistrictDesc"></p>
+					</div>
+					<div class="col-xs-4 pp-form-field" id="forwardingOfficerPincode-label">
+						Pin Code  : 
+						<p class="text-danger" id="forwardingOfficerPincode"></p>
+					</div>
+				</div>
+           <div class="bs-callout bs-callout-info">
+					<span>Status of applicant: </span>
+				</div>
+				<div class="row">
+				<div class="col-xs-4 pp-form-field" id="memberCategoryDesc-label">
+						 Status: 
+						<p class="text-danger" id="memberCategoryDesc"></p>
+					</div>
+				
+				</div>
+          <!-- &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp -->
+			</div>
+
+			<div id="hospitality-detail" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span> Details of hospitality proposed to be availed :</span>
+				</div>
+
+               <div class="row">
+					<div class="col-xs-12" id="hospitality-detail-table"></div>
+
+				</div>
+			</div>
+			<div id="host-details" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span>Particulars of host(s): </span>
+				</div>
+        
+                <div class="row">
+					<div class="col-xs-12" id="host-details-table"></div>
+
+				</div>
+				</div>
+				
+				<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+               </div>	
+				
+		</div>
+	</div>
+
+
+<!--Hospitality Detail  Closed -->
+
+<!-- Grievances Details -->
+	<div id="grievances-Detail">
+					&nbsp; &nbsp;
+	      <div class="alert alert-info" id="application-track-info"
+						style="padding-left: 50px; border-bottom-width: 0px; padding-bottom: 16px; display:none">
+						Application Id :<B class="text-info" id="applicationId-info" style="padding-left:0px; align="left"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+						Service Name :<B class="text-info" id="service-info" style="padding-left:0px;"></B>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+						Submitted On :<B class="text-info" id="submitted-info" style="padding-left:0px;" ></B>&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						Supporting Document<B class="text-danger" id="bi-doc"></B>
+					</div>
+			
+				<!-- Model Design -->
+			<div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="exampleModalLabel">Supporting Documents</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+	            						<div class="col-sm-12 pp-form-field">
+								            <div id="project-doc-list">
+			            					</div>			
+			            				</div>
+			            			</div>	
+							      </div>
+							      <div class="modal-footer">							      	
+							      		<button type="button" class="btn btn-danger"  data-dismiss="modal">
+							      		<span class="fa fa-close"></span>&nbsp;Close</button>  	
+							      </div>
+							    </div>
+							  </div>
+							</div>
+<!--Design Close  -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab"
+				href="#grievances-Dtl">Greivances Details</a></li>
+			<li><a data-toggle="tab" href="#show-cause-notices">Showcause Notices
+				</a></li>
+				
+			<li><a data-toggle="tab" href="#mailandsmsDetail">Mail and SMS Details</a></li>
+		</ul>		
+		<div class="tab-content">
+			    <div id="grievances-Dtl" class="tab-pane fade in active">
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Association</span>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 pp-form-field" id="assoRegFlag-label">
+						Association Registered(Y/N) :
+						<p class="text-danger" id=assoRegFlag></p>
+				   </div>
+				
+					<div class="col-xs-3 pp-form-field" id="fcraRegistrationNumber-label">
+						FCRA Registration Number:
+						<p class="text-danger" id="fcraRegistrationNumber"></p>
+					</div>
+				
+				</div>
+				
+				<div class="row ">
+			
+                   <div class="col-xs-3 pp-form-field" id="associationName-label">
+						Association Name:
+						<p class="text-danger" id="associationName"></p>
+					</div>
+					
+					<div class="col-xs-3 pp-form-field" id="address-label">
+						Address :
+						<p class="text-danger" id="address"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="Town-label">
+						Town/City:
+						<p class="text-danger" id="town"></p>
+					</div>				
+				</div>
+
+				<div class="row">			
+				  	<div class="col-xs-3 pp-form-field" id="stateDesc-label">
+						State:
+						<p class="text-danger" id="stateDesc"></p>
+					</div>
+				  
+					<div class="col-xs-3 pp-form-field" id="districtDesc-label">
+						District:
+						<p class="text-danger" id="districtDesc"></p>
+					</div>
+
+					<div class="col-xs-3 pp-form-field" id="pincode-label">
+						Pin Code:
+						<p class="text-danger" id="pincode"></p>
+					</div>				
+                </div>
+            
+           
+				<div class="bs-callout bs-callout-info">
+					<span>Details Of Complainant</span>
+				</div>
+                <div class="row">					
+					<div class="col-xs-3 pp-form-field" id="complainantName-label">
+						Complainant Name:
+						<p class="text-danger" id="complainantName"></p>
+					</div>
+					
+					<div class="col-xs-3 pp-form-field" id="complainantAddress-label">
+						Complainant Address:
+						<p class="text-danger" id="complainantAddress"></p>
+					</div>
+					
+					<div class="col-xs-3 pp-form-field" id="complainantEmail-label">
+						Complainant Email:
+						<p class="text-danger" id="complainantEmail"></p>
+					</div>
+					
+					<div class="col-xs-3 pp-form-field" id="complainantMobile-label">
+						Complainant Mobile:
+						<p class="text-danger" id="complainantMobile"></p>
+					</div>
+				</div>	
+				
+		   
+			     <div class="bs-callout bs-callout-info">
+					<span>Details Of Complaint</span>
+				</div>	
+				     <div class="row">			
+			  		<div class="col-xs-12 pp-form-field"
+						id="grievanceDesc-label">
+						Complaint:
+						<p class="text-danger" id="grievanceDesc"></p>
+					</div>
+			</div>
+		</div>		
+			
+	        <div id="show-cause-notices" class="tab-pane fade">
+				<div class="bs-callout bs-callout-info">
+					<span> Details of Showcause Notices</span>
+				</div>
+
+               <div class="row">
+					<div class="col-xs-10" id="show-cause-notices-table"></div>
+				</div>
+			</div>
+			
+			
+			<div id="mailandsmsDetail" class="tab-pane fade">
+
+				<div class="bs-callout bs-callout-info" id="sms-section">
+					<span>SMS Details</span>
+				</div>
+				
+				   <div class="row">
+						<div class="col-sm-11 pp-form-field" id="sms-table">																				 
+						</div>	
+					</div>	
+		
+			    <div class="bs-callout bs-callout-info" id="mail-section">
+					<span>Mail Details</span>
+				 </div>			
+				<div class="row">
+						<div class="col-sm-11 pp-form-field" id="mail-table">																				 
+						</div>	
+			     </div>			      
+           </div>
+			
+			
+			
+			</div>
+				
+			
+</body>
+</html>

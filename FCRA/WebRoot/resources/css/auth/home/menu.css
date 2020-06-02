@@ -1,0 +1,117 @@
+.admin ul{
+  padding: 0;
+  margin: 0 0 0px 25px;
+}
+.menu ul ul {
+  margin-bottom: 0;
+}
+
+.menu li {
+  line-height: 20px;
+}
+
+.menu ul.unstyled{
+  margin-left: 0;
+  list-style: none;
+}
+.menu{display: block; width:264px; min-width:230px; max-width:400px; position: absolute; font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 22px;  background: url("../img/backgrounds/menu.jpg") left top repeat; 
+      border-bottom: 1px solid #CCCCCC; -webkit-border-bottom-left-radius: 3px; -webkit-border-bottom-left-radius: 3px; -moz-border-bottom-left-radius: 3px; -moz-border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;
+      border-right/*\**/: 1px solid #DDDDDD;
+      border-left: 1px solid #DDDDDD; padding-bottom: 1px;}
+    .menu .breadLine{border-right: 0px; border-left: 0px;}
+    .menu .breadLine .arrow{ position:absolute; right:0px; top: -12px; background: url("../img/menu-arrow-top.png") left top repeat; width: 17px; height: 12px; display: none; }
+    /* ~ADMIN~ */
+    
+    .adminControl{ padding: 1px 10px 0px; float: left; font-size: 11px; color: #333; background: url("../img/default/arrow_down.png") right center no-repeat; width: 98%; cursor: pointer; -moz-text-shadow: 0 1px 0 #FFFFFF; -webkit-text-shadow: 0 1px 0 #FFFFFF; text-shadow: 0 1px 0 #FFFFFF;}
+        .adminControl.active{background: url("../img/arrow_up.png") right center no-repeat;}
+    .admin{display: none; float: left; position: relative; padding: 5px; width: 99.5%; -moz-box-shadow: inset 0 0 5px #CCC; -webkit-box-shadow: inset 0 0 5px #CCC; box-shadow: inset 0 0 5px #CCC;}
+        .admin .image{float: left; width: 62px; margin-right: 5px;}
+        .admin ul.control{display: block; float: left; width: 96%; list-style: none; margin: 0px;}
+            .admin ul.control li a,
+            .headInfo ul.control li a{font-size: 11px; color: #333; -moz-text-shadow: 0 1px 0 #FFFFFF; -webkit-text-shadow: 0 1px 0 #FFFFFF; text-shadow: 0 1px 0 #FFFFFF;}
+            .admin ul.control li .caption{display: block; float: right; font-size: 10px; background-color: #333; color: #fff; padding: 2px 4px 2px 3px; line-height: 13px; margin: 3px 0px 3px 5px; 
+                                          -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; text-decoration: none; text-shadow: none;}
+                .admin ul.control li .caption.red{background-color: #a5302c;}
+                .admin ul.control li .caption.green{background-color: #225B15;}
+                .admin ul.control li .caption.yellow{background-color: #FBB450;}
+                
+        .admin .info{float: left; padding: 5px; font-size: 10px; color: #666; line-height: 14px; -moz-text-shadow: 0 1px 0 #FFFFFF; -webkit-text-shadow: 0 1px 0 #FFFFFF; text-shadow: 0 1px 0 #FFFFFF;}
+            
+
+    /* ~NAVIGATION~ */
+    .navigation{list-style: none; position: relative; padding: 0px; margin: 0px; float: left; width:99.7%;}
+        .navigation li{border-top: 1px solid #5a87b5; border-bottom: 1px solid #335A85; border-right: 1px solid #335A85; background: url("../img/backgrounds/menu-item.jpg") left top repeat-x;  padding: 0px; margin: 0px; display: block; float: left; width: 99.6%; position: relative;}
+        
+        .menu .navigation li:hover,.menu .navigation li.active{border-color: #143D6B; border-top-color: #5a87b5; background: url("../img/backgrounds/menu-item-active.jpg") left top repeat-x;}
+        
+        .navigation li.openable{background: url("../img/default/menu_arrow_down.png") 98% 12px no-repeat, url("../img/backgrounds/menu-item.jpg") left top repeat-x;}                
+        .navigation li.openable.active{background: url("../img/default/menu_arrow_down.png") 98% 12px no-repeat, url("../img/backgrounds/menu-item-active.jpg") left top repeat-x;}        
+        .navigation li.openable:hover{background: url("../img/default/menu_arrow_down.png") 98% 12px no-repeat, url("../img/backgrounds/menu-item-active.jpg") left top repeat-x;}
+        .navigation li.openable.active{background: url("../img/default/menu_arrow_up.png") 98% 12px no-repeat, url("../img/backgrounds/menu-item-active.jpg") left top repeat-x;}
+        
+        
+        
+        .navigation li > a{color: #fff; text-decoration: none; padding: 0px; display: block; float: left; width: 99.95%; position: relative; -moz-text-shadow: 0 1px 1px #333; -webkit-text-shadow: 0 1px 1px #333; text-shadow: 0 1px 1px #333;}
+            .navigation li > a span.text{ padding: 9px 0px; display: block; margin-left: 10px; float: left; overflow: hidden;}
+        
+        .navigation li.openable > ul{padding: 0px; margin: 0px; float: left; width: 100%; display: none;}
+        .navigation li.active > ul{display: block !important;}
+            .navigation li > ul > li{display: block; float: left; width: 100%; background: #F2F2F2; border-top: 1px solid #FCFCFC !important; border-bottom: 1px solid #E4E8ED !important; border-right-color: #E4E8ED !important;}
+            .navigation li > ul > li:hover, 
+            .navigation li > ul > li.active{background: #EDEDED !important;}
+            .navigation li > ul > li > a{display: block; float: left; padding-left: 10px; width: 85%;}
+            .navigation li > ul > li > a span.text{ color: #333; font-size: 11px; padding: 6px 0px; width: 80%; -moz-text-shadow: 0 1px 0 #FFFFFF; -webkit-text-shadow: 0 1px 0 #FFFFFF; text-shadow: 0 1px 0 #FFFFFF;}
+            .navigation li > ul > li > a [class*="icon-"]{margin: 9px 0px 7px 10px; display: block; float: left;} 
+        
+            .navigation li > ul > li > a.caption{float: right; width: auto; background-color: #fff; color: #335A85; text-align: center; font-size: 11px; height: 18px; line-height: 18px; padding: 0px 5px; margin: 6px 0px;
+                    -moz-border-radius: 3px;-webkit-border-radius: 3px;-o-border-radius: 3px;-ms-border-radius: 3px;border-radius: 3px; color: #fff; margin-right: 5px;
+                    border: 1px solid #143D6B;
+                    background: #143D6B;
+                    background: -moz-linear-gradient(top, #335A85 0%, #143D6B 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#335A85), color-stop(100%,#143D6B));
+                    background: -webkit-linear-gradient(top, #335A85 0%,#143D6B 100%);
+                    background: -o-linear-gradient(top, #335A85 0%,#143D6B 100%);
+                    background: -ms-linear-gradient(top, #335A85 0%,#143D6B 100%);
+                    background: linear-gradient(top, #335A85 0%,#143D6B 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#335A85', endColorstr='#143D6B',GradientType=0 );
+                }
+                .navigation li > ul > li > a.red{
+                    border: 1px solid #772E2C;
+                    background: #a5302c;
+                    background: -moz-linear-gradient(top,  #c93934 0%, #a5302c 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c93934), color-stop(100%,#a5302c));
+                    background: -webkit-linear-gradient(top, #c93934 0%, #a5302c 100%);
+                    background: -o-linear-gradient(top, #c93934 0%,#a5302c 100%);
+                    background: -ms-linear-gradient(top, #c93934 0%,#a5302c 100%);
+                    background: linear-gradient(top, #c93934 0%,#a5302c 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c93934', endColorstr='#a5302c',GradientType=0 );
+                }
+                .navigation li > ul > li > a.green{
+                    border: 1px solid #225B15;
+                    background: #2E801E;
+                    background: -moz-linear-gradient(top, #55AB2D 0%, #2E801E 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#55AB2D), color-stop(100%,#2E801E));
+                    background: -webkit-linear-gradient(top, #55AB2D 0%,#2E801E 100%);
+                    background: -o-linear-gradient(top, #55AB2D 0%,#2E801E 100%);
+                    background: -ms-linear-gradient(top, #55AB2D 0%,#2E801E 100%);
+                    background: linear-gradient(top, #55AB2D 0%,#2E801E 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55AB2D', endColorstr='#2E801E',GradientType=0 );
+                }  
+                .navigation li > ul > li > a.yellow{                
+                    border: 1px solid #AD6704;
+                    background: #FBB450;
+                    background: -moz-linear-gradient(top, #FBB450 0%, #F89406 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FBB450), color-stop(100%,#F89406));
+                    background: -webkit-linear-gradient(top, #FBB450 0%,#F89406 100%);
+                    background: -o-linear-gradient(top, #FBB450 0%,#F89406 100%);
+                    background: -ms-linear-gradient(top, #FBB450 0%,#F89406 100%);
+                    background: linear-gradient(top, #FBB450 0%,#F89406 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FBB450', endColorstr='#F89406',GradientType=0 );
+                }            
+            
+    /* ~NAVIGATION~ */
+    
+
+    
+    
+/* EOF Scroll Up plugin */

@@ -1,0 +1,35 @@
+/*** 	Icon Sprite & Theme ***/
+
+a.ddm span.icon, a.button span.icon {
+	background-image: url(../../../img/auth/home/button-sprite-grey.png);
+}
+
+a.button {
+	color: #484848 !important;
+	border: solid 1px #7f7f7f;
+	cursor: pointer;
+}
+
+a.button:hover, a.button.negative:hover, a.button.positive:hover {
+	color: #282828 !important;
+	border: solid 1px #333;
+}
+a.button.noti-negative{
+	color: #fff !important;
+}
+div.dropdown-slider {
+	border-right: solid 1px #7f7f7f;
+	border-bottom: solid 1px #7f7f7f;
+	border-left: solid 1px #7f7f7f;
+}
+
+div.dropdown-slider a.ddm {
+	color: #484848 !important;
+	border-bottom: 1px solid #7f7f7f;
+}
+
+div.dropdown-slider a.ddm:hover {
+	color: #282828 !important;
+}
+
+/***					---					***/

@@ -1,0 +1,1024 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StaticTextJrxml" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="statisticsReport">
+		<field name="YEAR" class="java.lang.String"/>
+		<field name="SERVICE_DESC" class="java.lang.String"/>
+		<field name="IBS" class="java.math.BigDecimal"/>
+		<field name="RAWS" class="java.math.BigDecimal"/>
+		<field name="APPLICANTS" class="java.math.BigDecimal"/>
+		<field name="MHAS" class="java.math.BigDecimal"/>
+		<field name="Total" class="java.lang.Number"/>
+		<field name="Pending" class="java.lang.Number"/>
+		<field name="ASO" class="java.lang.Number"/>
+		<field name="SO" class="java.lang.Number"/>
+		<field name="US" class="java.lang.Number"/>
+		<field name="DIR" class="java.lang.Number"/>
+		<field name="OTHERS" class="java.lang.Number"/>
+		<variable name="sum_mha" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{MHAS}]]></variableExpression>
+		</variable>
+		<variable name="sum_ib" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{IBS}]]></variableExpression>
+		</variable>
+		<variable name="sum_raw" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{RAWS}]]></variableExpression>
+		</variable>
+		<variable name="sum_applicant" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{APPLICANTS}]]></variableExpression>
+		</variable>
+		<variable name="sum_total" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{Total}]]></variableExpression>
+		</variable>
+		<variable name="sum_pending" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{Pending}]]></variableExpression>
+		</variable>
+		<variable name="sum_aso" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{ASO}]]></variableExpression>
+		</variable>
+		<variable name="sum_so" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{SO}]]></variableExpression>
+		</variable>
+		<variable name="sum_us" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{US}]]></variableExpression>
+		</variable>
+		<variable name="sum_other" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{OTHERS}]]></variableExpression>
+		</variable>
+		<variable name="sum_dir" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{DIR}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="DetailedReport">
+		<field name="APPLICATION_ID" class="java.lang.String"/>
+		<field name="YEAR" class="java.lang.String"/>
+		<field name="SERVICE_DESC" class="java.lang.String"/>
+		<field name="MHA" class="java.lang.String"/>
+		<field name="IB" class="java.lang.String"/>
+		<field name="RAW1" class="java.lang.String"/>
+		<field name="APPLICANT" class="java.lang.String"/>
+		<field name="S_DATE" class="java.lang.String"/>
+		<field name="APPLICANT_NAME" class="java.lang.String"/>
+		<field name="STATE" class="java.lang.String"/>
+		<field name="section_fileno" class="java.lang.String"/>
+		<field name="district" class="java.lang.String"/>
+		<field name="userName" class="java.lang.String"/>
+		<field name="designation" class="java.lang.String"/>
+		<field name="pending" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="reportFormat" class="java.lang.String"/>
+	<parameter name="selectYearList" class="java.lang.String"/>
+	<parameter name="PRINTRECORD_DATA_SOURCE" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="REPORT_DATA_SOURCE_DETAILED" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="reportDisplayType" class="java.lang.String"/>
+	<parameter name="loginOfficeName" class="java.lang.String"/>
+	<parameter name="loginUserName" class="java.lang.String"/>
+	<parameter name="selectServiceList" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="44" width="802" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{reportDisplayType}.equalsIgnoreCase( "s" )? "Pendency Report (Statistics)" : "Pendency Report (Detailed)" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="24" width="802" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{loginOfficeName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="52" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 2" style="table 2" x="5" y="0" width="797" height="41" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DetailedReport">
+						<datasetParameter name="REPORT_DATA_SOURCE">
+							<datasetParameterExpression><![CDATA[$P{REPORT_DATA_SOURCE_DETAILED}]]></datasetParameterExpression>
+						</datasetParameter>
+					</datasetRun>
+					<jr:column width="28">
+						<jr:columnHeader style="table 2_CH" height="40" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="28" height="40"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[S.No.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="28" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80">
+						<jr:columnHeader style="table 2_CH" height="40" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="80" height="40"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[State]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="80" height="30" isPrintWhenDetailOverflows="true"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{STATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="65">
+						<jr:columnHeader style="table 2_CH" height="40" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="65" height="40"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[District]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="65" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{district}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40">
+						<jr:columnHeader style="table 2_CH" height="40" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="40"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Year]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="40" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{YEAR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="44">
+						<jr:columnHeader style="table 2_CH" height="40" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="44" height="40" isPrintWhenDetailOverflows="true"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Submission Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="44" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{S_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="51">
+						<jr:columnHeader style="table 2_CH" height="40" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="51" height="40"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Service]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="51" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SERVICE_DESC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="48">
+						<jr:columnHeader style="table 2_CH" height="40" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="48" height="40"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Application Id]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="1" y="0" width="47" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{APPLICATION_ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="81">
+						<jr:columnHeader style="table 2_CH" height="40" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="81" height="40"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Applicant Name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="81" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{APPLICANT_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="51">
+						<jr:columnHeader style="table 2_CH" height="40" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="51" height="40"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Section File No.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="51" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{section_fileno}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:columnGroup width="150">
+						<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="150" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Application Pending with]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:column width="32">
+							<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="32" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6" isBold="true"/>
+									</textElement>
+									<text><![CDATA[MHA]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="32" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[($F{MHA}== null ? "-" : "X" )]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="36">
+							<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="36" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6" isBold="true"/>
+									</textElement>
+									<text><![CDATA[IB]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="36" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[( $F{IB}== null ? "-" : "X" )]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="44">
+							<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="44" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6" isBold="true"/>
+									</textElement>
+									<text><![CDATA[RAW]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement x="2" y="0" width="42" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[( $F{RAW1}==null? "-" : "X" )]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="38">
+							<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="38" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Applicant]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="38" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[( $F{APPLICANT}==null? "-" : "X" )]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+					<jr:columnGroup width="116">
+						<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="116" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Applications Presently With]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:column width="60">
+							<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="60" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6" isBold="true"/>
+									</textElement>
+									<text><![CDATA[User]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="60" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{userName}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="56">
+							<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="56" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Designation]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="56" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="6"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{designation}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+					<jr:column width="42">
+						<jr:columnHeader style="table 2_CH" height="40" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="42" height="40"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Number of Days since application Pending]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="42" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{pending}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 3" style="table 3" x="4" y="-1" width="798" height="41" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="statisticsReport">
+						<datasetParameter name="REPORT_DATA_SOURCE">
+							<datasetParameterExpression><![CDATA[$P{PRINTRECORD_DATA_SOURCE}]]></datasetParameterExpression>
+						</datasetParameter>
+					</datasetRun>
+					<jr:column width="38">
+						<jr:columnHeader style="table 3_CH" height="60" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="38" height="55"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[S. No.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1"/>
+						<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="38" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="61">
+						<jr:columnHeader style="table 3_CH" height="60" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="61" height="55"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Year]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1"/>
+						<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="61" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{YEAR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="121">
+						<jr:columnHeader style="table 3_CH" height="60" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="121" height="55"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Service]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="121" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total :]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="121" height="20" isPrintWhenDetailOverflows="true"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SERVICE_DESC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60">
+						<jr:columnHeader style="table 3_CH" height="60" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="55"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Applications Received]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{sum_total}==null ? 0 :$V{sum_total}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[( $F{Total}==null ? "-" : $F{Total} )]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="56">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 3_CH" height="60" rowSpan="2">
+							<staticText>
+								<reportElement x="0" y="0" width="56" height="55"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Applications Pending]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="56" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{sum_pending}==null ? 0 : $V{sum_pending}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="56" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[($F{Pending}==null ? "-" : $F{Pending})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:columnGroup width="219">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="219" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Applications Pending With]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:column width="51">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="51" height="25"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[MHA]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter style="table" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="51" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{sum_mha}==null ? 0 : $V{sum_mha}]]></textFieldExpression>
+								</textField>
+							</jr:columnFooter>
+							<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="51" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[( $F{MHAS}==null ? "-" : $F{MHAS} )]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="51">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="51" height="25"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[IB]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="51" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{sum_ib}==null ? 0 : $V{sum_ib}]]></textFieldExpression>
+								</textField>
+							</jr:columnFooter>
+							<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="51" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[( $F{IBS}==null ? "-" : $F{IBS} )]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="47">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="46" height="25"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[RAW]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter style="table" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="46" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{sum_raw}==null ? 0 : $V{sum_raw}]]></textFieldExpression>
+								</textField>
+							</jr:columnFooter>
+							<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="2" y="0" width="44" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[( $F{RAWS}==null ? "-" : $F{RAWS} )]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="70">
+							<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="70" height="25"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Applicant]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="70" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{sum_applicant} == null ? 0 : $V{sum_applicant}]]></textFieldExpression>
+								</textField>
+							</jr:columnFooter>
+							<jr:detailCell style="table_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="70" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[( $F{APPLICANTS}==null ? "-" : $F{APPLICANTS} )]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+					<jr:columnGroup width="249">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="249" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Applications Presently With]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:column width="50">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="50" height="25"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[ASO]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter style="table" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="50" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{sum_aso}==null ? 0 : $V{sum_aso}]]></textFieldExpression>
+								</textField>
+							</jr:columnFooter>
+							<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="50" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[($F{ASO}==null ? "-" :$F{ASO})]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="52">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="52" height="25"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[SO]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter style="table" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="52" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$V{sum_so}==null ? 0 : $V{sum_so}]]></textFieldExpression>
+								</textField>
+							</jr:columnFooter>
+							<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="52" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[($F{SO}==null ? "-" : $F{SO})]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="53">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="53" height="25"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[US]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter style="table" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="53" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$V{sum_us}==null ? 0 : $V{sum_us}]]></textFieldExpression>
+								</textField>
+							</jr:columnFooter>
+							<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="53" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[($F{US}==null ? "-" : $F{US} )]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="53">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="53" height="25"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[DIR]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter style="table" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="53" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$V{sum_dir}==null ? 0 : $V{sum_dir}]]></textFieldExpression>
+								</textField>
+							</jr:columnFooter>
+							<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="53" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[($F{DIR}==null ? "-" :$F{DIR})]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="41">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="41" height="25"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[OTHERS]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter style="table" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="41" height="30"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$V{sum_other}==null ? 0 : $V{sum_other}]]></textFieldExpression>
+								</textField>
+							</jr:columnFooter>
+							<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="41" height="20"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[($F{OTHERS}==null ? "-" : $F{OTHERS})]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="762" y="11" width="40" height="17"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="692" y="11" width="70" height="17"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="71" y="8" width="44" height="20"/>
+				<textElement textAlignment="Justified">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="8" width="35" height="20"/>
+				<textElement textAlignment="Justified">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Generated on]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="119" y="8" width="89" height="20"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{loginUserName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="112" y="8" width="15" height="20"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[By]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="41" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="5" y="7" width="797" height="17"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Selected Year(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</b> "+$P{selectYearList}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="24" width="798" height="17"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Selected Services&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</b> "+$P{selectServiceList}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

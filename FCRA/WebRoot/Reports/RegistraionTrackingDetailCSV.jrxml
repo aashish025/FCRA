@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RegistraionTrackingDetail" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="RegistrationTracking">
+		<field name="BLKYEAR" class="java.lang.String"/>
+		<field name="COUNTRY" class="java.lang.String"/>
+		<field name="DNAME" class="java.lang.String"/>
+		<field name="PNAME" class="java.lang.String"/>
+		<field name="STATE" class="java.lang.String"/>
+		<field name="DISTRICT" class="java.lang.String"/>
+		<field name="AMOUNT" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="PRINTRECORD_DATA_SOURCE_RegistrationTracking" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="loginOfficeName" class="java.lang.String"/>
+	<parameter name="rcnNumber" class="java.lang.String"/>
+	<parameter name="regDate" class="java.lang.String"/>
+	<parameter name="statusDesc" class="java.lang.String"/>
+	<parameter name="assoName" class="java.lang.String"/>
+	<parameter name="assoAddress" class="java.lang.String"/>
+	<parameter name="bankName" class="java.lang.String"/>
+	<parameter name="bankAddress" class="java.lang.String"/>
+	<parameter name="accountNumber" class="java.lang.String"/>
+	<parameter name="assoNature" class="java.lang.String"/>
+	<parameter name="assoType" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="51" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" isPrintRepeatedValues="false" mode="Opaque" x="0" y="3" width="553" height="46" isPrintWhenDetailOverflows="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="RegistrationTracking">
+						<datasetParameter name="REPORT_DATA_SOURCE">
+							<datasetParameterExpression><![CDATA[$P{PRINTRECORD_DATA_SOURCE_RegistrationTracking}]]></datasetParameterExpression>
+						</datasetParameter>
+					</datasetRun>
+					<jr:column width="73">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="1" y="0" width="72" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Block Year]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement x="1" y="0" width="72" height="32"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BLKYEAR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="84">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="2" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Country]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement x="2" y="0" width="80" height="32"/>
+								<textElement textAlignment="Justified" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COUNTRY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="127">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="3" y="0" width="112" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Donor]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement x="3" y="0" width="123" height="32"/>
+								<textElement textAlignment="Justified" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DNAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="155">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="2" y="0" width="149" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purpose]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement x="2" y="0" width="149" height="32"/>
+								<textElement textAlignment="Justified" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PNAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="94">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="1" y="0" width="91" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Amount(INR)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="1" y="0" width="91" height="32"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{AMOUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="138" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="7" width="73" height="20" isPrintInFirstWholeBand="true" forecolor="#000000"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{rcnNumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="215" y="8" width="69" height="20" isPrintInFirstWholeBand="true" forecolor="#000000"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{regDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="215" y="29" width="69" height="20" isPrintInFirstWholeBand="true" forecolor="#000000"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{statusDesc}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="71" y="49" width="73" height="20" isPrintWhenDetailOverflows="true" forecolor="#000000"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="215" y="50" width="69" height="20" isPrintInFirstWholeBand="true" forecolor="#000000"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoAddress}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="70" width="73" height="20" isPrintInFirstWholeBand="true" forecolor="#000000"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoNature}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="215" y="71" width="69" height="20" isPrintInFirstWholeBand="true" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{accountNumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="114" width="73" height="20" isPrintInFirstWholeBand="true" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bankAddress}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="92" width="73" height="20" isPrintInFirstWholeBand="true" forecolor="#000000"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="none">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bankName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="28" width="73" height="20"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoType}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="7" width="69" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Registration Number: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="8" width="69" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Registration Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="28" width="69" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Type:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="29" width="69" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Status:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="49" width="69" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Association Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="50" width="69" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Association Address:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="70" width="69" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Association Nature:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="92" width="69" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Bank Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="71" width="69" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Account Number:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="114" width="69" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Bank Address: ]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

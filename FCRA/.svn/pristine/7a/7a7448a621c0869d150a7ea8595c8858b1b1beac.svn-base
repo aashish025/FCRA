@@ -1,0 +1,823 @@
+package dao.services;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import utilities.KVPair;
+import models.services.AuthorityManagement;
+import dao.BaseDao;
+
+public class AuthorityManagementDao extends
+		BaseDao<AuthorityManagement, String, String> {
+
+	public AuthorityManagementDao(Connection connection) {
+		super(connection);
+		// TODO Auto-generated constructor stub
+	}
+
+	public List<AuthorityManagement> getApplicationIdList(String userId,
+			String serviceType,String state) throws Exception {
+		if (connection == null) {
+			throw new Exception("Invalid connection");
+		}
+		String stateCondn=" and 1=1";
+		if(!(state==null || state.equalsIgnoreCase("All"))){
+			stateCondn=" and B.STATE="+state+" "	;
+		}
+		
+		StringBuffer query = new StringBuffer(
+				"SELECT A.APPLICATION_ID,B.SERVICE_CODE,(SELECT SERVICE_DESC FROM TM_SERVICE WHERE SERVICE_CODE=B.SERVICE_CODE) AS SERVICE,A.STAGE_ID,(SELECT STAGE_DESC FROM TM_PC_STAGE WHERE STAGE_ID=A.STAGE_ID) AS STATUS  , to_char(B.SUBMISSION_DATE,'dd-mm-yyyy') 	AS SUB_DATE,B.APPLICANT_NAME,B.TEMP_FILENO,B.SECTION_FILENO"
+				+ ",(select sname from TM_STATE where scode=B.STATE) as statename FROM T_PC_USER_LEVEL_STATUS A,V_APPLICATION_DETAILS B 	WHERE A.APPLICATION_ID=B.APPLICATION_ID  AND A.STAGE_ID in (1,2,7) AND B.CURRENT_STATUS NOT IN (9,10,12) AND A.USER_ID=? and B.SERVICE_CODE=? "+stateCondn+"  ");
+		PreparedStatement statement = connection.prepareStatement(query
+				.toString());
+		statement.setString(1, userId);
+		statement.setString(2, serviceType);
+		ResultSet rs = statement.executeQuery();
+		List<AuthorityManagement> applicationIdList = new ArrayList<AuthorityManagement>();
+		while (rs.next()) {
+			applicationIdList.add(new AuthorityManagement(rs.getString(1), rs
+					.getString(2), rs.getString(3), rs.getString(5), rs
+					.getString(7),rs.getString("statename")));
+		}
+		rs.close();
+		statement.close();
+		return applicationIdList;
+	}
+
+	public String forwardApplication(String forwardingUserId,String applicationIdString, String remark, String officeCode,
+			String userId,String adminUserId) throws Exception {
+		// List<String> applicationIdList=new ArrayList<String>();
+		String[] applicationIdList = applicationIdString.split("-");
+		PreparedStatement statement0=null;	
+		PreparedStatement statement=null;	
+		PreparedStatement statement1=null;
+		PreparedStatement statement2=null;
+		PreparedStatement statement3=null;
+		PreparedStatement statement4=null;
+		PreparedStatement statement5=null;
+		PreparedStatement statement6=null;
+		PreparedStatement statement7=null;
+		PreparedStatement statement8=null;
+		PreparedStatement statement9=null;
+		PreparedStatement statement10=null;
+		PreparedStatement statement11=null;
+		PreparedStatement statement12=null;
+		PreparedStatement statement13=null;
+		PreparedStatement statement14=null;
+		PreparedStatement statement15=null;
+		PreparedStatement statement16=null;
+		PreparedStatement statement17=null;
+		//---generateChatId---------R-1
+		StringBuffer query = new StringBuffer(
+				"SELECT FN_GEN_CHATID(?) FROM DUAL");
+		statement16 = connection.prepareStatement(query
+				.toString());
+		//---------updatePCCommunication---//R0
+		         StringBuffer query0 = new StringBuffer(
+				      "INSERT INTO T_PC_COMMUNICATION VALUES(?,?,?,?,"
+						+ "?,?,?,?,?,sysdate,?,?,?)");
+		        statement0 = connection.prepareStatement(query0.toString()); 
+		
+		//------updatePCOfficeUserDetails--------//R1
+				StringBuffer query1 = new StringBuffer(
+						"SELECT * FROM T_PC_OFFICE_USER_DETAILS WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+				statement1 = connection.prepareStatement(query1.toString());
+				//************
+				StringBuffer query2 = new StringBuffer(
+						"UPDATE T_PC_OFFICE_USER_DETAILS SET USER_ID=?,CHAT_ID=? WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+				statement2 = connection.prepareStatement(query2.toString());
+				//****************
+				StringBuffer query3 = new StringBuffer(
+						"INSERT INTO T_PC_OFFICE_USER_DETAILS VALUES(?,?,?,?)");
+				statement3 = connection.prepareStatement(query3.toString());
+				//--------End-----------------
+				//----updatePCPendingDetails-----------//R2
+				StringBuffer query4 = new StringBuffer(
+						"SELECT * FROM T_PC_PENDING_DETAILS WHERE APPLICATION_ID=?");
+				statement4 = connection.prepareStatement(query4.toString());
+				//*****************************
+				StringBuffer query5 = new StringBuffer(
+						"UPDATE T_PC_PENDING_DETAILS SET USER_ID=?,CHAT_ID=? WHERE APPLICATION_ID=?");
+				statement5 = connection.prepareStatement(query5.toString());
+				//************************
+				StringBuffer query6 = new StringBuffer(
+						"INSERT INTO T_PC_PENDING_DETAILS VALUES(?,?,?,?)");
+				statement6 = connection.prepareStatement(query6.toString());
+				//-----------End----------
+				//------updatePCUserLevelStatus-----R3-----
+				StringBuffer query7 = new StringBuffer(
+						"UPDATE T_PC_USER_LEVEL_STATUS SET STAGE_ID=?,CHAT_ID=?, ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=? AND USER_ID=? ");
+				statement7 = connection.prepareStatement(query7.toString());
+				//***************
+				StringBuffer query8 = new StringBuffer(
+						"INSERT INTO T_PC_USER_LEVEL_STATUS VALUES(?,?,?,?,?,sysdate)");
+				statement8 = connection.prepareStatement(query8.toString());
+				//----------End-------------
+				//--------flagCheckPCUserLevelStatus--R4
+				StringBuffer query9 = new StringBuffer(
+						"SELECT * FROM T_PC_USER_LEVEL_STATUS WHERE APPLICATION_ID=? AND OFFICE_CODE=? AND USER_ID=?");
+				statement9 = connection.prepareStatement(query9.toString());
+				//-----------
+				//------updatePCUserLevelStatus---------reeeeeeeee--R5
+				StringBuffer query10 = new StringBuffer(
+						"UPDATE T_PC_USER_LEVEL_STATUS SET STAGE_ID=?,CHAT_ID=?, ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=? AND USER_ID=? ");
+				statement10 = connection.prepareStatement(query10.toString());
+				//***************
+				StringBuffer query11 = new StringBuffer(
+						"INSERT INTO T_PC_USER_LEVEL_STATUS VALUES(?,?,?,?,?,sysdate)");
+				statement11 = connection.prepareStatement(query11.toString());
+				//----------End-------------
+				//------updatePCUserLevelStatus---------reeeeeeeee--R6
+				StringBuffer query12 = new StringBuffer(
+						"UPDATE T_PC_USER_LEVEL_STATUS SET STAGE_ID=?,CHAT_ID=?, ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=? AND USER_ID=? ");
+				statement12 = connection.prepareStatement(query12.toString());
+				//***************
+				StringBuffer query13 = new StringBuffer(
+						"INSERT INTO T_PC_USER_LEVEL_STATUS VALUES(?,?,?,?,?,sysdate)");
+				statement13 = connection.prepareStatement(query13.toString());
+				//----------End-------------
+	 			//-------updatePCOfficeLevelStatus-------R7----
+	 			StringBuffer query14 = new StringBuffer(
+	 					"UPDATE T_PC_OFFICE_LEVEL_STATUS SET STAGE_ID=?,CHAT_ID=?,ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+	 			statement14 = connection.prepareStatement(query14.toString());
+	 			//*************************
+	 			StringBuffer query15 = new StringBuffer(
+	 					"INSERT INTO T_PC_OFFICE_LEVEL_STATUS VALUES(?,?,?,?,sysdate)");
+	 			statement15 = connection.prepareStatement(query15.toString());	
+	 			//-----------------End------------------
+	 			//-------
+	 			StringBuffer query16 = new StringBuffer(
+	 					"SELECT STAGE_ID FROM T_PC_USER_LEVEL_STATUS WHERE APPLICATION_ID=? AND OFFICE_CODE=? AND USER_ID=?");
+	 			//PreparedStatement 
+	 			statement17 = connection.prepareStatement(query16
+	 					.toString());
+	 			//----End-----
+	 			for (int i = 0; i < applicationIdList.length; i++) {
+	 				//System.out.println("*******Iteration - " + i + "Application id- " + applicationIdList[i]);
+				String statusId = getStatusId(applicationIdList[i], officeCode,userId,statement17);
+				//String sectionId = getSectionId(applicationIdList[i], officeCode);
+				String chatId = generateChatId(officeCode,statement16);
+				//connection.setAutoCommit(false);
+				updatePCCommunication(applicationIdList[i], chatId, null, null,officeCode, adminUserId, officeCode, forwardingUserId,"7",remark, "0",statement0);
+				updatePCOfficeUserDetails(applicationIdList[i], officeCode,forwardingUserId, chatId,statement1,statement2,statement3);
+				updatePCPendingDetails(applicationIdList[i], officeCode,forwardingUserId, chatId,statement4,statement5,statement6);//R2
+
+				updatePCUserLevelStatus(applicationIdList[i], officeCode, userId,chatId, "5", true,statement7,statement8); //R3
+
+				if (statusId.equals("7")){
+					Boolean flag = flagCheckPCUserLevelStatus(applicationIdList[i],officeCode, forwardingUserId,statement9); //R4
+					if (flag == true)
+						updatePCUserLevelStatus(applicationIdList[i], officeCode,forwardingUserId, chatId, "7", true,statement10,statement11); //R5
+					else
+						updatePCUserLevelStatus(applicationIdList[i], officeCode,forwardingUserId, chatId, "7", false,statement10,statement11);
+				}				
+				else {
+					Boolean flag = flagCheckPCUserLevelStatus(applicationIdList[i],officeCode, forwardingUserId,statement9); //R4
+
+					if (flag == true)
+						updatePCUserLevelStatus(applicationIdList[i], officeCode,forwardingUserId, chatId, "2", true,statement12,statement13);
+					else
+						updatePCUserLevelStatus(applicationIdList[i], officeCode,forwardingUserId, chatId, "1", false,statement12,statement13);
+				}
+
+				updatePCOfficeLevelStatus(applicationIdList[i], officeCode, "6",chatId, true,statement14,statement15);
+				/*
+				 * if (!(sectionId == null || sectionId.equals(""))) {
+				 * updatePCSectionDetails(applicationIdList[i],
+				 * officeCode,sectionId, chatId, true); }
+				 */
+				// System.out.println(applicationIdList[i]);
+			}
+
+			connection.commit();
+			statement1.close();statement2.close();statement3.close();statement4.close();
+			statement5.close();statement6.close();statement7.close();statement8.close();
+			statement9.close();statement10.close();statement11.close();statement12.close();statement13.close();
+			statement14.close();statement15.close();statement16.close();statement17.close();
+			statement0.close();
+	  //  }
+		
+		return "success";
+	}
+
+	/**
+	 * assign fresh arrival application to user
+	 * @param forwardingUserId
+	 * @param applicationIdString
+	 * @param officeCode
+	 * @return success or error
+	 * @see Multiple table Update
+	 */
+	public String forwardApplicationOfficeToUser(String forwardingUserId,String applicationIdString, String officeCode,String officeId ) throws Exception{	
+		if(connection == null) {
+			throw new Exception("Invalid connection");
+		}
+		PreparedStatement statement=null;	
+		PreparedStatement statement1=null;
+		PreparedStatement statement2=null;
+		PreparedStatement statement3=null;
+		PreparedStatement statement4=null;
+		PreparedStatement statement5=null;
+		PreparedStatement statement6=null;
+		PreparedStatement statement7=null;
+		PreparedStatement statement8=null;
+		PreparedStatement statement9=null;
+		PreparedStatement statement10=null;
+		PreparedStatement statement11=null;
+		PreparedStatement statement12=null;
+		PreparedStatement statement13=null;
+		PreparedStatement statement14=null;
+		PreparedStatement statement15=null;
+		PreparedStatement statement16=null;
+		PreparedStatement statement17=null;
+		PreparedStatement statement18=null;
+		PreparedStatement statement19=null;
+		PreparedStatement statement20=null;
+		PreparedStatement statement21=null;
+		PreparedStatement statement22=null;
+		PreparedStatement statement23=null;
+		PreparedStatement statement24=null;
+		PreparedStatement statement25=null;
+		//----------GETTING SERVICE CODE -----------
+		StringBuffer query = new StringBuffer("SELECT  SERVICE_CODE FROM V_APPLICATION_DETAILS2 WHERE APPLICATION_ID=?");
+		statement = connection.prepareStatement(query.toString()); 
+		//------updatePCOfficeUserDetails--------//R1
+		StringBuffer query1 = new StringBuffer(
+				"SELECT * FROM T_PC_OFFICE_USER_DETAILS WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+		statement1 = connection.prepareStatement(query1.toString());
+		//************
+		StringBuffer query2 = new StringBuffer(
+				"UPDATE T_PC_OFFICE_USER_DETAILS SET USER_ID=?,CHAT_ID=? WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+		statement2 = connection.prepareStatement(query2.toString());
+		//****************
+		StringBuffer query3 = new StringBuffer(
+				"INSERT INTO T_PC_OFFICE_USER_DETAILS VALUES(?,?,?,?)");
+		statement3 = connection.prepareStatement(query3.toString());
+		//--------End-----------------//
+		
+		//----updatePCPendingDetails-----------//R2
+		StringBuffer query4 = new StringBuffer(
+				"SELECT * FROM T_PC_PENDING_DETAILS WHERE APPLICATION_ID=?");
+		statement4 = connection.prepareStatement(query4.toString());
+		//*****************************
+		StringBuffer query5 = new StringBuffer(
+				"UPDATE T_PC_PENDING_DETAILS SET USER_ID=?,CHAT_ID=? WHERE APPLICATION_ID=?");
+		statement5 = connection.prepareStatement(query5.toString());
+		//************************
+		StringBuffer query6 = new StringBuffer(
+				"INSERT INTO T_PC_PENDING_DETAILS VALUES(?,?,?,?)");
+		statement6 = connection.prepareStatement(query6.toString());
+		//-----------End----------
+		//--------------updatePCUserLevelStatus----------//R3
+		StringBuffer query7 = new StringBuffer(
+				"UPDATE T_PC_USER_LEVEL_STATUS SET STAGE_ID=?,CHAT_ID=?, ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=? AND USER_ID=? ");
+		statement7 = connection.prepareStatement(query7.toString());
+		//**************************
+		StringBuffer query8 = new StringBuffer(
+				"INSERT INTO T_PC_USER_LEVEL_STATUS VALUES(?,?,?,?,?,sysdate)");
+		statement8 = connection.prepareStatement(query8.toString());
+		//-----------End------------------------
+		//------------flagCheckPCOfficeLevelStatus---------//R4
+		StringBuffer query9 = new StringBuffer("SELECT * FROM T_PC_OFFICE_LEVEL_STATUS WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+		statement9 = connection.prepareStatement(query9.toString());
+		//-----------End---------
+		//------updatePCOfficeLevelStatus------R5---------
+		StringBuffer query10 = new StringBuffer(
+				"UPDATE T_PC_OFFICE_LEVEL_STATUS SET STAGE_ID=?,CHAT_ID=?,ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+		statement10 = connection.prepareStatement(query10.toString());
+		//*************************
+		StringBuffer query11 = new StringBuffer(
+				"INSERT INTO T_PC_OFFICE_LEVEL_STATUS VALUES(?,?,?,?,sysdate)");
+		statement11 = connection.prepareStatement(query11.toString());
+		//--------------End---------------
+		//-----------updatePCOfficeLevelFinalStatus---------------//R6
+		StringBuffer query12 = new StringBuffer("UPDATE T_PC_OFFICE_LEVEL_FINAL_STATUS SET STATUS=?,CHAT_ID=?,ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+		statement12 = connection.prepareStatement(query12.toString());
+		//********************
+		StringBuffer query13 = new StringBuffer("INSERT INTO T_PC_OFFICE_LEVEL_FINAL_STATUS VALUES(?,?,?,?,sysdate)");
+		statement13 = connection.prepareStatement(query13.toString());
+		//-------------End--------------------
+		//---R7
+		   StringBuffer query14 = new StringBuffer("SELECT  SERVICE_CODE FROM V_APPLICATION_DETAILS WHERE APPLICATION_ID=?");
+	 		statement14 = connection.prepareStatement(query14.toString());
+	   //---R8	
+	 		StringBuffer query15 = new StringBuffer("SELECT OFFICE_CODE FROM TM_OFFICE WHERE OFFICE_ID in(2) AND RECORD_STATUS=0");
+ 			statement15 = connection.prepareStatement(query15.toString());
+ 			//-------updatePCOfficeLevelStatus-------R9-----reeeee
+ 			StringBuffer query16 = new StringBuffer(
+ 					"UPDATE T_PC_OFFICE_LEVEL_STATUS SET STAGE_ID=?,CHAT_ID=?,ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+ 			statement16 = connection.prepareStatement(query16.toString());
+ 			//*************************
+ 			StringBuffer query17 = new StringBuffer(
+ 					"INSERT INTO T_PC_OFFICE_LEVEL_STATUS VALUES(?,?,?,?,sysdate)");
+ 			statement17 = connection.prepareStatement(query17.toString());	
+ 			//-----------------End------------------
+ 			//------updatePCOfficeLevelFinalStatus----R10---------//reeeeeee
+ 			StringBuffer query18 = new StringBuffer("UPDATE T_PC_OFFICE_LEVEL_FINAL_STATUS SET STATUS=?,CHAT_ID=?,ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+ 			statement18 = connection.prepareStatement(query18.toString());
+ 			//********************
+ 			StringBuffer query19 = new StringBuffer("INSERT INTO T_PC_OFFICE_LEVEL_FINAL_STATUS VALUES(?,?,?,?,sysdate)");
+ 			statement19 = connection.prepareStatement(query19.toString());
+ 			//-------End----------------------------
+ 			//----R11------------
+				StringBuffer query20 = new StringBuffer("SELECT SECTION_ID FROM TM_PC_SERVICE_SECTION WHERE OFFICE_CODE=? AND SERVICE_CODE="
+ 			    		+ "(SELECT SERVICE_CODE FROM V_APPLICATION_DETAILS WHERE APPLICATION_ID=?)");
+ 				statement20 = connection.prepareStatement(query20.toString()); 
+ 				//---End--------
+ 		 //----------------R12--------------------
+ 				StringBuffer query21 = new StringBuffer("SELECT SECTION_ID FROM TM_PC_SERVICE_SECTION WHERE OFFICE_CODE=? AND SERVICE_CODE="
+			    		+ "(SELECT SERVICE_CODE FROM V_APPLICATION_DETAILS WHERE APPLICATION_ID=?)");
+				statement21 = connection.prepareStatement(query21.toString());
+				//---------------End----------------
+				//-------flagCheckPCSectionDetails-------R13
+				StringBuffer query22 = new StringBuffer("SELECT * FROM T_PC_SECTION_DETAILS WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+				statement22 = connection.prepareStatement(query22.toString());
+				//---------End-----------------
+				//------updatePCSectionDetails-------R14
+				StringBuffer query24 = new StringBuffer(
+						"UPDATE T_PC_SECTION_DETAILS SET SECTION_ID=?,CHAT_ID=? WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+				statement24 = connection.prepareStatement(query24.toString());
+				//***********************
+				StringBuffer query25 = new StringBuffer(
+						"INSERT INTO T_PC_SECTION_DETAILS VALUES(?,?,?,?)");
+				statement25 = connection.prepareStatement(query25.toString());
+				//-------End-------------
+				//--------R15
+				StringBuffer query23 = new StringBuffer("UPDATE T_APPLICATION_STAGE_DETAILS SET CURRENT_STAGE=?,CURRENT_STATUS=? WHERE APPLICATION_ID=?");
+	     		statement23 = connection.prepareStatement(query23.toString());
+	     		//----------------End----
+		        String[] applicationIdList = applicationIdString.split("-");
+	    		for (int i = 0; i <applicationIdList.length; i++) {
+	    		String chatId=null;
+	    		// GETTING SERVICE CODE 
+			    statement.setString(1, applicationIdList[i]);
+	    		ResultSet rs2=statement.executeQuery();
+	    		String service=null; 		
+	    		if(rs2.next()){
+	    			service=rs2.getString(1); 			
+	    		}
+	    		connection.setAutoCommit(false);	    				
+	    	    updatePCOfficeUserDetails(applicationIdList[i],officeCode,forwardingUserId,chatId,statement1,statement2,statement3);//R1		
+	    	    updatePCPendingDetails(applicationIdList[i],officeCode,forwardingUserId,chatId,statement4,statement5,statement6); //R2	    
+	    	    updatePCUserLevelStatus(applicationIdList[i],officeCode,forwardingUserId,chatId,"1",false,statement7,statement8);	// RECEIVER //R3
+	    	    Boolean flag=flagCheckPCOfficeLevelStatus(applicationIdList[i], officeCode,statement9);//R4
+	    	    if(flag==true)//R5
+	    	    	updatePCOfficeLevelStatus(applicationIdList[i],officeCode,"6",chatId,true,statement10,statement11);
+	    	    else
+	    	    	updatePCOfficeLevelStatus(applicationIdList[i],officeCode,"6",chatId,false,statement10,statement11);	
+	    	    if(officeId.equals("1"))//R6
+	    	    	updatePCOfficeLevelFinalStatus(applicationIdList[i],officeCode,null,chatId,false,statement12,statement13);
+	    	    //R7
+	    	    if(officeId.equals("1")){
+	    			 /*   StringBuffer query = new StringBuffer("SELECT  SERVICE_CODE FROM V_APPLICATION_DETAILS WHERE APPLICATION_ID=?");
+	    		 		statement = connection.prepareStatement(query.toString());*/ 			
+	    		 		statement14.setString(1, applicationIdList[i]);
+	    		 		ResultSet rs=statement14.executeQuery();
+	    		 		String serviceCode=null;
+	    		 		if(rs.next())
+	    		 			serviceCode=rs.getString(1); 
+	    		 		//R8
+	    		 		if(serviceCode.equals("01") || serviceCode.equals("02") || serviceCode.equals("05")){
+	    		 			/*StringBuffer query2 = new StringBuffer("SELECT OFFICE_CODE FROM TM_OFFICE WHERE OFFICE_ID in(2) AND RECORD_STATUS=0");
+	    		 			statement15 = connection.prepareStatement(query2.toString());*/ 					
+	    		 			ResultSet rs1=statement15.executeQuery();
+	    		 			String office=null;
+	    		 			while(rs1.next()){
+	    		 				office=rs1.getString(1);		 				
+	    		 			} 				
+	    		 			updatePCOfficeLevelStatus(applicationIdList[i],office,"1",chatId,false,statement16,statement17);//R9	
+	    	 				updatePCOfficeLevelFinalStatus(applicationIdList[i],office,null,chatId,false,statement18,statement19); //R10
+	    	 				
+	    	 				// Getting section for inserting row in to PC_Section        //R11
+/*	    	 				StringBuffer query4 = new StringBuffer("SELECT SECTION_ID FROM TM_PC_SERVICE_SECTION WHERE OFFICE_CODE=? AND SERVICE_CODE="
+	    	 			    		+ "(SELECT SERVICE_CODE FROM V_APPLICATION_DETAILS WHERE APPLICATION_ID=?)");
+	    	 				statement = connection.prepareStatement(query4.toString()); */
+	    	 				statement20.setString(1, office);
+	    	 				statement20.setString(2, applicationIdList[i]);
+	    	 				ResultSet rs4=statement20.executeQuery();	
+	    	 				String sectionId=null;
+	    	 				if(rs4.next())
+	    	 					sectionId=rs4.getString(1);
+	    	 			    updatePCSectionDetails(applicationIdList[i], office, sectionId, chatId, false,statement24,statement25);
+	    		 		}
+	    	    }else{
+	    		    	// Getting section for inserting row in to PC_Section   //R12
+	    				/*StringBuffer query4 = new StringBuffer("SELECT SECTION_ID FROM TM_PC_SERVICE_SECTION WHERE OFFICE_CODE=? AND SERVICE_CODE="
+	    			    		+ "(SELECT SERVICE_CODE FROM V_APPLICATION_DETAILS WHERE APPLICATION_ID=?)");
+	    				statement6 = connection.prepareStatement(query4.toString());*/ 
+	    				statement21.setString(1, officeCode);
+	    				statement21.setString(2, applicationIdList[i]);
+	    				ResultSet rs4=statement21.executeQuery();	
+	    				String sectionId=null;
+	    				if(rs4.next())
+	    					sectionId=rs4.getString(1);
+	    				Boolean flag1=flagCheckPCSectionDetails(applicationIdList[i],officeCode,statement22); //R13
+	    				if(flag1==true)
+	    					updatePCSectionDetails(applicationIdList[i], officeCode, sectionId, chatId, true,statement24,statement25);//R14
+	    				else
+	    					updatePCSectionDetails(applicationIdList[i], officeCode, sectionId, chatId, false,statement24,statement25);
+	    	    }
+	    	  /*  StringBuffer query2 = new StringBuffer("SELECT SECTION_ID FROM TM_PC_SERVICE_SECTION WHERE OFFICE_CODE=? AND SERVICE_CODE="
+	    	    		+ "(SELECT SERVICE_CODE FROM V_APPLICATION_DETAILS WHERE APPLICATION_ID=?)");
+	    		statement = connection.prepareStatement(query2.toString()); 
+	    		statement.setString(1, obj.getToOfficeCode());
+	    		statement.setString(2, obj.getApplicationId());
+	    		ResultSet rs2=statement.executeQuery();	
+	    		String sectionId=null;
+	    		if(rs2.next())
+	    			sectionId=rs2.getString(1);
+	    	    updatePCSectionDetails(obj.getApplicationId(), obj.getToOfficeCode(), sectionId, chatId, false); */
+	    	    
+	    	    // UPDATE SUB_STAGE IN T_APPLICATION_DETAILS
+	    		//R15
+	     	/*	StringBuffer query23 = new StringBuffer("UPDATE T_APPLICATION_STAGE_DETAILS SET CURRENT_STAGE=?,CURRENT_STATUS=? WHERE APPLICATION_ID=?");
+	     		statement23 = connection.prepareStatement(query23.toString());*/	
+	     		statement23.setString(1, "2");
+	     		statement23.setString(2, "4"); 		
+	     		statement23.setString(3, applicationIdList[i]);
+	     		statement23.executeUpdate(); 		
+	     		updateApplicationStatusNotification(applicationIdList[i],service,"4","Your application has been received.");
+	    		
+	    	}
+	    connection.commit();	
+	      statement1.close();statement2.close(); statement3.close(); statement4.close();
+	      statement5.close();statement6.close(); statement7.close(); statement8.close();
+	      statement9.close();statement10.close(); statement11.close(); statement12.close();
+	      statement13.close();statement14.close(); statement15.close(); statement16.close();
+	      statement17.close();statement18.close(); statement19.close(); statement20.close();
+	      statement21.close();statement22.close(); statement23.close(); statement24.close();statement25.close();
+	    
+  // }
+
+		
+		// Sending Mail to requested office/mission
+	/*	String officeCode=null;
+		StringBuffer query1 = new StringBuffer("SELECT OFFICE_CODE FROM T_APPLICATION_DETAILS WHERE APPLICATION_ID=?");
+ 		statement = connection.prepareStatement(query1.toString());	
+ 		statement.setString(1, obj.getApplicationId());
+ 		ResultSet rs=statement.executeQuery();
+ 		if(rs.next()){
+ 			officeCode=rs.getString(1);
+ 		}
+		AutoNotifier notifier=new AutoNotifier();
+		notifier.pushAutoNotifications(obj.getApplicationId(), Integer.valueOf(7), "2", officeCode, connection);		*/
+		return "success";		
+	
+	}
+	public Boolean flagCheckPCOfficeLevelStatus(String appId,String officeCode,PreparedStatement statement9) throws Exception{
+		//PreparedStatement statement=null;
+		Boolean existFlag=false;		
+/*		StringBuffer query = new StringBuffer("SELECT * FROM T_PC_OFFICE_LEVEL_STATUS WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+		statement = connection.prepareStatement(query.toString());*/	
+		statement9.setString(1, appId);
+		statement9.setString(2, officeCode);				
+		ResultSet rs4=statement9.executeQuery();		
+		if(rs4.next())
+			existFlag=true;
+		else
+			existFlag=false;
+		return existFlag;
+	}
+	public void updatePCOfficeLevelFinalStatus(String appId,String officeCode,String statusId,String chatId,Boolean existFlag,PreparedStatement statement12,PreparedStatement statement13) throws Exception{
+		//PreparedStatement statement=null;		
+		if(existFlag==true){
+			/*StringBuffer query1 = new StringBuffer("UPDATE T_PC_OFFICE_LEVEL_FINAL_STATUS SET STATUS=?,CHAT_ID=?,ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+			statement12 = connection.prepareStatement(query1.toString());*/
+			statement12.setString(1, statusId);
+			statement12.setString(2, chatId);
+			statement12.setString(3, appId);
+			statement12.setString(4, officeCode);					
+			statement12.executeUpdate();
+		}else{
+			/*StringBuffer query1 = new StringBuffer("INSERT INTO T_PC_OFFICE_LEVEL_FINAL_STATUS VALUES(?,?,?,?,sysdate)");
+			statement13 = connection.prepareStatement(query1.toString());*/
+			statement13.setString(1, appId);
+			statement13.setString(2, officeCode);					
+			statement13.setString(3, statusId);
+			statement13.setString(4, chatId);
+			statement13.executeUpdate();
+		}
+	}
+	public void updateApplicationStatusNotification(String appId,String serviceCode,String statusId,String statusRemark) throws Exception{		
+		PreparedStatement statement=null;
+		StringBuffer query1 = new StringBuffer("INSERT INTO T_APPLICATION_STATUS_NOTIFN(APPLICATION_ID,SERVICE_CODE,APPLICATION_STATUS,"
+				+ "STATUS_REMARK,NOTIFIED_ON,RECORD_STATUS) "
+				+ "VALUES(?,?,?,?,sysdate,0)");
+		statement = connection.prepareStatement(query1.toString());
+		statement.setString(1, appId);			
+		statement.setString(2, serviceCode);
+		statement.setString(3, statusId);
+		statement.setString(4, statusRemark);			
+		statement.executeUpdate();
+	
+}
+	public Boolean flagCheckPCSectionDetails(String appId,String officeCode,PreparedStatement statement22) throws Exception{
+		//PreparedStatement statement=null;
+		Boolean existFlag=false;
+/*		StringBuffer query = new StringBuffer("SELECT * FROM T_PC_SECTION_DETAILS WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+		statement22 = connection.prepareStatement(query.toString());*/	
+		statement22.setString(1, appId);
+		statement22.setString(2, officeCode);				
+		ResultSet rs2=statement22.executeQuery();
+		if(rs2.next())
+			existFlag=true;
+		else
+			existFlag=false;
+		return existFlag;
+	}
+	
+	public String getStatusId(String applicationId, String officeCode,
+			String userId,PreparedStatement statement17) throws Exception {
+		String sectionId = null;
+		StringBuffer query17 = new StringBuffer(
+				"SELECT STAGE_ID FROM T_PC_USER_LEVEL_STATUS WHERE APPLICATION_ID=? AND OFFICE_CODE=? AND USER_ID=?");
+		//PreparedStatement 
+		statement17 = connection.prepareStatement(query17
+				.toString());
+		statement17.setString(1, applicationId);
+		statement17.setString(2, officeCode);
+		statement17.setString(3, userId);
+		ResultSet rs = statement17.executeQuery();
+		if (rs.next())
+			sectionId = rs.getString(1);
+		return sectionId;
+	}
+
+	public String getSectionId(String applicationId, String officeCode)
+			throws Exception {
+		String sectionId = null;
+		StringBuffer query = new StringBuffer(
+				"SELECT SECTION_ID FROM T_PC_SECTION_DETAILS WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+		PreparedStatement statement = connection.prepareStatement(query
+				.toString());
+		statement.setString(1, applicationId);
+		statement.setString(2, officeCode);
+		ResultSet rs = statement.executeQuery();
+		if (rs.next())
+			sectionId = rs.getString(1);
+		return sectionId;
+	}
+
+	public String generateChatId(String officeCode,PreparedStatement statement16) throws Exception {
+		String chatId = null;
+	/*	StringBuffer query = new StringBuffer(
+				"SELECT FN_GEN_CHATID(?) FROM DUAL");
+		//PreparedStatement 
+		statement16 = connection.prepareStatement(query
+				.toString());*/
+		statement16.setString(1, officeCode);
+		ResultSet rs = statement16.executeQuery();
+		if (rs.next())
+			chatId = rs.getString(1);
+		return chatId;
+	}
+
+	public void updatePCCommunication(String appId, String chatId,
+			String parentChatId, String subStageId, String fromOfficeCode,
+			String fromUserId, String toOfficeCode, String toUserId,
+			String statusId, String statusRemark, String recordStatus,PreparedStatement statement)
+			throws Exception {
+		//PreparedStatement statement = null;
+	/*	StringBuffer query = new StringBuffer(
+				"INSERT INTO T_PC_COMMUNICATION VALUES(?,?,?,?,"
+						+ "?,?,?,?,?,sysdate,?,?)"); 
+		statement = connection.prepareStatement(query.toString());*/
+		statement.setString(1, appId);
+		statement.setString(2, chatId);
+		statement.setString(3, parentChatId);
+		statement.setString(4, subStageId);
+		statement.setString(5, fromOfficeCode);
+		statement.setString(6, fromUserId);
+		statement.setString(7, toOfficeCode);
+		statement.setString(8, toUserId);
+		statement.setString(9, statusId);
+		statement.setString(10, statusRemark);
+		statement.setString(11, recordStatus);
+		statement.setString(12, null);
+		int ret = statement.executeUpdate();
+		System.out.println("updatePCCommunication statement - "+ret);
+	}
+
+	public void updatePCOfficeUserDetails(String appId, String officeCode,
+			String touserId, String chatId,PreparedStatement statement1,PreparedStatement statement2,PreparedStatement statement3) throws Exception {
+		//PreparedStatement statement = null;
+
+		statement1.setString(1, appId);
+		statement1.setString(2, officeCode);
+		ResultSet rs = statement1.executeQuery();
+		Boolean existFlag = false;
+		if (rs.next())
+			existFlag = true;
+		else
+			existFlag = false;
+		if (existFlag == true) {
+
+			statement2.setString(1, touserId);
+			statement2.setString(2, chatId);
+			statement2.setString(3, appId);
+			statement2.setString(4, officeCode);
+			int rec=statement2.executeUpdate();
+			System.out.println("updatePCOfficeUserDetails if rec :"+rec);
+		} else {
+        	statement3.setString(1, appId);
+			statement3.setString(2, officeCode);
+			statement3.setString(3, touserId);
+			statement3.setString(4, chatId);
+			int rec=statement3.executeUpdate();
+			System.out.println("updatePCOfficeUserDetails else rec :"+rec);
+		}
+
+	}
+
+	public void updatePCPendingDetails(String appId, String officeCode,
+			String touserId, String chatId,PreparedStatement statement4,PreparedStatement statement5,PreparedStatement statement6) throws Exception {
+		//PreparedStatement statement = null;
+		Boolean existFlag = false;
+
+		statement4.setString(1, appId);
+		ResultSet rs1 = statement4.executeQuery();
+		if (rs1.next())
+			existFlag = true;
+		else
+			existFlag = false;
+		if (existFlag == true) {
+
+			statement5.setString(1, touserId);
+			statement5.setString(2, chatId);
+			statement5.setString(3, appId);
+			int rec=statement5.executeUpdate();
+			System.out.println("updatePCPendingDetails if :"+rec);
+		} else {
+		
+			statement6.setString(1, appId);
+			statement6.setString(2, officeCode);
+			statement6.setString(3, touserId);
+			statement6.setString(4, chatId);
+			int rec=statement6.executeUpdate();
+			System.out.println("updatePCPendingDetails else :"+rec);
+		}
+	}
+
+	public void updatePCUserLevelStatus(String appId, String officeCode,
+			String touserId, String chatId, String stageId, Boolean existFlag,PreparedStatement statement7,PreparedStatement statement8)
+			throws Exception {
+		//PreparedStatement statement = null;
+		if (existFlag == true) {
+/*			StringBuffer query1 = new StringBuffer(
+					"UPDATE T_PC_USER_LEVEL_STATUS SET STAGE_ID=?,CHAT_ID=?, ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=? AND USER_ID=? ");
+			statement = connection.prepareStatement(query1.toString());*/
+			statement7.setString(1, stageId);
+			statement7.setString(2, chatId);
+			statement7.setString(3, appId);
+			statement7.setString(4, officeCode);
+			statement7.setString(5, touserId);
+			int rec=statement7.executeUpdate();
+			System.out.println("updatePCUserLevelStatus if :"+rec);
+		} else {
+		/*	StringBuffer query1 = new StringBuffer(
+					"INSERT INTO T_PC_USER_LEVEL_STATUS VALUES(?,?,?,?,?,sysdate)");
+			statement = connection.prepareStatement(query1.toString());*/
+			statement8.setString(1, appId);
+			statement8.setString(2, officeCode);
+			statement8.setString(3, touserId);
+			statement8.setString(4, stageId);
+			statement8.setString(5, chatId);
+			int rec=statement8.executeUpdate();
+			System.out.println("updatePCUserLevelStatus else :"+rec);
+		}
+	}
+
+	public Boolean flagCheckPCUserLevelStatus(String appId, String officeCode,
+			String touserId,PreparedStatement statement9) throws Exception {
+		//PreparedStatement statement = null;
+		Boolean existFlag = false;
+	/*	StringBuffer query = new StringBuffer(
+				"SELECT * FROM T_PC_USER_LEVEL_STATUS WHERE APPLICATION_ID=? AND OFFICE_CODE=? AND USER_ID=?");
+		statement9 = connection.prepareStatement(query.toString());*/
+		statement9.setString(1, appId);
+		statement9.setString(2, officeCode);
+		statement9.setString(3, touserId);
+		ResultSet rs2 = statement9.executeQuery();
+		if (rs2.next())
+			existFlag = true;
+		else
+			existFlag = false;
+		return existFlag;
+	}
+    //R9 re use
+	public void updatePCOfficeLevelStatus(String appId, String officeCode,
+			String stageId, String chatId, Boolean existFlag,PreparedStatement statement10,PreparedStatement statement11) throws Exception {
+		//PreparedStatement statement = null;
+		if (existFlag == true) {
+			/*StringBuffer query1 = new StringBuffer(
+					"UPDATE T_PC_OFFICE_LEVEL_STATUS SET STAGE_ID=?,CHAT_ID=?,ACTIVITY_ON=sysdate WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+			statement = connection.prepareStatement(query1.toString());*/
+			statement10.setString(1, stageId);
+			statement10.setString(2, chatId);
+			statement10.setString(3, appId);
+			statement10.setString(4, officeCode);
+			int rec=statement10.executeUpdate();
+			System.out.println("updatePCOfficeLevelStatus if :"+rec);
+			
+		} else {
+			/*StringBuffer query1 = new StringBuffer(
+					"INSERT INTO T_PC_OFFICE_LEVEL_STATUS VALUES(?,?,?,?,sysdate)");
+			statement = connection.prepareStatement(query1.toString());*/
+			statement11.setString(1, appId);
+			statement11.setString(2, officeCode);
+			statement11.setString(3, stageId);
+			statement11.setString(4, chatId);
+
+			int rec=statement11.executeUpdate();
+			System.out.println("updatePCOfficeLevelStatus else :"+rec);
+		}
+	}
+
+	public void updatePCSectionDetails(String appId, String officeCode,
+			String sectionId, String chatId, Boolean existFlag,PreparedStatement statement24,PreparedStatement statement25)
+			throws Exception {
+		//PreparedStatement statement = null;
+		if (existFlag == true) {
+/*			StringBuffer query1 = new StringBuffer(
+					"UPDATE T_PC_SECTION_DETAILS SET SECTION_ID=?,CHAT_ID=? WHERE APPLICATION_ID=? AND OFFICE_CODE=?");
+			statement24 = connection.prepareStatement(query1.toString());*/
+			statement24.setString(1, sectionId);
+			statement24.setString(2, chatId);
+			statement24.setString(3, appId);
+			statement24.setString(4, officeCode);
+			int rec=statement24.executeUpdate();
+			System.out.println("updatePCSectionDetails if :"+rec);
+		} else {
+			/*StringBuffer query1 = new StringBuffer(
+					"INSERT INTO T_PC_SECTION_DETAILS VALUES(?,?,?,?)");
+			statement25 = connection.prepareStatement(query1.toString());*/
+			statement25.setString(1, appId);
+			statement25.setString(2, officeCode);
+			statement25.setString(3, sectionId);
+			statement25.setString(4, chatId);
+			int rec=statement25.executeUpdate();
+			System.out.println("updatePCSectionDetails else :"+rec);
+		}
+	}
+	/**
+	 * fetch fresh Application list for office to user 
+	 * @param state
+	 * @param serviceType
+	 * @return List of application id, section file no, service , applicant name  
+	 * @throws Exception
+	 */
+	public List<AuthorityManagement> getFreshApplicationIdList(String state,String serviceType) throws Exception {
+		if (connection == null) {
+			throw new Exception("Invalid connection");
+		}
+		String stateCondn="1=1";
+		String serviceTypeCodn="1=1";
+		if(!state.trim().equals("All")){
+			stateCondn="A.STATE='"+state+"'";
+		}
+		if(!serviceType.trim().equals("All")){
+			serviceTypeCodn="A.SERVICE_CODE='"+serviceType+"'";	
+		}
+		
+		
+		StringBuffer query = new StringBuffer(
+				"SELECT A.APPLICATION_ID,A.SECTION_FILENO,(SELECT SERVICE_DESC FROM TM_SERVICE WHERE SERVICE_CODE=A.SERVICE_CODE) AS SERVICE,APPLICANT_NAME FROM V_APPLICATION_DETAILS A WHERE A.CURRENT_STAGE=1 AND CURRENT_STATUS=2 AND "+serviceTypeCodn+" AND "+stateCondn+"");
+		PreparedStatement statement = connection.prepareStatement(query
+				.toString());
+		ResultSet rs = statement.executeQuery();
+		List<AuthorityManagement> applicationIdList = new ArrayList<AuthorityManagement>();
+		while (rs.next()) {
+			applicationIdList.add(new AuthorityManagement(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+		}
+		rs.close();
+		statement.close();
+		return applicationIdList;
+	}
+	@Override
+	public Integer insertRecord(AuthorityManagement object) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer removeRecord(AuthorityManagement object) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<AuthorityManagement> getAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<KVPair<String, String>> getKVList(List<AuthorityManagement> list) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

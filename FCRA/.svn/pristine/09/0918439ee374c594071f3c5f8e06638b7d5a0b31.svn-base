@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sample" pageWidth="625" pageHeight="842" columnWidth="580" leftMargin="20" rightMargin="25" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="appId" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="chatId" class="java.lang.String"/>
+	<parameter name="assoName" class="java.lang.String"/>
+	<parameter name="assoAddress" class="java.lang.String"/>
+	<parameter name="officerName" class="java.lang.String"/>
+	<parameter name="officerDesg" class="java.lang.String"/>
+	<parameter name="officerContact" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT NOTICE_SUBJECT,NOTICE_BODY,TO_CHAR(GENRATED_DATE, 'DD-MM-YYYY'),SCN_ID FROM T_SHOW_CAUSE_NOTICES WHERE GRIEVANCE_ID = $P{appId} AND CHAT_ID = $P{chatId}]]>
+	</queryString>
+	<field name="NOTICE_SUBJECT" class="java.lang.String"/>
+	<field name="NOTICE_BODY" class="java.lang.String"/>
+	<field name="TO_CHAR(GENRATED_DATE,&apos;DD-MM-YYYY&apos;)" class="java.lang.String"/>
+	<field name="SCN_ID" class="java.lang.String"/>
+	<variable name="SIGNATURE_FIELD" class="java.lang.String">
+		<variableExpression><![CDATA["SIGNATURE_FIELD"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="196" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="33" width="555" height="85"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="16" isBold="true"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[	Government of India
+	Ministry of Home Affairs
+	Foreigners Division
+	(FCRA Wing)
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="37" y="1" width="518" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["No. <b>"+$F{SCN_ID}+"</b>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="287" y="129" width="249" height="38" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[NDCC-II Building, Jai Singh Road,
+New Delhi-110001
+]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="287" y="169" width="249" height="22"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dated: <b>"+$F{TO_CHAR(GENRATED_DATE,'DD-MM-YYYY')}+"</b>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="22" width="518" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$P{appId}+")"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="228">
+			<staticText>
+				<reportElement positionType="Float" x="41" y="64" width="72" height="17"/>
+				<textElement/>
+				<text><![CDATA[Sir/Madam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="41" y="40" width="50" height="24" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Justified">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject: ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="0" width="497" height="20"/>
+				<textElement markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["To,<br/><b>The Chief Functionary,<br/>"+$P{assoName}+"</b><br/><b>"+$P{assoAddress}+"</b>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="415" y="136" width="117" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Yours faithfully]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="105" y="177" width="426" height="20"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>"+$P{officerName}+"<br/>"+$P{officerDesg}+"<br/>Tel. "+$P{officerContact}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="373" y="186" width="121" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				<anchorNameExpression><![CDATA[$V{SIGNATURE_FIELD}]]></anchorNameExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="95" y="40" width="450" height="24"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOTICE_SUBJECT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="100" width="500" height="0"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{NOTICE_BODY}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

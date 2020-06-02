@@ -1,0 +1,247 @@
+package models.services.requests;
+
+import java.io.File;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import models.services.AffiddavidDocument;
+import models.services.ApplicantDetails;
+
+import org.owasp.esapi.ESAPI;
+
+import utilities.ValidationException;
+
+public class GiftContribution extends AbstractRequest {
+	ApplicantDetails applicantDetails = new ApplicantDetails();
+	BigDecimal amountReceived;
+	String bankDetails;
+	String relativeName;
+	String relativeNationality;
+	String relativeNationalityDesc;
+	String relativeCountryOfResidence;
+	String relativeCountryOfResidenceDesc;
+	String relativeEmail;
+	String relativePassportNumber;
+	String relativeRelation;
+	private List<AffiddavidDocument> affiddavidDocument = new ArrayList<AffiddavidDocument>();
+	
+
+	public GiftContribution(Connection connection) {
+		super(connection);
+	}	
+	
+	private void retrieveDetails() throws Exception {
+		String fileNo = null;
+		if(tempApplicationId != null && tempApplicationId.equals("") == false)
+			fileNo = tempApplicationId;
+		else
+			fileNo = applicationId;
+		
+		StringBuffer query = new StringBuffer("SELECT RECIPIENT_NAME, TO_CHAR(RECIPIENT_DOB, 'dd-mm-yyyy'), RECIPIENT_FNAME, RECIPIENT_ADDRESS, "
+				+ "RECIPIENT_CITY, RECIPIENT_STATE, (SELECT SNAME FROM TM_STATE WHERE SCODE=RECIPIENT_STATE), RECIPIENT_DISTRICT, "
+				+ "(SELECT DISTNAME FROM TM_DISTRICT WHERE SCODE=RECIPIENT_STATE AND DISTCODE=RECIPIENT_DISTRICT), "
+				+ "RECIPIENT_PINCODE, RECIPIENT_EMAIL, RECIPIENT_TELNO, RECIPIENT_MOBNO, RECIPIENT_PANNO, RECIPIENT_AMONT_FOREIGN_RCVD, "
+				+ "RECIPIENT_NOOFBANK_DRAFT, RELATIVE_NAME, RELATIVE_NATINALITY, (SELECT CTR_NAME FROM TM_COUNTRY WHERE CTR_CODE=RELATIVE_NATINALITY), "
+				+ "RELATIVE_COUNTRY_RESIDENCE, (SELECT CTR_NAME FROM TM_COUNTRY WHERE CTR_CODE=RELATIVE_COUNTRY_RESIDENCE), "
+				+ "RELATIVE_EMAIL, RELATIVE_PASSPORTNO, RELATIVE_RELATIONSHIP, TO_CHAR(FINAL_SUBMIT_DATE, 'dd-mm-yyyy') "
+				+ "FROM FC_FC1_GIFT_ENTRY WHERE UNIQUE_FILENO=?");
+		PreparedStatement statement = connection.prepareStatement(query.toString());
+		statement.setString(1, applicationId);
+		ResultSet rs = statement.executeQuery();
+		if(rs.next()) {
+			int i=1;
+			applicantDetails.setName(rs.getString(i++));
+			applicantDetails.setDateOfBirth(rs.getString(i++));
+			applicantDetails.setNameOfFatherSpouse(rs.getString(i++));
+			applicantDetails.setAddress(rs.getString(i++));
+			applicantDetails.setTown(rs.getString(i++));
+			applicantDetails.setState(rs.getString(i++));
+			applicantDetails.setStateDesc(rs.getString(i++));
+			applicantDetails.setDistrict(rs.getString(i++));
+			applicantDetails.setDistrictDesc(rs.getString(i++));
+			applicantDetails.setPincode(rs.getString(i++));
+			applicantDetails.setEmail(rs.getString(i++));
+			applicantDetails.setPhoneNumber(rs.getString(i++));
+			applicantDetails.setMobile(rs.getString(i++));
+			applicantDetails.setPanNumber(rs.getString(i++));
+			String temp = rs.getString(i++);
+			if(temp != null && temp.equals("") == false)
+				amountReceived = new BigDecimal(temp);
+			bankDetails = rs.getString(i++);
+			relativeName = rs.getString(i++);
+			relativeNationality = rs.getString(i++);
+			relativeNationalityDesc = rs.getString(i++);
+			relativeCountryOfResidence = rs.getString(i++);
+			relativeCountryOfResidenceDesc = rs.getString(i++);
+			relativeEmail = rs.getString(i++);
+			relativePassportNumber = rs.getString(i++);
+			relativeRelation = rs.getString(i++);
+			submissionDate = rs.getString(i++);
+		}		
+		rs.close();
+		statement.close();		
+	}
+	private void retrieveaffidavitDocumentDetails() throws Exception {
+		String fileNo = null;
+		if(tempApplicationId != null && tempApplicationId.equals("") == false)
+			fileNo = tempApplicationId;
+		else
+			fileNo = applicationId;
+		String documentRoot = docRoot;
+		affiddavidDocument.clear();
+		StringBuffer query = new StringBuffer("select FILENO,SL_NO,name,FATHER_HUSBAND_NAME,(select desig_name from TM_COMMITTEE_DESIGNATION where OFFICE_OF_ASSO=desig_code) from FC_FC8_COMMITTEE where UNIQUE_FILENO=?");
+		PreparedStatement statement = connection.prepareStatement(query.toString());
+		statement.setString(1, applicationId);
+		ResultSet rs = statement.executeQuery();
+		String afdvdfilenum =null;
+		String afdvdsrnum = null;
+		String afdvdname = null;
+		String afdvdfname = null;
+		String afdvdpost = null;
+		String service = "/08/";
+		String dirPath = docUploadFolder.concat(creationDate.substring(6, 10)).concat("/").concat(creationDate.substring(3, 5)).concat("/").concat(creationDate.substring(0, 2)).concat(service).concat(documentId).concat("/").concat(documentId).concat("_EC/");
+		File deletedDir = new File(dirPath);
+		while(rs.next()) {
+			int j = 1;
+			String docPath = documentRoot.concat("/").concat(creationDate.substring(6, 10)).concat("/").concat(creationDate.substring(3, 5)).concat("/").concat(creationDate.substring(0, 2)).concat(service).concat(documentId).concat("/");
+			File[] files = deletedDir.listFiles();
+			afdvdfilenum = rs.getString(j++);
+			afdvdsrnum = rs.getString(j++);
+			afdvdname = rs.getString(j++);
+			afdvdfname= rs.getString(j++);
+			afdvdpost= rs.getString(j++);
+			docPath = docPath.concat(documentId).concat("_").concat(afdvdsrnum).concat(".pdf");
+			AffiddavidDocument afdv=new AffiddavidDocument();
+			afdv.setFilenum(afdvdfilenum);
+			afdv.setSrnum(afdvdsrnum);
+			afdv.setName(afdvdname);
+			afdv.setFname(afdvdfname);
+			afdv.setPost(afdvdpost);
+			afdv.setDocPath(docPath);
+			affiddavidDocument.add(afdv);
+		}
+		rs.close();
+		statement.close();
+		
+	}
+	@Override
+	public void getDetails() throws Exception {
+		if(ESAPI.validator().isValidInput("applicationId", applicationId, "Word", 15, false) == false){
+			throw new ValidationException("Invalid Application ID");
+		}
+		retrieveDetails();
+		retrieveaffidavitDocumentDetails();
+	}
+
+	@Override
+	public void saveDetails() throws Exception {
+		if(ESAPI.validator().isValidInput("applicationId", applicationId, "Word", 15, false) == false){
+			throw new ValidationException("Invalid Application ID");
+		}
+				
+	}
+	
+	@Override
+	public void forward() throws Exception {
+	}
+
+	public ApplicantDetails getApplicantDetails() {
+		return applicantDetails;
+	}
+
+	public void setApplicantDetails(ApplicantDetails applicantDetails) {
+		this.applicantDetails = applicantDetails;
+	}
+
+	public BigDecimal getAmountReceived() {
+		return amountReceived;
+	}
+
+	public void setAmountReceived(BigDecimal amountReceived) {
+		this.amountReceived = amountReceived;
+	}
+
+	public String getBankDetails() {
+		return bankDetails;
+	}
+
+	public void setBankDetails(String bankDetails) {
+		this.bankDetails = bankDetails;
+	}
+
+	public String getRelativeName() {
+		return relativeName;
+	}
+
+	public void setRelativeName(String relativeName) {
+		this.relativeName = relativeName;
+	}
+
+	public String getRelativeNationality() {
+		return relativeNationality;
+	}
+
+	public void setRelativeNationality(String relativeNationality) {
+		this.relativeNationality = relativeNationality;
+	}
+
+	public String getRelativeNationalityDesc() {
+		return relativeNationalityDesc;
+	}
+
+	public void setRelativeNationalityDesc(String relativeNationalityDesc) {
+		this.relativeNationalityDesc = relativeNationalityDesc;
+	}
+
+	public String getRelativeCountryOfResidence() {
+		return relativeCountryOfResidence;
+	}
+
+	public void setRelativeCountryOfResidence(String relativeCountryOfResidence) {
+		this.relativeCountryOfResidence = relativeCountryOfResidence;
+	}
+
+	public String getRelativeCountryOfResidenceDesc() {
+		return relativeCountryOfResidenceDesc;
+	}
+
+	public void setRelativeCountryOfResidenceDesc(
+			String relativeCountryOfResidenceDesc) {
+		this.relativeCountryOfResidenceDesc = relativeCountryOfResidenceDesc;
+	}
+
+	public String getRelativeEmail() {
+		return relativeEmail;
+	}
+
+	public void setRelativeEmail(String relativeEmail) {
+		this.relativeEmail = relativeEmail;
+	}
+
+	public String getRelativePassportNumber() {
+		return relativePassportNumber;
+	}
+
+	public void setRelativePassportNumber(String relativePassportNumber) {
+		this.relativePassportNumber = relativePassportNumber;
+	}
+
+	public String getRelativeRelation() {
+		return relativeRelation;
+	}
+
+	public void setRelativeRelation(String relativeRelation) {
+		this.relativeRelation = relativeRelation;
+	}
+	public List<AffiddavidDocument> getAffiddavidDocument() {
+		return affiddavidDocument;
+	}
+
+	public void setAffiddavidDocument(List<AffiddavidDocument> affiddavidDocument) {
+		this.affiddavidDocument = affiddavidDocument;
+	}
+}

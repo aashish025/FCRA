@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sample" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1">
+		<parameter name="REF_NO" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT REASON_DESC FROM TM_REGN_CANCELLATION_REASONS WHERE REASON_ID IN (select regexp_substr(CANCELLATION_REASON, '(.{1,2})', 1, level) CANCELLATION_REASON
+from (select CANCELLATION_REASON from T_REGN_CANCELLATION_DETAILS where REFERENCE_FOR_DETAILS = $P{REF_NO})
+connect by level <= ceil(length(CANCELLATION_REASON)/2))]]>
+		</queryString>
+		<field name="REASON_DESC" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="appId" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="regNumber" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{regNumber}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="regDate" class="java.lang.String"/>
+	<parameter name="assoName" class="java.lang.String"/>
+	<parameter name="assoAddress" class="java.lang.String"/>
+	<parameter name="accNumber" class="java.lang.String"/>
+	<parameter name="bankDetails" class="java.lang.String"/>
+	<parameter name="assoNature" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="submissionDate" class="java.lang.String"/>
+	<parameter name="officerName" class="java.lang.String"/>
+	<parameter name="officerDesg" class="java.lang.String"/>
+	<parameter name="officerContact" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT SUBSTR(FC_INDIA.RCN,1,LENGTH(FC_INDIA.RCN)-1) as RCN, FC_INDIA.CANCEL_TYPE, T_REGISTRATION_STATUS_HISTORY.REFERENCE_FOR_DETAILS,
+TO_CHAR(T_REGISTRATION_STATUS_HISTORY.STATUS_DATE,'DD-MM-YYYY') STATUS_DATE,T_REGISTRATION_STATUS_HISTORY.STATUS,
+ T_REGN_CANCELLATION_DETAILS.CANCELLATION_REASON CANCELLATION_REASON,
+ to_char((select add_months(T_REGISTRATION_STATUS_HISTORY.STATUS_DATE,36)-1 from dual),'DD-MM-YYYY') as VIOLATIONPERIOD,
+TO_CHAR(SYSDATE, 'DD-MM-YYYY')current_date
+  FROM FC_INDIA, T_REGISTRATION_STATUS_HISTORY, T_REGN_CANCELLATION_DETAILS WHERE FC_INDIA.RCN = $P{regNumber} AND FC_INDIA.RCN = T_REGISTRATION_STATUS_HISTORY.RCN AND T_REGISTRATION_STATUS_HISTORY.STATUS_DATE =
+(SELECT MAX(STATUS_DATE) FROM T_REGISTRATION_STATUS_HISTORY WHERE T_REGISTRATION_STATUS_HISTORY.RCN = FC_INDIA.RCN AND T_REGISTRATION_STATUS_HISTORY.STATUS = 1 ) AND
+T_REGN_CANCELLATION_DETAILS.REFERENCE_FOR_DETAILS = T_REGISTRATION_STATUS_HISTORY.REFERENCE_FOR_DETAILS  AND  T_REGN_CANCELLATION_DETAILS.CANCELLATION_TYPE = 'V']]>
+	</queryString>
+	<field name="RCN" class="java.lang.String"/>
+	<field name="CANCEL_TYPE" class="java.lang.String"/>
+	<field name="REFERENCE_FOR_DETAILS" class="java.lang.String"/>
+	<field name="STATUS_DATE" class="java.lang.String"/>
+	<field name="STATUS" class="java.math.BigDecimal"/>
+	<field name="CANCELLATION_REASON" class="java.lang.String"/>
+	<field name="VIOLATIONPERIOD" class="java.lang.String"/>
+	<field name="CURRENT_DATE" class="java.lang.String"/>
+	<variable name="RCN_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{RCN}]]></variableExpression>
+	</variable>
+	<variable name="RCN_2" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{RCN}]]></variableExpression>
+	</variable>
+	<variable name="RCN_3" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{RCN}]]></variableExpression>
+	</variable>
+	<variable name="para1" class="java.lang.String">
+		<variableExpression><![CDATA["This is a digitally signed certificate to be validated digitally using the signature panel using Adobe Acrobat Reader (Ver 5.0 or above). The digital intimation is authenticated by a digital signature obtained from a certifying authority under the Information Technology Act 2000."]]></variableExpression>
+	</variable>
+	<variable name="SIGNATURE_FIELD" class="java.lang.String">
+		<variableExpression><![CDATA["SIGNATURE_FIELD"]]></variableExpression>
+	</variable>
+	<variable name="para2" class="java.lang.String">
+		<variableExpression><![CDATA["11. Banks are requested to verify online the validity of the certificate using fcraonline.nic.in."]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<staticText>
+				<reportElement x="152" y="21" width="262" height="85"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="16" isBold="true"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[	Government of India
+	Ministry of Home Affairs
+	Foreigners Division
+	(FCRA Wing)
+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="256" y="0" width="259" height="36"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[NDCC-II Building, Jai Singh Road,
+New Delhi-110001
+]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="256" y="36" width="259" height="20"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dated: <b>"+$F{CURRENT_DATE}+"</b>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="69" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="0" width="475" height="20"/>
+				<textElement markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["To,<br/><b>The Chief Functionary,<br/>"+$P{assoName}+"</b><br/><b>"+$P{assoAddress}+"</b>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="41" y="48" width="475" height="20"/>
+				<textElement markup="html"/>
+				<textFieldExpression><![CDATA["Subject:  Cancellation of Certificate of Registration No.<b>"+$F{RCN}+"</b> -regarding"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="238" splitType="Stretch">
+			<staticText>
+				<reportElement x="41" y="0" width="100" height="24"/>
+				<textElement/>
+				<text><![CDATA[Sir/Madam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="41" y="120" width="18" height="20"/>
+				<textElement/>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="41" y="171" width="18" height="17"/>
+				<textElement/>
+				<text><![CDATA[3.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="59" y="120" width="457" height="51"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["In view of the above observations ,the certificate of registration granted to your  association has been cancelled with immediate effect in terms of Section 14(1) of Foreign Contribution (Regulation) Act,2010. "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="59" y="171" width="457" height="63"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["You are requested to note that in terms of Section 14(3) of the Foreign Contribution(Regulation) Act,2010,any person whose certificate has been cancelled under Section 14 of the Act shall not be eligible for registration or grant of prior permissin for a period of three years from the date of cancellation of such certificate/i.e. upto <b>"+$F{VIOLATIONPERIOD}+"</b>."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="24" width="475" height="53"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I am directed to this Ministry's Letter on granting you the certificate of registration (No.<b>"+$F{RCN}+"</b>) under Foreign Contribution(Regulation) Act,1976/ Foreign Contribution(Regulation) Act,2010 and to state that the ministry has made the following observations against your association:"]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="41" y="82" width="475" height="27"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1">
+						<datasetParameter name="REF_NO">
+							<datasetParameterExpression><![CDATA[$F{REFERENCE_FOR_DETAILS}]]></datasetParameterExpression>
+						</datasetParameter>
+					</datasetRun>
+					<jr:column width="54">
+						<jr:detailCell style="table 1_TD" height="28" rowSpan="1">
+							<staticText>
+								<reportElement positionType="Float" x="0" y="0" width="54" height="28"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" markup="html">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[<ul>  <li></li></ul>]]></text>
+							</staticText>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="417">
+						<jr:detailCell style="table 1_TD" height="28" rowSpan="1">
+							<textField>
+								<reportElement positionType="Float" x="0" y="0" width="417" height="28" isPrintWhenDetailOverflows="true"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{REASON_DESC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="101" splitType="Stretch">
+			<staticText>
+				<reportElement x="412" y="3" width="102" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Yours faithfully]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="108" y="45" width="408" height="20"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>"+$P{officerName}+"<br/>"+$P{officerDesg}+"<br/>Tel. "+$P{officerContact}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="371" y="80" width="121" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				<anchorNameExpression><![CDATA[$V{SIGNATURE_FIELD}]]></anchorNameExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

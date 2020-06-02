@@ -1,0 +1,128 @@
+
+.notification-box{
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 15px;
+    position: relative;
+//	background-color: #00bcd4 !important;
+}
+
+.notification-box > .notification-summary > .image{
+	float:left;
+	padding:15px;
+	color:#fff;
+	background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+	min-width: 30px;
+}
+
+.notification-box > .notification-summary > .count{
+	float:left;
+	padding:15px;
+	color:rgba(255,255,255,0.9);
+	cursor:pointer;
+}
+
+
+.notification-box >.notification-summary >.clear{
+clear:both;
+}
+.notification-box .count > h2, .notification-box .count > small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.notification-box .count > h2 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 100%;
+    margin: 0;
+}
+
+.bg-wood {
+    background-color: #ab7d44 !important;
+}
+
+.bgm-white {
+  background-color: #ffffff !important;
+}
+
+.bgm-black {
+  background-color: #000000 !important;
+}
+
+.bgm-brown {
+  background-color: #795548 !important;
+}
+
+.bgm-pink {
+  background-color: #e91e63 !important;
+}
+
+.bgm-red {
+  background-color: #f44336 !important;
+}
+
+.bgm-blue {
+  background-color: #2196f3 !important;
+}
+
+.bgm-purple {
+  background-color: #9c27b0 !important;
+}
+
+.bgm-deeppurple {
+  background-color: #673ab7 !important;
+}
+
+.bgm-lightblue {
+  background-color: #03a9f4 !important;
+}
+
+.bgm-cyan {
+  background-color: #00bcd4 !important;
+}
+
+.bgm-teal {
+  background-color: #009688 !important;
+}
+
+.bgm-green {
+  background-color: #4caf50 !important;
+}
+
+.bgm-lightgreen {
+  background-color: #8bc34a !important;
+}
+
+.bgm-lime {
+  background-color: #cddc39 !important;
+}
+
+.bgm-yellow {
+  background-color: #ffeb3b !important;
+}
+
+.bgm-amber {
+  background-color: #ffc107 !important;
+}
+
+.bgm-orange {
+  background-color: #ff9800 !important;
+}
+
+.bgm-deeporange {
+  background-color: #ff5722 !important;
+}
+
+.bgm-gray {
+  background-color: #9e9e9e !important;
+}
+
+.bgm-bluegray {
+  background-color: #607d8b !important;
+}
+
+.bgm-indigo {
+  background-color: #3f51b5 !important;
+}

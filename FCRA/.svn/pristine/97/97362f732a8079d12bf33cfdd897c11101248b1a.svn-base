@@ -1,0 +1,527 @@
+package service.services;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import models.services.requests.AbstractRequest;
+
+import org.owasp.esapi.ESAPI;
+
+import utilities.Commons;
+import utilities.KVPair;
+import utilities.ValidationException;
+import utilities.lists.List2;
+import utilities.lists.List3;
+import utilities.lists.List5;
+import utilities.notifications.Notification;
+import utilities.notifications.NotificationException;
+import utilities.notifications.Status;
+import utilities.notifications.Type;
+import dao.master.BlockYearDao;
+import dao.services.CommunicationDao;
+import dao.services.dashboard.ApplicationStatusDao;
+
+public class CommunicationService extends Commons{
+
+	private String pageNum;
+	private String recordsPerPage;
+	private String sortColumn;
+	private String sortOrder;
+	private String totalRecords;	
+	private List<AbstractRequest> applicationList;
+	private List<List2> cancellationReasonList=new ArrayList<List2>();
+	public List<Notification> emailNotifyList = new ArrayList<Notification>();
+	private String appId;
+	private String appName;
+	private String regNumber;	
+	private String searchType;
+	private String mailSubject;
+	private String mailBody;
+	private String smsBody;
+	private String emailId;
+	private String communicationType;
+	private String state;
+	private List<List2>  districtList = new ArrayList<List2>();
+	private List<List2>  stateList = new ArrayList<List2>();
+	private List<KVPair<String, String>> blockYearList;
+	private List<List5> bulkAssociationList;
+	public void initApplicationListDetails(){
+		begin();
+		try {
+				populateApplicationListDetails();
+		} catch(Exception e){
+			ps(e);
+		}
+		finally{
+			finish();
+		}		
+	}
+	
+	public String initGetApplicationDetails(){
+		begin();
+		try {
+				getApplicationDetails();							
+			}catch(ValidationException ve){			
+			try {
+				notifyList.add(new Notification("Error !!", ve.getMessage(), Status.ERROR, Type.BAR));
+			} catch (NotificationException e) {				
+				e.printStackTrace();
+			}
+			return "error";
+		}catch(Exception e){
+			try {
+					notifyList.add(new Notification("Error !!", "Some unexpected error.Please try again later.", Status.ERROR, Type.BAR));
+					connection.rollback();
+				} catch (Exception e1) {				
+				e1.printStackTrace();
+			}
+			ps(e);
+			return "error";
+		}
+		finally{
+			finish();
+		}		
+		return "success";
+	}
+	
+	public String initSendMail(){
+		begin();
+		try {
+				sendMail();						
+			}catch(ValidationException ve){			
+			try {
+				notifyList.add(new Notification("Error !!", ve.getMessage(), Status.ERROR, Type.BAR,"mailModal-error"));
+			} catch (NotificationException e) {				
+				e.printStackTrace();
+			}
+			return "error";
+		}catch(Exception e){
+			try {
+					CommunicationDao cd=new CommunicationDao(connection);
+					int index=sessionId.indexOf(".");
+					String sessId=sessionId.substring(0, index);
+					cd.deleteUploadCache(sessId);
+					notifyList.add(new Notification("Error !!", "Some unexpected error.Please try again later.", Status.ERROR, Type.BAR,"mailModal-error"));
+					connection.rollback();
+				} catch (Exception e1) {				
+				e1.printStackTrace();
+			}
+			ps(e);
+			return "error";
+		}
+		finally{
+			finish();
+		}		
+		return "success";
+	}
+	
+	public String initSendSMS(){
+		begin();
+		try {
+				sendSMS();						
+			}catch(ValidationException ve){			
+			try {
+				notifyList.add(new Notification("Error !!", ve.getMessage(), Status.ERROR, Type.BAR,"smsModal-error"));
+			} catch (NotificationException e) {				
+				e.printStackTrace();
+			}
+			return "error";
+		}catch(Exception e){
+			try {					
+					notifyList.add(new Notification("Error !!", "Some unexpected error.Please try again later.", Status.ERROR, Type.BAR,"smsModal-error"));
+					connection.rollback();
+				} catch (Exception e1) {				
+				e1.printStackTrace();
+			}
+			ps(e);
+			return "error";
+		}
+		finally{
+			finish();
+		}		
+		return "success";
+	}
+	
+	
+	private void sendMail() throws Exception{
+		/*if(communicationType==null && communicationType.equals("") || (communicationType.equals("0"))){
+			if(ESAPI.validator().isValidInput("applicationId", appId, "Word", 15, true) == false){
+				//throw new ValidationException("Invalid Application ID");
+			}
+		}else{
+			if(ESAPI.validator().isValidInput("applicationId", appId, "Word", 15, false) == false){
+				throw new ValidationException("Invalid Application ID");
+			}
+		}*/
+		if(communicationType.equals("1")){
+			if(ESAPI.validator().isValidInput("applicationId", appId, "Word", 15, false) == false){
+				throw new ValidationException("Invalid Application ID");
+			}
+		}
+		if(ESAPI.validator().isValidInput("mailSubject", mailSubject, "WordSS", 200, false) == false){
+			throw new ValidationException("Invalid Mail Subject.Only 200 characters are allowed.");
+		}
+		if(ESAPI.validator().isValidInput("mailBody", mailBody, "WordSS", 2000, false) == false){
+			throw new ValidationException("Invalid Mail Body.Only 2000 character allowed.");
+		}
+		if(communicationType==null || communicationType.equals("") || (communicationType.equals("0")==false && communicationType.equals("1")==false)){
+			throw new ValidationException("Invalid Value.Only one integer.");
+		}
+		if(searchType==null || searchType.equals("") || (searchType.equals("R")==false && searchType.equals("A")==false)){
+			throw new ValidationException("Invalid Value.");
+		}
+		int index=sessionId.indexOf(".");
+		String sessId=sessionId.substring(0, index);		
+		CommunicationDao cs=new CommunicationDao(connection);
+		cs.sendEmail(appId,communicationType,searchType,mailSubject,mailBody,myOfficeCode,sessId,myUserId);
+		cs.deleteUploadCache(sessId);
+		if(communicationType.equals("0")){
+			notifyList.add(new Notification("Success !!", "Mail(s) have been sent to recepient(s) successfully.",Status.SUCCESS, Type.BAR));
+		}else{
+			emailNotifyList=cs.getNotifyList();
+			notifyList.add(new Notification("Success !!", "Mail(s) have been sent to recepient(s) successfully.",Status.SUCCESS, Type.BAR));
+		}
+	}
+	
+	private void sendSMS() throws Exception{
+		/*if(communicationType==null && communicationType.equals("") || (communicationType.equals("0"))){
+			if(ESAPI.validator().isValidInput("applicationId", appId, "Word", 15, true) == false){
+				//throw new ValidationException("Invalid Application ID");
+			}
+		}else{
+			if(ESAPI.validator().isValidInput("applicationId", appId, "Word", 15, false) == false){
+				throw new ValidationException("Invalid Application ID");
+			}
+		}*/		
+		if(communicationType.equals("1")){
+			if(ESAPI.validator().isValidInput("applicationId", appId, "Word", 15, false) == false){
+				throw new ValidationException("Invalid Application ID");
+			}
+		}
+		if(ESAPI.validator().isValidInput("smsBody", smsBody, "WordSS", 160, false) == false){
+			throw new ValidationException("Invalid SMS Body.Only 160 character allowed.");
+		}
+		if(communicationType==null || communicationType.equals("") || (communicationType.equals("0")==false && communicationType.equals("1")==false)){
+			throw new ValidationException("Invalid Value.Only one integer.");
+		}
+		if(searchType==null || searchType.equals("") || (searchType.equals("R")==false && searchType.equals("A")==false)){
+			throw new ValidationException("Invalid Value.");
+		}				
+		CommunicationDao cs=new CommunicationDao(connection);
+		cs.sendSMS(appId,communicationType,searchType,smsBody,myOfficeCode,myUserId);		
+		if(communicationType.equals("0")){
+			notifyList.add(new Notification("Success !!", "SMS(s) have been sent to recepient(s) successfully.",Status.SUCCESS, Type.BAR));
+		}else{
+			emailNotifyList=cs.getNotifyList();
+			if(emailNotifyList.get(0).getS().equals("s")){
+				notifyList.add(new Notification("Success !!", "SMS(s) have been sent to recepient(s) successfully.",Status.SUCCESS, Type.BAR));
+			}
+		}
+	}
+	
+	
+	private void getApplicationDetails() throws Exception{
+		String queryFields=null,tableName=null,whereClause=null;
+		if(ESAPI.validator().isValidInput("applicationId", appId, "Word", 15, false) == false){
+			throw new ValidationException("Invalid Application ID");
+		}	
+		CommunicationDao cd=new CommunicationDao(connection);
+		if(searchType.equals("R")){
+			queryFields="RCN,SECTION_FILENO,ASSO_NAME,STDIST";
+			tableName="FC_INDIA";
+			whereClause="RCN";
+			cd.getApplicationDetails(appId,queryFields,tableName,whereClause,searchType);
+		}else if(searchType.equals("A")){
+			queryFields="APPLICATION_ID,SECTION_FILENO,APPLICANT_NAME,STATE||DISTRICT";
+			tableName="V_APPLICATION_DETAILS";
+			whereClause="APPLICATION_ID";
+			cd.getApplicationDetails(appId,queryFields,tableName,whereClause,searchType);
+		}			
+		applicationList=cd.getApplicationList();		
+	}
+	
+	private void getAdditionalResources() throws Exception{
+		ApplicationStatusDao pdd=new ApplicationStatusDao(connection);
+		cancellationReasonList=pdd.getCancellationReasonList();
+	}
+	
+	private void populateApplicationListDetails() throws Exception{
+		CommunicationDao cd=new CommunicationDao(connection);						
+		cd.setPageNum(pageNum);
+		cd.setRecordsPerPage(recordsPerPage);
+		cd.setSortColumn(sortColumn);
+		cd.setSortOrder(sortOrder);
+		if(nob(appId)){
+			cd.setSearchFlag("reg");
+			cd.setSearchString(regNumber);
+		}			
+		else{
+			cd.setSearchFlag("id");
+			cd.setSearchString(appId);
+		}					
+		applicationList=cd.getApplicationListDetails();
+		totalRecords=cd.getTotalRecords();
+	}
+	
+	public void initDistrict(){
+		begin();
+		try {
+			getDistrict();				
+		} catch(Exception e){
+			try {
+				connection.rollback();
+			} catch (Exception e1) {				
+				e1.printStackTrace();
+			}
+			ps(e);
+		}
+		finally{
+			finish();
+		}		
+	}
+	
+	private void getDistrict() throws Exception {
+		// TODO Auto-generated method stub
+
+		if(connection == null) {
+			throw new Exception("Invalid connection");
+		}				
+		StringBuffer query = new StringBuffer("SELECT DISTCODE,DISTNAME FROM TM_DISTRICT WHERE SCODE=? AND RECORD_STATUS=0 order by distname asc");
+		PreparedStatement statement = connection.prepareStatement(query.toString());	
+		statement.setString(1, state);
+		ResultSet rs = statement.executeQuery();
+		while(rs.next()) {			
+			districtList.add(new List2(rs.getString(1), rs.getString(2)));			
+		}
+	}
+	
+	public void initLists() {
+		begin();
+		try {
+			populateLists();				
+		} catch(Exception e){
+			ps(e);
+		}
+		finally{
+			finish();
+		}		
+	}
+	
+	private void populateLists() throws Exception {
+		if(connection == null) {
+			throw new Exception("Invalid connection");
+		}				
+		StringBuffer query = new StringBuffer("SELECT SCODE,SNAME FROM TM_STATE WHERE RECORD_STATUS=0 order by SNAME ASC");
+		PreparedStatement statement = connection.prepareStatement(query.toString());				
+		ResultSet rs = statement.executeQuery();
+
+		while(rs.next()) {			
+			stateList.add(new List2(rs.getString(1), rs.getString(2)));			
+		}
+		BlockYearDao blockYearDao = new BlockYearDao(connection);
+		blockYearList = blockYearDao.getKVList(blockYearDao.getAliveRecords());
+	}
+
+	public void initBulkAssociationList(String associationType,
+			String assoDistrict, String assoBlockYear) {
+		// TODO Auto-generated method stub
+		begin();
+		try {
+			populateBulkAssociationList(associationType, assoDistrict, assoBlockYear);				
+		} catch(Exception e){
+			ps(e);
+		}
+		finally{
+			finish();
+		}	
+	}
+	
+	private void populateBulkAssociationList(String associationType,
+			String assoDistrict, String assoBlockYear) throws Exception {
+		// TODO Auto-generated method stub
+		CommunicationDao cd=new CommunicationDao(connection);	
+		bulkAssociationList = cd.getBulkAssociationList(associationType, state, assoDistrict, assoBlockYear);
+	}
+
+	public String getAppId() {
+		return appId;
+	}
+
+	public void setAppId(String appId) {
+		this.appId = appId;
+	}
+
+	public String getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(String pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public String getRecordsPerPage() {
+		return recordsPerPage;
+	}
+
+	public void setRecordsPerPage(String recordsPerPage) {
+		this.recordsPerPage = recordsPerPage;
+	}
+
+	public String getSortColumn() {
+		return sortColumn;
+	}
+
+	public void setSortColumn(String sortColumn) {
+		this.sortColumn = sortColumn;
+	}
+
+	public String getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(String sortOrder) {
+		this.sortOrder = sortOrder;
+	}
+
+	public String getTotalRecords() {
+		return totalRecords;
+	}
+
+	public void setTotalRecords(String totalRecords) {
+		this.totalRecords = totalRecords;
+	}
+
+	public List<AbstractRequest> getApplicationList() {
+		return applicationList;
+	}
+
+	public void setApplicationList(List<AbstractRequest> applicationList) {
+		this.applicationList = applicationList;
+	}
+
+	public String getAppName() {
+		return appName;
+	}
+
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
+
+	
+	public List<List2> getCancellationReasonList() {
+		return cancellationReasonList;
+	}
+
+	public void setCancellationReasonList(List<List2> cancellationReasonList) {
+		this.cancellationReasonList = cancellationReasonList;
+	}
+
+	
+
+	public String getRegNumber() {
+		return regNumber;
+	}
+
+	public void setRegNumber(String regNumber) {
+		this.regNumber = regNumber;
+	}
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getMailSubject() {
+		return mailSubject;
+	}
+
+	public void setMailSubject(String mailSubject) {
+		this.mailSubject = mailSubject;
+	}
+
+	public String getMailBody() {
+		return mailBody;
+	}
+
+	public void setMailBody(String mailBody) {
+		this.mailBody = mailBody;
+	}
+
+	public String getSmsBody() {
+		return smsBody;
+	}
+
+	public void setSmsBody(String smsBody) {
+		this.smsBody = smsBody;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getCommunicationType() {
+		return communicationType;
+	}
+
+	public void setCommunicationType(String communicationType) {
+		this.communicationType = communicationType;
+	}
+
+	public List<Notification> getEmailNotifyList() {
+		return emailNotifyList;
+	}
+
+	public void setEmailNotifyList(List<Notification> emailNotifyList) {
+		this.emailNotifyList = emailNotifyList;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public List<List2> getDistrictList() {
+		return districtList;
+	}
+
+	public void setDistrictList(List<List2> districtList) {
+		this.districtList = districtList;
+	}
+	
+	public List<List2> getStateList() {
+		return stateList;
+	}
+
+	public void setStateList(List<List2> stateList) {
+		this.stateList = stateList;
+	}
+
+	public List<KVPair<String, String>> getBlockYearList() {
+		return blockYearList;
+	}
+
+	public void setBlockYearList(List<KVPair<String, String>> blockYearList) {
+		this.blockYearList = blockYearList;
+	}
+
+	public List<List5> getBulkAssociationList() {
+		return bulkAssociationList;
+	}
+
+	public void setBulkAssociationList(
+			List<List5> bulkAssociationList) {
+		this.bulkAssociationList = bulkAssociationList;
+	}
+}

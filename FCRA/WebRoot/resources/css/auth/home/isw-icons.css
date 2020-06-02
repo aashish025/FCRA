@@ -1,0 +1,5 @@
+/* Small icons*/
+[class*="isw-"],[class*="isb-"]{ margin-left: 7px; padding: 19px 0px; width: 16px; height: 16px; font-size: 14px; font-weight: normal; display: block; float: left;}
+
+.isw-grid{background: url('../img/icons/ws/ic_grid.png') center center no-repeat transparent;}
+/* eof small icons */

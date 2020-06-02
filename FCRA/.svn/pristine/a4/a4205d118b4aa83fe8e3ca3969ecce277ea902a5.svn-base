@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OldRegistrationCertificate" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="appId" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="rcn" class="java.lang.String"/>
+	<parameter name="regDate" class="java.lang.String"/>
+	<parameter name="assoName" class="java.lang.String"/>
+	<parameter name="assoAddress" class="java.lang.String"/>
+	<parameter name="accNumber" class="java.lang.String"/>
+	<parameter name="bankDetails" class="java.lang.String"/>
+	<parameter name="assoNature" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="submissionDate" class="java.lang.String"/>
+	<parameter name="officerName" class="java.lang.String"/>
+	<parameter name="officerDesg" class="java.lang.String"/>
+	<parameter name="officerContact" class="java.lang.String"/>
+	<parameter name="officeAddress" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="RCN" class="java.lang.String"/>
+	<field name="ASSO_NAME" class="java.lang.String"/>
+	<field name="ASSO_ADDRESS" class="java.lang.String"/>
+	<field name="ASSO_TOWN_CITY" class="java.lang.String"/>
+	<field name="REG_DATE" class="java.lang.String"/>
+	<field name="(SELECTNATURE_DESCFROM&quot;TM_NATURE&quot;WHERENATURE_CODE=FC_INDIA.ASSO_NATURE)" class="java.lang.String"/>
+	<field name="(SELECTACCOUNT_NOFROM&quot;T_FC8_ENTRY&quot;WHEREUNIQUE_FILENO=:1)" class="java.lang.String"/>
+	<field name="(SELECTBANK_NAMEFROM&quot;T_FC8_ENTRY&quot;WHEREUNIQUE_FILENO=:2)" class="java.lang.String"/>
+	<field name="(SELECTBANK_ADDRESSFROM&quot;T_FC8_ENTRY&quot;WHEREUNIQUE_FILENO=:3)" class="java.lang.String"/>
+	<field name="(SELECTUSERNAMEFROM&quot;T_FC8_ENTRY&quot;WHEREUNIQUE_FILENO=:4)" class="java.lang.String"/>
+	<variable name="RCN_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{RCN}]]></variableExpression>
+	</variable>
+	<variable name="RCN_2" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{RCN}]]></variableExpression>
+	</variable>
+	<variable name="RCN_3" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{RCN}]]></variableExpression>
+	</variable>
+	<variable name="para1" class="java.lang.String">
+		<variableExpression><![CDATA["This is a digitally signed certificate to be validated digitally using the signature panel using Adobe Acrobat Reader (Ver 5.0 or above). The digital intimation is authenticated by a digital signature obtained from a certifying authority under the Information Technology Act 2000."]]></variableExpression>
+	</variable>
+	<variable name="SIGNATURE_FIELD" class="java.lang.String">
+		<variableExpression><![CDATA["SIGNATURE_FIELD"]]></variableExpression>
+	</variable>
+	<variable name="para2" class="java.lang.String">
+		<variableExpression><![CDATA["9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Banks are requested to verify online the validity of the certificate using fcraonline.nic.in."]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<staticText>
+				<reportElement x="152" y="21" width="262" height="85"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="16" isBold="true"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[	Government of India
+	Ministry of Home Affairs
+	Foreigners Division
+	(FCRA Wing)
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="0" width="63" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="10" isBold="true" isItalic="false"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[DUPLICATE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="77" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="256" y="36" width="259" height="20"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dated: <b>"+$P{regDate}+"</b>"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="108" y="0" width="406" height="36"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{officeAddress}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="41" y="47" width="475" height="20"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject:   Registration under Foreign Contribution (Regulation) Act, 2010.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="0" width="475" height="20"/>
+				<textElement markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["To,<br/><b>The Chief Functionary,<br/>"+$P{assoName}+"</b><br/><b>"+$P{assoAddress}+"</b>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="427" splitType="Stretch">
+			<staticText>
+				<reportElement x="41" y="0" width="100" height="24"/>
+				<textElement/>
+				<text><![CDATA[Sir/Madam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="120" width="18" height="20"/>
+				<textElement/>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="173" width="18" height="17"/>
+				<textElement/>
+				<text><![CDATA[3.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="326" width="18" height="20"/>
+				<textElement/>
+				<text><![CDATA[4.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="325" width="457" height="86"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[The association cannot bring out any publication (registered under PRB Act, 1867) or act as correspondent, columnist, editor, printer or publisher of a registered newspaper or engage in the production or broadcast of audio news or audio visual news or current affairs programmes through electronic mode or any other electronic form or any other mode of mass communication at a later stage thereby attracting provisions of the Section 3(1) (g) and (h) of the FC(R) Act, 2010. In addition to this, the association is forbidden from getting involved in any activity of political nature.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="59" y="120" width="457" height="51"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["The association shall receive foreign contribution only in its designated/exclusive bank account number <b>"+$P{accNumber}+"</b> in <b>"+$P{bankDetails}+"</b> as mentioned in its application for grant of registration."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="59" y="174" width="457" height="145"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["In terms of section 18 of the Foreign Contribution (Regulation) Act, 2010 read with Rules 17 of the Foreign Contribution (Regulation) Rules, 2011, as amended from time to time, you are advised to furnish intimations online within the prescribed time to the Central Government of the amounts of each foreign contribution received by you, the source and the manner in which the foreign contribution was utilised, as per the provisions of the Act and the Rules. An association is required to furnish the return even when the particulars are 'NIL'. The FC-4 form is required to be submitted online on this Ministry's website https://fcraonline.nic.in  using the user name <b>"+$P{userName}+"</b> used for online submission. The Bank Account mentioned in your application should be used for receiving foreign contribution and no other amount should be credited to this account. The Association should immediately intimate online, within 15 days, in Form FC-6 to this Ministry regarding any change in the name of the Association, aims and objects, its address and Bank/Bank Account."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="24" width="475" height="44"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I am directed to say that your Association has been registered under Section 11 (1) of the Act as follows:-"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="68" width="475" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="html">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Registration Number : <b>"+$P{rcn}+"</b>"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="88" width="475" height="20"/>
+				<textElement textAlignment="Center" markup="html">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nature : <b>"+$P{assoNature}+"</b>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="436" splitType="Stretch">
+			<staticText>
+				<reportElement x="41" y="37" width="18" height="20"/>
+				<textElement/>
+				<text><![CDATA[5.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="37" width="457" height="71"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[You are requested to note the provisions of Section 7 of FC(R) Act, 2010 and Rule 24 of FC(R) Rules, 2011 and ensure that before any funds are passed on to any person/association in India that the recipient is (i) eligible to accept foreign contribution under the Act, i.e., recipient association is registered under the Act, or has obtained Prior Permission of the Government under Section 11 of the Act, and (ii) the person/association is not prohibited under the Act.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="108" width="18" height="20"/>
+				<textElement/>
+				<text><![CDATA[6.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="108" width="457" height="28"/>
+				<textElement/>
+				<text><![CDATA[Physical inspection of the activities done by the Association may be carried out at any time by this Ministry. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="136" width="18" height="20"/>
+				<textElement/>
+				<text><![CDATA[7.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="136" width="457" height="70"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[You are requested to familiarize yourself with the provisions of Foreign Contribution (Regulation) Act, 2010 and Foreign Contribution (Regulation) Rules, 2011, as amended from time to time, available at this Ministry’s website https://fcraonline.nic.in/ to ensure strict compliance of the Act/ Rules. Failure to comply with any of the provisions of said Act/ Rules will make you liable for action under the relevant provisions of the Foreign Contribution (Regulation) Act, 2010.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="206" width="18" height="20"/>
+				<textElement/>
+				<text><![CDATA[8.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="206" width="457" height="28"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[This certificate of Registration is valid for a period of five years from the date of registration under the Act.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="412" y="326" width="102" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Yours faithfully]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="108" y="368" width="408" height="20"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>"+$P{officerName}+"<br/>"+$P{officerDesg}+"<br/>Tel. "+$P{officerContact}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="371" y="368" width="121" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				<anchorNameExpression><![CDATA[$V{SIGNATURE_FIELD}]]></anchorNameExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="38" y="239" width="476" height="20"/>
+				<textElement markup="html"/>
+				<textFieldExpression><![CDATA[$V{para2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,428 @@
+package service.services;
+
+import java.util.List;
+import java.util.Map;
+
+import dao.services.NotificationDao;
+import models.services.Notification;
+import utilities.Commons;
+import utilities.KVPair;
+import utilities.lists.List3;
+import utilities.lists.List4;
+import utilities.lists.List5;
+
+public class HomeNotificationDetailsService extends Commons{
+	private String notificationType;
+	private List<Notification> notificationList;
+	private List<Notification> notificationAttachmentList;
+	private Map<String,String> newNotificationList;
+	private List<KVPair<String,String>> rcnBarGraphYearWise;
+	private List<KVPair<String,String>> donorWiseBarGraph;
+	private List<KVPair<String,String>> donorFinYearWiseBarGraph;
+	private List<KVPair<String,String>> assoWiseBarGraph;
+	private List<KVPair<String,String>> assoFinYearWiseBarGraph;
+	//private List<List<String>> assoFinYearWiseBarGraph; 
+	private List<KVPair<String,String>> countryWiseBarGraph;
+	private List<KVPair<String,String>> countryFinYearWiseBarGraph;
+	private List<KVPair<String, String>>suddenRiseIncomeWiseBarGraph;
+	private String currentBlockYear;
+	private List<String> blockYearList;
+	private String graphType;
+	private List<List3> applicationStatistics;
+	private List<List3> applicationServiceStatistics;
+
+	public String pullNewNotificationCountList(){
+		String ret = "success";
+		begin();
+		try {
+			populateNewNotificationCountList();
+			populateRCNBarGraphYearWisde();
+			populateApplicationStatisticsBarGraph();
+			populateApplicationServiceWise();
+		} catch(Exception e){
+			ps(e);
+			ret = "error";
+		}
+		finish();
+		return ret;		
+	}
+
+	public String pullBarGraphCountList(){
+		String ret = "success";
+		begin();
+		try {
+			populateDonorWiseBarGraph();
+			populateAssoWiseBarGraph();
+			populateCountryWiseBarGraph();
+			populateBlockYearForBarGraph();
+			populateDonorFinYearWiseBarGraph();
+			populateAssoFinYearWiseBarGraph();
+			populateCountryFinYearWiseBarGraph();
+			populateBlockYearListForBarGraph();			
+		} catch(Exception e){
+			ps(e);
+			ret = "error";
+		}
+		finish();
+		return ret;		
+	}	
+	
+	public String pullNotificationList() {
+		String ret = "success";
+		begin();
+		try {
+			populateNotificationList();
+		} catch(Exception e){
+			ps(e);
+			ret = "error";
+		}
+		finish();
+		return ret;		
+	}
+	
+	public String pullSelectedNotificationList() {
+		String ret = "success";
+		begin();
+		try {
+			populateSelectedNotificationList();
+		} catch(Exception e){
+			ps(e);
+			ret = "error";
+		}
+		finish();
+		return ret;		
+	}
+	
+	public String pullNotificationAttachmentList(){
+		String ret = "success";
+		begin();
+		try {
+			populateNotificationAttachmentList();
+		} catch(Exception e){
+			ps(e);
+			ret = "error";
+		}
+		finish();
+		return ret;		
+	}
+	
+	public String pullRegistrationList() {
+		// TODO Auto-generated method stub
+
+		String ret = "success";
+		begin();
+		try {
+			populateRCNBarGraphYearWisde();
+		} catch(Exception e){
+			ps(e);
+			ret = "error";
+		}
+		finish();
+		return ret;		
+	
+	}
+
+	public String pullDonorList() {
+		// TODO Auto-generated method stub
+
+		String ret = "success";
+		begin();
+		try {
+			populateDonorWiseBarGraph();
+			populateBlockYearForBarGraph();
+			populateDonorFinYearWiseBarGraph();
+			populateBlockYearListForBarGraph();		
+		} catch(Exception e){
+			ps(e);
+			ret = "error";
+		}
+		finish();
+		return ret;		
+	
+	}
+
+	public String pullCountryList() {
+		// TODO Auto-generated method stub
+
+		String ret = "success";
+		begin();
+		try {
+			populateCountryWiseBarGraph();
+			populateBlockYearForBarGraph();
+			populateCountryFinYearWiseBarGraph();
+			populateBlockYearListForBarGraph();		
+		} catch(Exception e){
+			ps(e);
+			ret = "error";
+		}
+		finish();
+		return ret;		
+	
+	}
+
+	public String pullAssociationList() {
+		// TODO Auto-generated method stub
+
+		String ret = "success";
+		begin();
+		try {
+			populateAssoWiseBarGraph();
+			populateBlockYearForBarGraph();
+			populateAssoFinYearWiseBarGraph();
+			populateBlockYearListForBarGraph();		
+		} catch(Exception e){
+			ps(e);
+			ret = "error";
+		}
+		finish();
+		return ret;		
+	
+	}
+
+	public String pullApplicationList() {
+		// TODO Auto-generated method stub
+
+		String ret = "success";
+		begin();
+		try {
+			populateApplicationStatisticsBarGraph();
+			populateApplicationServiceWise();
+		} catch(Exception e){
+			ps(e);
+			ret = "error";
+		}
+		finish();
+		return ret;		
+	
+	}
+	private void populateNewNotificationCountList() throws Exception {
+		NotificationDao ndao=new NotificationDao(connection);
+		ndao.setNotificationType(notificationType);
+		newNotificationList=ndao.getNewNotificationCountList();
+	}
+   private void populateRCNBarGraphYearWisde() throws Exception{
+	   NotificationDao ndao=new NotificationDao(connection);
+	   rcnBarGraphYearWise=ndao.getRcnBarGraphYearWise();
+   }
+   
+   private void populateBlockYearForBarGraph() throws Exception{
+	   NotificationDao ndao=new NotificationDao(connection);
+	   //dono=ndao.getRcnBarGraphYearWise();
+	   currentBlockYear = ndao.getCurrentBlockYear();
+   }
+
+   private void populateBlockYearListForBarGraph() throws Exception{
+	   NotificationDao ndao=new NotificationDao(connection);
+	   //dono=ndao.getRcnBarGraphYearWise();
+	   blockYearList = ndao.getBlockYearList();
+   }   
+   
+   private void populateDonorWiseBarGraph() throws Exception{
+	   NotificationDao ndao=new NotificationDao(connection);
+	   //dono=ndao.getRcnBarGraphYearWise();
+	   donorWiseBarGraph = ndao.getDonorWiseBarGraph();
+   } 
+
+   private void populateDonorFinYearWiseBarGraph() throws Exception{
+	   NotificationDao ndao=new NotificationDao(connection);
+	   //dono=ndao.getRcnBarGraphYearWise();
+	   donorFinYearWiseBarGraph = ndao.getDonorFinYearWiseBarGraph();
+   } 
+   
+   private void populateAssoWiseBarGraph() throws Exception{
+	   NotificationDao ndao=new NotificationDao(connection);
+	   //dono=ndao.getRcnBarGraphYearWise();
+	   assoWiseBarGraph = ndao.getAssoWiseBarGraph();
+   }   
+   private void populateAssoFinYearWiseBarGraph() throws Exception{
+	   NotificationDao ndao=new NotificationDao(connection);
+	   //dono=ndao.getRcnBarGraphYearWise();
+	   assoFinYearWiseBarGraph = ndao.getAssoFinYearWiseBarGraph();
+   }   
+   
+   private void populateCountryWiseBarGraph() throws Exception{
+	   NotificationDao ndao=new NotificationDao(connection);
+	   //dono=ndao.getRcnBarGraphYearWise();
+	   //assoWiseBarGraph = ndao.getAssoWiseBarGraph();
+	   countryWiseBarGraph = ndao.getCountryWiseBarGraph();
+   }  
+   private void populateCountryFinYearWiseBarGraph() throws Exception{
+	   NotificationDao ndao=new NotificationDao(connection);
+	   //dono=ndao.getRcnBarGraphYearWise();
+	   //assoWiseBarGraph = ndao.getAssoWiseBarGraph();
+	   countryFinYearWiseBarGraph = ndao.getCountryFinYearWiseBarGraph();
+   }   
+ 
+   private void populateApplicationStatisticsBarGraph() throws Exception{
+	   NotificationDao ndao=new NotificationDao(connection);
+	   applicationStatistics=ndao.getApplicationStatistics();   
+   }
+	private void populateNotificationList() throws Exception {
+		NotificationDao ndao=new NotificationDao(connection);
+		ndao.setNotificationType(notificationType);
+		notificationList=ndao.getAll();
+	}
+	
+	private void populateSelectedNotificationList() throws Exception {
+		NotificationDao ndao=new NotificationDao(connection);
+		ndao.setNotificationType(notificationType);
+		notificationList=ndao.getSelectedNotification();
+	}
+	
+	private void populateNotificationAttachmentList() throws Exception{
+		NotificationDao ndao=new NotificationDao(connection);
+		ndao.setNotificationType(notificationType);
+		notificationAttachmentList=ndao.getNotificationAttachment();
+	}
+	
+	 private void populateApplicationServiceWise() throws Exception{
+		   NotificationDao ndao=new NotificationDao(connection);
+		   applicationServiceStatistics=ndao.getApplicationServiceStatistics();   
+	   }
+
+	public List<List3> getApplicationServiceStatistics() {
+		return applicationServiceStatistics;
+	}
+
+	public void setApplicationServiceStatistics(
+			List<List3> applicationServiceStatistics) {
+		this.applicationServiceStatistics = applicationServiceStatistics;
+	}
+
+	public List<String> getBlockYearList() {
+		return blockYearList;
+	}
+
+	public void setBlockYearList(List<String> blockYearList) {
+		this.blockYearList = blockYearList;
+	}
+
+	public List<KVPair<String, String>> getCountryFinYearWiseBarGraph() {
+		return countryFinYearWiseBarGraph;
+	}
+
+	public void setCountryFinYearWiseBarGraph(
+			List<KVPair<String, String>> countryFinYearWiseBarGraph) {
+		this.countryFinYearWiseBarGraph = countryFinYearWiseBarGraph;
+	}
+	
+
+	public List<KVPair<String, String>> getAssoFinYearWiseBarGraph() {
+		return assoFinYearWiseBarGraph;
+	}
+
+	public void setAssoFinYearWiseBarGraph(
+			List<KVPair<String, String>> assoFinYearWiseBarGraph) {
+		this.assoFinYearWiseBarGraph = assoFinYearWiseBarGraph;
+	}
+
+	public List<KVPair<String, String>> getDonorFinYearWiseBarGraph() {
+		return donorFinYearWiseBarGraph;
+	}
+
+	public void setDonorFinYearWiseBarGraph(
+			List<KVPair<String, String>> donorFinYearWiseBarGraph) {
+		this.donorFinYearWiseBarGraph = donorFinYearWiseBarGraph;
+	}
+
+	public String getCurrentBlockYear() {
+		return currentBlockYear;
+	}
+
+	public void setCurrentBlockYear(String currentBlockYear) {
+		this.currentBlockYear = currentBlockYear;
+	}
+
+	public String getGraphType() {
+		return graphType;
+	}
+
+	public void setGraphType(String graphType) {
+		this.graphType = graphType;
+	}
+
+	public List<KVPair<String, String>> getSuddenRiseIncomeWiseBarGraph() {
+		return suddenRiseIncomeWiseBarGraph;
+	}
+
+	public void setSuddenRiseIncomeWiseBarGraph(
+			List<KVPair<String, String>> suddenRiseIncomeWiseBarGraph) {
+		this.suddenRiseIncomeWiseBarGraph = suddenRiseIncomeWiseBarGraph;
+	}
+
+	public List<KVPair<String, String>> getAssoWiseBarGraph() {
+		return assoWiseBarGraph;
+	}
+
+	public void setAssoWiseBarGraph(List<KVPair<String, String>> assoWiseBarGraph) {
+		this.assoWiseBarGraph = assoWiseBarGraph;
+	}
+
+	public List<KVPair<String, String>> getCountryWiseBarGraph() {
+		return countryWiseBarGraph;
+	}
+
+	public void setCountryWiseBarGraph(
+			List<KVPair<String, String>> countryWiseBarGraph) {
+		this.countryWiseBarGraph = countryWiseBarGraph;
+	}
+
+	public List<KVPair<String, String>> getDonorWiseBarGraph() {
+		return donorWiseBarGraph;
+	}
+
+	public void setDonorWiseBarGraph(List<KVPair<String, String>> donorWiseBarGraph) {
+		this.donorWiseBarGraph = donorWiseBarGraph;
+	}
+
+	public String getNotificationType() {
+		return notificationType;
+	}
+
+	public void setNotificationType(String notificationType) {
+		this.notificationType = notificationType;
+	}
+
+	public List<Notification> getNotificationList() {
+		return notificationList;
+	}
+
+	public void setNotificationList(List<Notification> notificationList) {
+		this.notificationList = notificationList;
+	}
+
+	public Map<String, String> getNewNotificationList() {
+		return newNotificationList;
+	}
+
+	public void setNewNotificationList(Map<String, String> newNotificationList) {
+		this.newNotificationList = newNotificationList;
+	}
+
+	public List<Notification> getNotificationAttachmentList() {
+		return notificationAttachmentList;
+	}
+
+	public void setNotificationAttachmentList(
+			List<Notification> notificationAttachmentList) {
+		this.notificationAttachmentList = notificationAttachmentList;
+	}
+
+	public List<KVPair<String, String>> getRcnBarGraphYearWise() {
+		return rcnBarGraphYearWise;
+	}
+
+	public void setRcnBarGraphYearWise(
+			List<KVPair<String, String>> rcnBarGraphYearWise) {
+		this.rcnBarGraphYearWise = rcnBarGraphYearWise;
+	}
+
+	public List<List3> getApplicationStatistics() {
+		return applicationStatistics;
+	}
+
+	public void setApplicationStatistics(List<List3> applicationStatistics) {
+		this.applicationStatistics = applicationStatistics;
+	}
+
+	}

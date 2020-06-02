@@ -1,0 +1,2 @@
+Cufon.replace('.sf-menu li a.mains, .button-1, .button-2, .button-3,  .text-2, .text-4', { fontFamily: 'Aller', hover:true });
+Cufon.replace('h2, h3, h4, h5, .sf-menu li li a, .sf-menu li li li a, .text-1, .text-3, .works-list li a, .button, .logo-1', { fontFamily: 'Aller_italic', hover:true });

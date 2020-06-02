@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sample" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="116"/>
+	<parameter name="appId" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="assoName" class="java.lang.String"/>
+	<parameter name="assoAddress" class="java.lang.String"/>
+	<parameter name="submissionDate" class="java.lang.String"/>
+	<parameter name="sysDate" class="java.lang.String"/>
+	<parameter name="officerName" class="java.lang.String"/>
+	<parameter name="officerDesg" class="java.lang.String"/>
+	<parameter name="officerContact" class="java.lang.String"/>
+	<parameter name="remark" class="java.lang.String"/>
+	<parameter name="officeAddress" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="para1" class="java.lang.String">
+		<variableExpression><![CDATA["4. This is a digitally signed certificate to be validated digitally using the signature panel using Adobe Acrobat Reader (Ver 5.0 or above). The digital intimation is authenticated by a digital signature obtained from a certifying authority under the Information Technology Act 2000."]]></variableExpression>
+	</variable>
+	<variable name="SIGNATURE_FIELD" class="java.lang.String">
+		<variableExpression><![CDATA["SIGNATURE_FIELD"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement x="227" y="0" width="27" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="21" width="262" height="85"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="16" isBold="true"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[	Government of India
+	Ministry of Home Affairs
+	Foreigners Division
+	(FCRA Wing)
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="254" y="1" width="160" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{appId}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="81" splitType="Stretch">
+			<staticText>
+				<reportElement x="414" y="46" width="41" height="17"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Dated:  ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="46" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sysDate}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="165" y="0" width="390" height="46"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="html">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>"+$P{officeAddress}+"</b>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="119" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="31" height="16"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[To]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="16" width="165" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[The Chief Functionary,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="89" width="555" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject:   : Refusal of Prior Permission under the Foreign Contribution (Regulation) Act, 2010.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="36" width="555" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="56" width="555" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoAddress}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="417" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Sir/Madam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="20" width="524" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[1. I am directed to refer to your online application dated  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="40" width="524" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[seeking prior permission for your association under Section11(1) of Foreign Contribution  (Regulation) Act. 2010.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="60" width="524" height="31"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[2. In terms of Rule 9 of the Foreign Contribution (Regulation) Rules, 2011, your application has been summarily rejected due to the following reasons :-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="31" y="123" width="524" height="34"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[3. You may, if desired, apply afresh by submitting online application, with requisite fee and uploading relevant documents]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="315" y="20" width="140" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{submissionDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="414" y="217" width="141" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Yours faithfully]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="0" y="279" width="555" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{officerName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="299" width="555" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{officerDesg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="455" y="319" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{officerContact}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="400" y="319" width="55" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tel.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="31" y="91" width="524" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{remark}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="31" y="157" width="524" height="46"/>
+				<textElement markup="styled"/>
+				<textFieldExpression><![CDATA[$V{para1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="414" y="279" width="121" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				<anchorNameExpression><![CDATA[$V{SIGNATURE_FIELD}]]></anchorNameExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

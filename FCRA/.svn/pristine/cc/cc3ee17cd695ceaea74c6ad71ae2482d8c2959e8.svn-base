@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sample" pageWidth="625" pageHeight="842" columnWidth="580" leftMargin="20" rightMargin="25" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="UtilizationDataSet">
+		<field name="ACCOUNT_NO" class="java.lang.String"/>
+		<field name="UTILIZATIONBANK" class="java.lang.String"/>
+		<field name="BRANCH_NAME" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="MemberDataSet">
+		<field name="NAME" class="java.lang.String"/>
+		<field name="COMMITTEEMEM" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="dataset1">
+		<parameter name="regNumber" class="java.lang.String"/>
+		<parameter name="appId" class="java.lang.String">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     FC_FC6_FORM.RCN,
+     FC_FC6_FORM.ASSO_NAME,
+     FC_FC6_FORM.ASSO_ADDRESS,
+     FC_FC6_FORM.ASSO_TOWN_CITY,
+     ( SELECT NATURE_DESC FROM "TM_NATURE" WHERE NATURE_CODE = FC_FC6_FORM.ASSO_NATURE )  as ASSO_NATURE,
+     ( SELECT ASSO_NAME_CHANGE_ST FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO = $P{appId} )AS ASSONAME,
+     ( SELECT ASSO_CHANGE_STATE_ST FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO = $P{appId} )AS ASSOCHANGE,
+     ( SELECT ASSO_CHANGE_DESIGBANK_STATUS FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO =$P{appId} ) AS BANKCHNG,
+     ( SELECT ASSO_CHANGE_NATURE FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO = $P{appId} )AS NATURECHNG,
+     ( SELECT ASSO_CHANGE_UTILISATION_STATUS FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO = $P{appId} )AS UTIBANKCHANG,
+     ( SELECT ASSO_CHANGE_MEMBER FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO =$P{appId} ) AS MEMBERCHNG,
+     to_char(FC_INDIA.REG_DATE,'dd-mm-yyyy') AS REG_DATE
+FROM
+      FC_FC6_FORM , FC_INDIA
+WHERE
+     FC_FC6_FORM.RCN = $P{regNumber} AND FC_FC6_FORM.RCN = FC_INDIA.RCN;]]>
+		</queryString>
+		<field name="RCN" class="java.lang.String"/>
+		<field name="ASSO_NAME" class="java.lang.String"/>
+		<field name="ASSO_ADDRESS" class="java.lang.String"/>
+		<field name="ASSO_TOWN_CITY" class="java.lang.String"/>
+		<field name="ASSO_NATURE" class="java.lang.String"/>
+		<field name="ASSONAME" class="java.lang.String"/>
+		<field name="ASSOCHANGE" class="java.lang.String"/>
+		<field name="BANKCHNG" class="java.lang.String"/>
+		<field name="NATURECHNG" class="java.lang.String"/>
+		<field name="UTIBANKCHANG" class="java.lang.String"/>
+		<field name="MEMBERCHNG" class="java.lang.String"/>
+		<field name="REG_DATE" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="appId" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="regNumber" class="java.lang.String"/>
+	<parameter name="regDate" class="java.lang.String"/>
+	<parameter name="assoName" class="java.lang.String"/>
+	<parameter name="assoAddress" class="java.lang.String"/>
+	<parameter name="accNumber" class="java.lang.String"/>
+	<parameter name="bankDetails" class="java.lang.String"/>
+	<parameter name="assoNature" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="submissionDate" class="java.lang.String"/>
+	<parameter name="officerName" class="java.lang.String"/>
+	<parameter name="officerDesg" class="java.lang.String"/>
+	<parameter name="officerContact" class="java.lang.String"/>
+	<parameter name="UtilizationBankDetails" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="MemberDetails" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="fileNo" class="java.lang.String"/>
+	<parameter name="assonamechng" class="java.lang.String"/>
+	<parameter name="assoaddChng" class="java.lang.String"/>
+	<parameter name="assobankChng" class="java.lang.String"/>
+	<parameter name="assoNatureChng" class="java.lang.String"/>
+	<parameter name="assoUtilbnkChng" class="java.lang.String"/>
+	<parameter name="assoMemChng" class="java.lang.String"/>
+	<parameter name="fcAssoName" class="java.lang.String"/>
+	<parameter name="fcAssoAddress" class="java.lang.String"/>
+	<parameter name="assoAim" class="java.lang.String"/>
+	<parameter name="officeAddress" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     SUBSTR(FC_INDIA.RCN,1,9) as RCN,
+     FC_INDIA.ASSO_NAME AS ASSONAME,
+     FC_FC6_FORM.ASSO_NAME as ASSO_NAME,
+     FC_FC6_FORM.ASSO_ADDRESS as ASSO_ADDRESS,
+     FC_FC6_FORM.ASSO_TOWN_CITY as ASSO_TOWN_CITY,
+     ( SELECT NATURE_DESC FROM "TM_NATURE" WHERE NATURE_CODE = FC_FC6_FORM.ASSO_NATURE )  as ASSO_NATURE,
+     ( SELECT ASSO_NAME_CHANGE_ST FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO = $P{appId} )AS ASSONAMECHANGED,
+     ( SELECT ASSO_CHANGE_STATE_ST FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO = $P{appId} )AS ASSOCHANGE,
+     ( SELECT ASSO_CHANGE_DESIGBANK_STATUS FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO =$P{appId} ) AS BANKCHNG,
+     ( SELECT ASSO_CHANGE_NATURE FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO = $P{appId} ) AS NATURECHNG,
+     ( SELECT ASSO_CHANGE_UTILISATION_STATUS FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO = $P{appId}) AS UTIBANKCHANG,
+     ( SELECT ASSO_CHANGE_MEMBER FROM FC_FC6_FORM WHERE FC_FC6_FORM.UNIQUE_FILENO =$P{appId} ) AS MEMBERCHNG,
+     to_char(FC_INDIA.REG_DATE,'dd-mm-yyyy') AS REG_DATE
+FROM
+      FC_FC6_FORM , FC_INDIA
+WHERE
+     FC_FC6_FORM.RCN = $P{regNumber}
+ AND FC_FC6_FORM.RCN = FC_INDIA.RCN]]>
+	</queryString>
+	<field name="RCN" class="java.lang.String"/>
+	<field name="ASSONAME" class="java.lang.String"/>
+	<field name="ASSO_NAME" class="java.lang.String"/>
+	<field name="ASSO_ADDRESS" class="java.lang.String"/>
+	<field name="ASSO_TOWN_CITY" class="java.lang.String"/>
+	<field name="ASSO_NATURE" class="java.lang.String"/>
+	<field name="ASSONAMECHANGED" class="java.lang.String"/>
+	<field name="ASSOCHANGE" class="java.lang.String"/>
+	<field name="BANKCHNG" class="java.lang.String"/>
+	<field name="NATURECHNG" class="java.lang.String"/>
+	<field name="UTIBANKCHANG" class="java.lang.String"/>
+	<field name="MEMBERCHNG" class="java.lang.String"/>
+	<field name="REG_DATE" class="java.lang.String"/>
+	<variable name="RCN_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{RCN}]]></variableExpression>
+	</variable>
+	<variable name="RCN_2" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{RCN}]]></variableExpression>
+	</variable>
+	<variable name="RCN_3" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{RCN}]]></variableExpression>
+	</variable>
+	<variable name="para1" class="java.lang.String">
+		<variableExpression><![CDATA["This is a digitally signed certificate to be validated digitally using the signature panel using Adobe Acrobat Reader (Ver 5.0 or above). The digital intimation is authenticated by a digital signature obtained from a certifying authority under the Information Technology Act 2000."]]></variableExpression>
+	</variable>
+	<variable name="SIGNATURE_FIELD" class="java.lang.String">
+		<variableExpression><![CDATA["SIGNATURE_FIELD"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="185" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="21" width="555" height="85"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="16" isBold="true"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[	Government of India
+	Ministry of Home Affairs
+	Foreigners Division
+	(FCRA Wing)
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="37" y="1" width="518" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["No. <b>"+$P{appId}+"</b>"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="287" y="157" width="249" height="22"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="html">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dated: <b>"+$P{regDate}+"</b>"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="215" y="106" width="321" height="51"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{officeAddress}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="548">
+			<staticText>
+				<reportElement positionType="Float" x="41" y="64" width="72" height="17"/>
+				<textElement/>
+				<text><![CDATA[Sir/Madam]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="82" width="496" height="43"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["I am directed to refer to your online Application No <b>"+$P{fileNo}+"</b> dated <b>"+$P{submissionDate}+"</b> on the subject cited above and to convey the approval of the Central Government to the following changes requested vide your FC-6 application."]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table 2" positionType="Float" mode="Transparent" x="42" y="296" width="496" height="5" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[($P{assoUtilbnkChng}.equals( "Y" )) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="UtilizationDataSet">
+						<datasetParameter name="REPORT_DATA_SOURCE">
+							<datasetParameterExpression><![CDATA[$P{UtilizationBankDetails}]]></datasetParameterExpression>
+						</datasetParameter>
+					</datasetRun>
+					<jr:column width="49">
+						<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="3" y="0" width="45" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font size="10" isBold="true" isUnderline="true"/>
+								</textElement>
+								<text><![CDATA[SL No.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="14" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="47" height="13"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}+"."]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="97">
+						<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="0" y="0" width="96" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font size="10" isBold="true" isUnderline="true"/>
+								</textElement>
+								<text><![CDATA[Account Number]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="14" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="3" y="0" width="93" height="13"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ACCOUNT_NO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="349">
+						<jr:columnHeader style="table 2_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="0" y="0" width="220" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font size="10" isBold="true" isUnderline="true"/>
+								</textElement>
+								<text><![CDATA[Bank Address]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="14" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="3" y="0" width="346" height="13"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{UTILIZATIONBANK}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement positionType="Float" x="40" y="126" width="498" height="21"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[CHANGE DETAILS APPROVED (as per change request)]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="61" y="149" width="108" height="24" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{assonamechng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Name of Association:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="44" y="198" width="125" height="25" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{assoaddChng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Association Address:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="177" y="198" width="361" height="25" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true">
+					<printWhenExpression><![CDATA[$P{assoaddChng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoAddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="89" y="248" width="79" height="25" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{assobankChng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" Bank Account :"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="178" y="248" width="361" height="25" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true">
+					<printWhenExpression><![CDATA[$P{assobankChng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bankDetails}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="42" y="285" width="116" height="13">
+					<printWhenExpression><![CDATA[($P{assoUtilbnkChng}.equals( "Y" )) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Utilization Bank Details:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="41" y="40" width="497" height="24" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Justified">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject:  Change request made under provision of FCRA 2010 and rules made there under.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="0" width="497" height="20"/>
+				<textElement markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["To,<br/><b>The Chief Functionary,<br/>"+$P{fcAssoName}+"</b><br/><b>"+$P{fcAssoAddress}+"</b>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="42" y="307" width="142" height="13" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[($P{assoMemChng}.equals( "Y" )) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Association Member Details:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 3" positionType="Float" mode="Opaque" x="42" y="322" width="496" height="5" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[($P{assoMemChng}.equals( "Y" )) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="MemberDataSet">
+						<datasetParameter name="REPORT_DATA_SOURCE">
+							<datasetParameterExpression><![CDATA[$P{MemberDetails}]]></datasetParameterExpression>
+						</datasetParameter>
+					</datasetRun>
+					<jr:column width="49">
+						<jr:columnHeader style="table 3_CH" height="21" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="49" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font size="10" isBold="true" isUnderline="true"/>
+								</textElement>
+								<text><![CDATA[Sl No.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="16" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="49" height="13"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}+"."]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="208">
+						<jr:columnHeader style="table 3_CH" height="21" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="208" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font size="10" isBold="true" isUnderline="true"/>
+								</textElement>
+								<text><![CDATA[Name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="16" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" x="4" y="0" width="204" height="13"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="238">
+						<jr:columnHeader style="table 3_CH" height="21" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="238" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font size="10" isBold="true" isUnderline="true"/>
+								</textElement>
+								<text><![CDATA[Designation]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="16" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" x="2" y="0" width="236" height="13"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COMMITTEEMEM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="62" y="223" width="106" height="25" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{assoNatureChng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nature:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="177" y="223" width="361" height="25" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true">
+					<printWhenExpression><![CDATA[$P{assoNatureChng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoNature}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="39" y="332" width="497" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Justified">
+					<font size="10" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Registration number of your association mentioned in the earlier letter would remain same.]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="178" y="353" width="360" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{regNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="44" y="353" width="124" height="20">
+					<printWhenExpression><![CDATA[$P{assoNatureChng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Registration No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="415" y="466" width="117" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Yours faithfully]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="105" y="503" width="426" height="20"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>"+$P{officerName}+"<br/>"+$P{officerDesg}+"<br/>Tel. "+$P{officerContact}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="38" y="379" width="501" height="54"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Advisory:-</b> Please note that as per section 17 (1) of the FCRA 2010 every person who has been granted the FCRA registration or given prior permission under section (12) shall receive foreign contribution in single bank account only through the bank specified in his application for grant of certificate. Failure to comply with any of the provision in FCRA will make you liable for action under the provisions of the FCRA Act 2010"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="373" y="503" width="121" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				<anchorNameExpression><![CDATA[$V{SIGNATURE_FIELD}]]></anchorNameExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="177" y="149" width="361" height="24" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true">
+					<printWhenExpression><![CDATA[$P{assonamechng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoName}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="62" y="173" width="108" height="25" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{assonamechng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Aims and Objects:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="177" y="173" width="361" height="25" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true">
+					<printWhenExpression><![CDATA[$P{assonamechng}.equals( "Y" )?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assoAim}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

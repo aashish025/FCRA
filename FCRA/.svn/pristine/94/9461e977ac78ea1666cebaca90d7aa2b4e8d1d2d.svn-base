@@ -1,0 +1,47 @@
+	@font-face {
+	  font-family: 'Oswald';
+	  font-style: normal;
+	  font-weight: 400;
+	  src: local('Oswald '), local('Oswald'), url(../../../fonts/oswald/Oswald-Regular.woff) format('woff');
+	}
+	@font-face {
+	  font-family: 'Ubuntu';
+	  font-style: normal;
+	  font-weight: 400;
+	  src: local('Ubuntu'), url(../../../fonts/ubuntu/ubuntu.woff2) format('woff2');
+	}
+	.tLeft{
+		min-width:840px;
+	    padding-right: 7px; 
+	    text-align: right;
+	    font-family: 'Oswald', sans-serif;
+	    font-size: 16px;
+	}
+	.effect1{
+		color: #744150;
+		letter-spacing: 2;
+		text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
+	}
+	.effect{
+		letter-spacing: 0;
+		color: #744150;
+		text-shadow: rgba(0, 0, 30, 0.08) 0px 5px 2px;
+	}
+	.tRight{
+	    min-width: 193px;
+	    max-width: 193px;
+	}
+	.ivfrt-png{
+		height:65px;
+		background: url(../../../img/auth/home/frvrs-cs.png) no-repeat right;
+	}
+	#header-buttons{
+		position: absolute; 
+		left:1px;
+		top: 0px;
+	}
+	#user-notification-badges{
+		position: absolute; 
+		left:100px;
+		top: 10px;
+	}

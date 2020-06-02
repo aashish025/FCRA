@@ -1,0 +1,192 @@
+package models.services.requests;
+
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import models.services.ApplicantDetails;
+
+import org.owasp.esapi.ESAPI;
+
+import utilities.ValidationException;
+
+public class SecurityContribution extends AbstractRequest {
+	ApplicantDetails applicantDetails = new ApplicantDetails();
+	String fcraRegistrationNumber;
+	String fcraRegistrationDate;
+	String receivedDate;
+	String securityNature;
+	String relativeName;
+	String relativeAddress;
+	BigDecimal nominalValue;
+	BigDecimal marketValue;
+	String rbiPermissionDetails;
+	String modeOfUtilization;
+
+	public SecurityContribution(Connection connection) {
+		super(connection);
+	}	
+	
+	private void retrieveDetails() throws Exception {
+		String fileNo = null;
+		if(tempApplicationId != null && tempApplicationId.equals("") == false)
+			fileNo = tempApplicationId;
+		else
+			fileNo = applicationId;
+		
+		StringBuffer query = new StringBuffer("SELECT APPLICANT_NAME, APPLICANT_ADDRESS, APPLICANT_TOWN_CITY, APPLICANT_STATE, "
+				+ "(SELECT SNAME FROM TM_STATE WHERE SCODE=APPLICANT_STATE), APPLICANT_DISTRICT, "
+				+ "(SELECT DISTNAME FROM TM_DISTRICT WHERE SCODE=APPLICANT_STATE AND DISTCODE=APPLICANT_DISTRICT), "
+				+ "APPLICANT_PINCODE, APPLICANT_EMAIL, APPLICANT_TELNO, "
+				+ "APPLICANT_FCRA_PRIORPERMSN_NO, TO_CHAR(APPLICANT_FCRA_PRIORPERMSN_DT, 'dd-mm-yyyy'), "
+				+ "TO_CHAR(APPLICANT_SECURTY_DATE, 'dd-mm-yyyy'), APPLICANT_SECURTY_RCVD_NATURE, "
+				+ "APPLICANT_SECURTY_RCVD_NAME, APPLICANT_SECURTY_RCVD_ADDR, APPLICANT_SECURTY_NOMINAL_VAL, "
+				+ "APPLICANT_SECURTY_MKT_VALUE, APPLICANT_SECURTY_RBI_PDTL, APPLICANT_SECURTY_MODE_UTILISN, "
+				+ "TO_CHAR(FINAL_SUBMIT_DATE, 'dd-mm-yyyy') "
+				+ "FROM FC_FC1_SECURITIES_ENTRY1 WHERE UNIQUE_FILENO=?");
+		PreparedStatement statement = connection.prepareStatement(query.toString());
+		statement.setString(1, applicationId);
+		ResultSet rs = statement.executeQuery();
+		if(rs.next()) {
+			int i=1;
+			applicantDetails.setName(rs.getString(i++));
+			applicantDetails.setAddress(rs.getString(i++));
+			applicantDetails.setTown(rs.getString(i++));
+			applicantDetails.setState(rs.getString(i++));
+			applicantDetails.setStateDesc(rs.getString(i++));
+			applicantDetails.setDistrict(rs.getString(i++));
+			applicantDetails.setDistrictDesc(rs.getString(i++));
+			applicantDetails.setPincode(rs.getString(i++));
+			applicantDetails.setEmail(rs.getString(i++));
+			applicantDetails.setPhoneNumber(rs.getString(i++));
+
+			fcraRegistrationNumber = rs.getString(i++);
+			fcraRegistrationDate = rs.getString(i++);
+			receivedDate = rs.getString(i++);
+			securityNature = rs.getString(i++);
+			relativeName = rs.getString(i++);
+			relativeAddress = rs.getString(i++);
+			String temp = rs.getString(i++);
+			if(temp != null && temp.equals("") == false)
+				nominalValue = new BigDecimal(temp);
+			temp = rs.getString(i++);
+			if(temp != null && temp.equals("") == false)
+				marketValue = new BigDecimal(temp);
+			rbiPermissionDetails = rs.getString(i++);
+			modeOfUtilization = rs.getString(i++);
+			submissionDate = rs.getString(i++);
+		}		
+		rs.close();
+		statement.close();		
+	}
+	
+	@Override
+	public void getDetails() throws Exception {
+		if(ESAPI.validator().isValidInput("applicationId", applicationId, "Word", 15, false) == false){
+			throw new ValidationException("Invalid Application ID");
+		}
+		retrieveDetails();
+	}
+
+	@Override
+	public void saveDetails() throws Exception {
+		if(ESAPI.validator().isValidInput("applicationId", applicationId, "Word", 15, false) == false){
+			throw new ValidationException("Invalid Application ID");
+		}
+				
+	}
+	
+	@Override
+	public void forward() throws Exception {
+	}
+
+	public ApplicantDetails getApplicantDetails() {
+		return applicantDetails;
+	}
+
+	public void setApplicantDetails(ApplicantDetails applicantDetails) {
+		this.applicantDetails = applicantDetails;
+	}
+
+	public String getFcraRegistrationNumber() {
+		return fcraRegistrationNumber;
+	}
+
+	public void setFcraRegistrationNumber(String fcraRegistrationNumber) {
+		this.fcraRegistrationNumber = fcraRegistrationNumber;
+	}
+
+	public String getFcraRegistrationDate() {
+		return fcraRegistrationDate;
+	}
+
+	public void setFcraRegistrationDate(String fcraRegistrationDate) {
+		this.fcraRegistrationDate = fcraRegistrationDate;
+	}
+
+	public String getReceivedDate() {
+		return receivedDate;
+	}
+
+	public void setReceivedDate(String receivedDate) {
+		this.receivedDate = receivedDate;
+	}
+
+	public String getSecurityNature() {
+		return securityNature;
+	}
+
+	public void setSecurityNature(String securityNature) {
+		this.securityNature = securityNature;
+	}
+
+	public String getRelativeName() {
+		return relativeName;
+	}
+
+	public void setRelativeName(String relativeName) {
+		this.relativeName = relativeName;
+	}
+
+	public String getRelativeAddress() {
+		return relativeAddress;
+	}
+
+	public void setRelativeAddress(String relativeAddress) {
+		this.relativeAddress = relativeAddress;
+	}
+
+	public BigDecimal getNominalValue() {
+		return nominalValue;
+	}
+
+	public void setNominalValue(BigDecimal nominalValue) {
+		this.nominalValue = nominalValue;
+	}
+
+	public BigDecimal getMarketValue() {
+		return marketValue;
+	}
+
+	public void setMarketValue(BigDecimal marketValue) {
+		this.marketValue = marketValue;
+	}
+
+	public String getRbiPermissionDetails() {
+		return rbiPermissionDetails;
+	}
+
+	public void setRbiPermissionDetails(String rbiPermissionDetails) {
+		this.rbiPermissionDetails = rbiPermissionDetails;
+	}
+
+	public String getModeOfUtilization() {
+		return modeOfUtilization;
+	}
+
+	public void setModeOfUtilization(String modeOfUtilization) {
+		this.modeOfUtilization = modeOfUtilization;
+	}
+
+}

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sample" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="21"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="hospitality-dataset">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="IND_ORG_NAME" class="java.lang.String"/>
+		<field name="ADDRESS" class="java.lang.String"/>
+		<field name="VISITING_COUNTRY" class="java.lang.String"/>
+		<field name="VISITING_PLACE" class="java.lang.String"/>
+		<field name="TO_CHAR(DURATION_HOSPI_FROM,&apos;DD-MM-YYYY&apos;)" class="java.lang.String"/>
+		<field name="TO_CHAR(DURATION_HOSPI_TO,&apos;DD-MM-YYYY&apos;)" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="appId" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="regDate" class="java.lang.String"/>
+	<parameter name="assoName" class="java.lang.String"/>
+	<parameter name="assoAddress" class="java.lang.String"/>
+	<parameter name="letterNo" class="java.lang.String"/>
+	<parameter name="letterDate" class="java.lang.String"/>
+	<parameter name="appDetails" class="java.lang.String"/>
+	<parameter name="PRINTRECORD_DATA_SOURCE" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="officerName" class="java.lang.String"/>
+	<parameter name="officerDesg" class="java.lang.String"/>
+	<parameter name="officerContact" class="java.lang.String"/>
+	<parameter name="fwdOffDesg" class="java.lang.String"/>
+	<parameter name="officeName" class="java.lang.String"/>
+	<parameter name="officeAddress" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT sysdate from dual]]>
+	</queryString>
+	<field name="SYSDATE" class="java.sql.Timestamp"/>
+	<variable name="para1" class="java.lang.String">
+		<variableExpression><![CDATA["This is a digitally signed certificate to be validated digitally using the signature panel using Adobe Acrobat Reader (Ver 5.0 or above). The digital intimation is authenticated by a digital signature obtained from a certifying authority under the Information Technology Act 2000."]]></variableExpression>
+	</variable>
+	<variable name="SIGNATURE_FIELD" class="java.lang.String">
+		<variableExpression><![CDATA["SIGNATURE_FIELD"]]></variableExpression>
+	</variable>
+	<variable name="para2" class="java.lang.String">
+		<variableExpression><![CDATA[" Banks are requested to verify online the validity of the certificate using fcraonline.nic.in."]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="106" splitType="Stretch">
+			<staticText>
+				<reportElement x="127" y="21" width="262" height="85"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[	Government of India
+	Ministry of Home Affairs
+	Foreigners Division
+	(FCRA Wing)
+]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="203" y="1" width="153" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["No. <b>"+$P{appId}+"</b>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="501" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" positionType="Float" x="41" y="242" width="475" height="65"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="hospitality-dataset">
+						<datasetParameter name="REPORT_DATA_SOURCE">
+							<datasetParameterExpression><![CDATA[$P{PRINTRECORD_DATA_SOURCE}]]></datasetParameterExpression>
+						</datasetParameter>
+					</datasetRun>
+					<jr:column width="176">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="176" height="30"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Name & Address of the Host]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table_TD" height="54" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="176" height="54"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{IND_ORG_NAME}+"\n"+$F{ADDRESS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="175">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="175" height="30"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Places / Country of visit]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table_TD" height="54" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="175" height="54"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{VISITING_PLACE}+"\n\n"+$F{VISITING_COUNTRY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="62">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="62" height="15"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Duration]]></text>
+							</staticText>
+							<staticText>
+								<reportElement x="0" y="15" width="62" height="15"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[From]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table_TD" height="54" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="62" height="54"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{TO_CHAR(DURATION_HOSPI_FROM,'DD-MM-YYYY')}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="63">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="63" height="15"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Duration]]></text>
+							</staticText>
+							<staticText>
+								<reportElement x="0" y="15" width="63" height="15"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[To]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table_TD" height="54" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="63" height="54"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{TO_CHAR(DURATION_HOSPI_TO,'DD-MM-YYYY')}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="41" y="210" width="475" height="20"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["The undersigned is directed to refer to <b>"+$P{officeName}+"</b> "+"</b> Office Memorandum/ letter No. <b>"+$P{letterNo}+"</b> dated <b>"+$P{letterDate}+"</b> on the subject noted above and to convey the permission of the Central Government under Section 6 of foreign Contribution(Regulation) Act, 2010 for acceptance of Foreign hospitality by <b>"+$P{appDetails}+"</b> as under:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="59" y="325" width="456" height="18"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[The above permission is subject to approval of the concerned administrative Ministry/ Department.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="41" y="325" width="18" height="18"/>
+				<textElement/>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="418" width="477" height="20"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>"+$P{officerName}+"<br/>"+$P{officerDesg}+"<br/>Tel. "+$P{officerContact}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="41" y="459" width="477" height="20"/>
+				<textElement markup="html">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["To<br/><b>"+$P{assoName}+"</b><br/><b>"+$P{fwdOffDesg}+"</b>"+"</b><br/><b>"+$P{officeName}+"</b>"+"</b><br/><b>"+$P{assoAddress}+"</b><br/><br/>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="98" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Office Memorandum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="138" width="475" height="41"/>
+				<textElement markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject:   Grant of Prior Permission under Foreign Contribution (Regulation) Act, 2010(FCRA, 2010) for availing foreign hospitality.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="335" y="50" width="217" height="20"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dated: <b>"+$P{regDate}+"</b>"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="59" y="351" width="456" height="20"/>
+				<textElement textAlignment="Justified" markup="styled"/>
+				<textFieldExpression><![CDATA[$V{para1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="41" y="351" width="18" height="20"/>
+				<textElement/>
+				<text><![CDATA[3.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="366" y="418" width="121" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+				<anchorNameExpression><![CDATA[$V{SIGNATURE_FIELD}]]></anchorNameExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="203" y="0" width="349" height="50"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{officeAddress}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

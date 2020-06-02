@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Notification Details</title>
+		<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+		<link rel="stylesheet" href="css/bootstrap/all/bootstrap.css" type="text/css" />
+		<script type="text/javascript" src="js/bootstrap/all/bootstrap.js"></script>
+		
+		<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/auth/home/notification.css" />
+		<link rel="stylesheet" type="text/css" href="css/auth/home/home-notification.css" />
+		<link rel="stylesheet" href="resources/css/validationEngine.jquery.css" type="text/css"/>
+
+     <script type="text/javascript" src="js/barchart/jquery.jqplot.js"></script>
+	 <script type="text/javascript" src="js/barchart/jqplot.barRenderer.js"></script>
+	 <script type="text/javascript" src="js/barchart/jqplot.categoryAxisRenderer.js"></script>
+	 <script type="text/javascript" src="js/barchart/jqplot.pointLabels.js"></script>
+	 <script type="text/javascript" src="js/barchart/jqplot.canvasAxisTickRenderer.js"></script>
+	 <script type="text/javascript" src="js/barchart/jqplot.canvasAxisLabelRenderer.js"></script>
+	 <script type="text/javascript" src="js/barchart/jqplot.canvasTextRenderer.js"></script>
+	 <!-- <script type="text/javascript" src="js/barchart/jqplot.highlighter.min.js"> </script>  -->
+	 <script type="text/javascript" src="js/barchart/jqplot.highlighter.js"> </script>
+	 <link rel="stylesheet" href="css/barchart/jquery.jqplot.css" />
+	 <script type="text/javascript" src="js/auth/home/home-notification.js"></script>
+	 <style> .showDiv{visibility : visible} .hidden{visibility :hidden}</style>
+		
+	</head>
+	<body >
+		<div class="container-fluid">
+		<div class="content-section">
+			<div class="row" >
+				<div class="col-xs-3">
+					<div class="notification-box bgm-teal">
+						<div class="notification-summary">
+							<div class="image">
+								<i class="fa fa-comments fa-4x"></i>
+							</div>
+							<div class="count" onclick="javascript:pullNotification('1');">
+								<h2 id="NB-1"></h2>								
+								Application Updates
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="notification-box bgm-orange">
+						<div class="notification-summary">
+							<div class="image">
+								<i class="fa fa-info fa-4x"></i>
+							</div>
+							<div class="count" onclick="javascript:pullNotification('2');">
+								<h2 id="NB-2"></h2>
+								Govt Circulars
+							</div>
+							<div class="clear"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="notification-box bgm-lightgreen">
+						<div class="notification-summary">
+							<div class="image">
+								<i class="fa fa-files-o fa-4x"></i>
+							</div>
+							<div class="count" onclick="javascript:pullNotification('3');">
+								<h2 id="NB-3"></h2>
+								Docs & Resources
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="notification-box bgm-cyan">
+						<div class="notification-summary">
+							<div class="image">
+								<i class="fa fa-pie-chart fa-4x"></i>
+							</div>
+							<div class="count" onclick="javascript:initBarGraph();">
+								<h2 id="NB-3"></h2>
+								Statistics
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>				
+			</div>
+			<div class="row">
+				<div class="col-xs-9">
+					<div id="notice-div">						
+					</div>				 						
+				</div>
+			</div>
+			<!-- Bar Graph add inside div class="content-section" -->
+			<div class="row">
+			<div class="col-xs-6"><div id="info1"></div></div>
+			</div>
+ 			<div class="row" id = "graph-type-div">
+
+			</div>
+<!-- 			<div class="row">
+					<div class="col-sm-12">
+					
+					  Nav tabs
+					  <ul class="nav nav-tabs" role="tablist">
+					    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Reg</a></li>
+					    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">donor</a></li>
+					    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Country</a></li>
+					    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Association</a></li>
+					  </ul>
+					
+					  Tab panes
+					  <div class="tab-content">
+					    <div role="tabpanel" class="tab-pane active" id="home">
+					    <div class="row">
+					    	<div class="col-sm-6">
+					    	<div id="graphRegYearWise" style="position: relative; height: 300px;margin-top: 34px;"></div>	
+					    	</div>
+					    	<div class="col-sm-6">
+					    	<div id="graphRegYearWise1" style="position: relative; height: 300px;margin-top: 34px;"></div>	
+					    	</div>					    	
+					    </div>
+					    </div>
+					    <div role="tabpanel" class="tab-pane" id="profile">
+					    	<div class="row">
+					    	<div class="col-sm-6">
+					    	<div id="graphDonorwise"  style="position: relative; height: 300px;margin-top: 34px;"></div>	
+					    	</div>
+					    	<div class="col-sm-6">
+					    	<div id="graphFinDonorwise" style="position: relative; height: 300px;margin-top: 34px;"></div>	
+					    	</div>					    	
+					    </div>
+					    </div>
+					    <div role="tabpanel" class="tab-pane" id="messages">
+					    	<div class="row">
+					    	<div class="col-sm-6">
+					    	<div id="graphAssowise"  style="position: relative; height: 300px;margin-top: 34px;"></div>	
+					    	</div>
+					    	<div class="col-sm-6">
+					    	<div id="graphFinAssowise" style="position: relative; height: 300px;margin-top: 34px;"></div>	
+					    	</div>								    
+					    </div>
+					    <div role="tabpanel" class="tab-pane" id="settings">
+					    	<div class="row">
+					    	<div class="col-sm-6">
+					    	<div id="graphCountrywise"  style="position: relative; height: 300px;margin-top: 34px;"></div>	
+					    	</div>
+					    	<div class="col-sm-6">
+					    	<div id="graphFinCountrywise" style="position: relative; height: 300px;margin-top: 34px;"></div>	
+					    	</div>									    
+					    </div>
+					  </div>
+					
+					</div>			
+			</div> -->
+ 			<div class="row" id="barGraphDiv">
+			<div class="col-xs-5">
+				<div id="graphRegYearWise" class="regStats graph2" style="position: relative; height: 300px;margin-top: 34px; "></div>	
+ 				<div id="graphDonorwise" class="donorWiseStats graph2" style="position: relative; height: 300px;margin-top: 34px;"></div>	
+				<div id="graphAssowise" class="assoWiseStats graph2" style="position: relative; height: 300px;margin-top: 34px;"></div>
+				<div id="graphCountrywise" class="countryWiseStats graph2" style="position: relative; height: 300px;margin-top: 34px;"></div> 
+				<div id="graphApplicationwise" class="applicationWiseStats graph2" style="position: relative; height: 300px;margin-top: 34px;"></div> 
+			</div>
+			<div class="col-xs-5">
+				<div id="graphRegYearWise1" class="regStats graph2" style="position: relative; height: 300px;margin-top: 34px;"></div>	
+				<div id="graphFinDonorwise" class="donorWiseStats graph2" style="position: relative; height: 300px;margin-top: 34px;"></div>	
+				<div id="graphFinAssowise" class="assoWiseStats graph2" style="position: relative; height: 300px;margin-top: 34px;"></div>
+				<div id="graphFinCountrywise" class="countryWiseStats graph2" style="position: relative; height: 300px;margin-top: 34px;"></div>
+				<div id="graphFinApplicationwise" class="applicationWiseStats graph2" style="position: relative; height: 300px;margin-top: 34px;"></div> 
+			</div>
+			<br><br><br><br><br>
+			<div class="col-xs-2" >
+			 		<!-- <input type="radio" name="graphType" class="graph" value="r" id="registrationWise" onclick="javascript:defaultGraph();" checked > Registration Statistics year-wise <br> --> 
+			 		<input type="radio" name="graphType" class="graph" value="r" id="registrationWise" onclick="javascript:showGraph(1);" checked > Registration Statistics year-wise<br>
+					<input type="radio" name="graphType" class="graph" value="s" id="applicationWise" onclick="javascript:showGraph(5);" > Application Statistics<br>
+					<label style="display: none;"><input type="radio" name="graphType" class="graph" value="d" id="donorWise" onclick="javascript:showGraph(2);" > Top Donor-wise</label><br>
+					<label style="display: none;"><input type="radio" name="graphType" class="graph" value="c" id="countryWise" onclick="javascript:showGraph(3);"> Top Country-wise</label><br>
+					<label style="display: none;"><input type="radio" name="graphType" class="graph" value="a" id="associationWise" onclick="javascript:showGraph(4);"> Top Association-wise</label>			  			
+			</div>
+			<!-- <div class="col-xs-6">
+				<div id="barGraph1" style="position: relative; height: 300px;margin-top: 34px;"></div> 	
+			</div> -->
+ 			</div> 
+ 			<br>
+ 			<div class = "row" >
+ 				<div class = "col-xs-5"></div>
+ 				<div class = "col-xs-7" style="display: none;"  id="yaxisDesc"></div>
+ 			</div>
+		</div>
+		<form action="" id="attachment-download-form"><input type="hidden" name="rowId" id="rowId"/></form>
+	</body>
+	
+	
+</html>

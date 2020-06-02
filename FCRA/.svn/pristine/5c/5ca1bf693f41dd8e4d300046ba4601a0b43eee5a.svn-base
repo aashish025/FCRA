@@ -1,0 +1,173 @@
+package web.services;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+
+import models.services.ListPager;
+import models.services.requests.AbstractRequest;
+
+import org.owasp.esapi.ESAPI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import service.services.CommunicationService;
+import service.services.dashboard.ProjectDashboardService;
+import utilities.ValidationException;
+import utilities.lists.List2;
+import utilities.notifications.Notification;
+import utilities.notifications.Status;
+import utilities.notifications.Type;
+import web.Home;
+import web.TokenController;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
+@Controller
+public class Communication extends TokenController{
+	private final Logger logger = LoggerFactory.getLogger(Home.class);	
+	private String actionStatus=null;
+	private final String tokenKey = "communication";
+	
+	@RequestMapping(value={"/communication"}, method=RequestMethod.GET)
+	public ModelAndView submit() throws Exception{	
+		String tokenGenerated = generateAndSaveToken(tokenKey);
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();          
+		ServletContext context = attr.getRequest().getSession().getServletContext();
+		String version = context.getInitParameter("version");
+		if(ESAPI.validator().isValidInput("version", version, "version", 6, false) == false){
+			throw new ValidationException("version- Invalid entry. Only  numbers and . allowed (6 characters max)");
+		}
+		CommunicationService cs = new CommunicationService();
+		cs.initLists();
+		ModelAndView model = new ModelAndView();	
+		model.addObject("requestToken", tokenGenerated);
+		model.addObject("stateList", cs.getStateList());	
+		model.addObject("blockYearList", cs.getBlockYearList());
+		model.addObject("version", version);
+		model.setViewName("services/communication");		
+		return model;
+	}
+	
+	@RequestMapping(value={"/get-application-list-communication"}, method=RequestMethod.GET)
+	public @ResponseBody ListPager<AbstractRequest> initApplicationList(@RequestParam String pageNum, 
+			@RequestParam String recordsPerPage, @RequestParam String sortColumn, @RequestParam String sortOrder,@RequestParam String applicationId
+			,@RequestParam String registrationNumber) throws Exception{
+		logger.debug("execute() is executed ");		
+		CommunicationService cs = new CommunicationService();
+		cs.setPageNum(pageNum);
+		cs.setRecordsPerPage(recordsPerPage);
+		cs.setSortColumn(sortColumn);
+		cs.setSortOrder(sortOrder);	
+		cs.setAppId(applicationId.toUpperCase());
+		cs.setRegNumber(registrationNumber.toUpperCase());
+		cs.initApplicationListDetails();
+		ListPager<AbstractRequest> ar = new ListPager<AbstractRequest>();
+		ar.setList(cs.getApplicationList());
+		ar.setTotalRecords(cs.getTotalRecords()); 
+		return ar;
+	}
+	@RequestMapping(value={"/get-application-details-communication"}, method=RequestMethod.POST)
+	public @ResponseBody List<String> getApplicationDetails(@RequestParam String appId,@RequestParam String searchType) throws Exception{
+		logger.debug("execute() is executed ");		
+		CommunicationService cs = new CommunicationService();
+		cs.setAppId(appId.toUpperCase());
+		cs.setSearchType(searchType);
+		cs.initGetApplicationDetails();
+		ObjectMapper mapper = new ObjectMapper();
+		List<String> details=new ArrayList<String>();	
+		details.add(mapper.writeValueAsString(cs.getApplicationList()));
+		details.add(mapper.writeValueAsString(cs.getNotifyList()));		
+		return details;
+	}
+	@RequestMapping(value={"/send-mail-communication"}, method=RequestMethod.POST)
+	public @ResponseBody List<String> sendEmail(@RequestParam String mailSubject,@RequestParam String mailBody,@RequestParam String appId,@RequestParam String communicationType
+			,@RequestParam String searchType,@RequestParam String requestToken)	throws Exception{
+		logger.debug("execute() is executed ");		
+		CommunicationService cs = new CommunicationService();
+		Boolean result = TokenController.isTokenValid(tokenKey, requestToken);
+		String token = null;
+		String status=null;
+		if(result) {
+			cs.setAppId(appId.toUpperCase());
+			cs.setMailSubject(mailSubject);
+			cs.setMailBody(mailBody);
+			cs.setCommunicationType(communicationType);
+			cs.setSearchType(searchType);
+			status=cs.initSendMail();
+			token = getSessionToken(tokenKey);
+		} else{
+			cs.getNotifyList().add(new Notification("Info!!", "Request you have sent is invalid. It is possible that it might be a duplicate request or you have opened the same page in a different tab.", Status.WARNING, Type.BAR,"userModal-error"));
+		}		
+		ObjectMapper mapper = new ObjectMapper();
+		List<String> details=new ArrayList<String>();		
+		details.add(status);
+		details.add(mapper.writeValueAsString(cs.getNotifyList()));		
+		details.add(token);
+		return details;
+	}
+	@RequestMapping(value={"/send-sms-communication"}, method=RequestMethod.POST)
+	public @ResponseBody List<String> sendSMS(@RequestParam String smsBody,@RequestParam String appId,@RequestParam String communicationType
+			,@RequestParam String searchType,@RequestParam String requestToken)	
+			throws Exception{
+		logger.debug("execute() is executed ");		
+		CommunicationService cs = new CommunicationService();
+		Boolean result = TokenController.isTokenValid(tokenKey, requestToken);
+		String token = null;
+		String status=null;
+		if(result) {
+			cs.setAppId(appId.toUpperCase());
+			cs.setSmsBody(smsBody);
+			cs.setCommunicationType(communicationType);
+			cs.setSearchType(searchType);
+			status=cs.initSendSMS();
+			token = getSessionToken(tokenKey);
+		} else{
+			cs.getNotifyList().add(new Notification("Info!!", "Request you have sent is invalid. It is possible that it might be a duplicate request or you have opened the same page in a different tab.", Status.WARNING, Type.BAR,"userModal-error"));
+		}			
+		ObjectMapper mapper = new ObjectMapper();
+		List<String> details=new ArrayList<String>();		
+		details.add(status);
+		details.add(mapper.writeValueAsString(cs.getNotifyList()));		
+		details.add(token);
+		return details;
+	}	
+	
+	@RequestMapping(value={"/get-association-communication"}, method=RequestMethod.GET)
+	public @ResponseBody List<String> getStateSpokeOfficeList(@RequestParam String associationType, @RequestParam String assoState, @RequestParam String assoDistrict, @RequestParam String assoBlockYear) throws Exception{
+		logger.debug("execute() is executed ");		
+		CommunicationService  cs= new CommunicationService();
+		cs.setState(assoState);	
+		cs.initBulkAssociationList(associationType, assoDistrict, assoBlockYear );
+		ObjectMapper mapper = new ObjectMapper();
+		List<String> associationList=new ArrayList<String>();		
+		associationList.add(mapper.writeValueAsString(cs.getBulkAssociationList()));				
+		return associationList;
+	}
+	
+	@RequestMapping(value={"/get-district-communication"}, method=RequestMethod.POST)
+	public @ResponseBody List<List2> getDistrict(@RequestParam String state) throws Exception{
+		logger.debug("execute() is executed ");		
+		CommunicationService cs = new CommunicationService();		
+		cs.setState(state);		
+		cs.initDistrict();		 
+		return cs.getDistrictList();
+	}
+	@RequestMapping(value={"/delete-upload-cache-communication"}, method=RequestMethod.POST)
+	public @ResponseBody String initDeleteUploadCache() throws Exception{
+		logger.debug("execute() is executed ");		
+		ProjectDashboardService pds = new ProjectDashboardService();				
+		String status=pds.initDeleteUploadCache();		
+		return status;
+	}
+}

@@ -1,0 +1,54 @@
+.f-nav{ z-index: 9999; position: fixed; top: 0; width:100%;} /* this make our menu fixed top */
+ iframe[seamlessly]{
+    background-color: transparent;
+    border: 0px none transparent;
+    padding: 0px;
+    overflow: hidden;
+}
+ .rotate{
+-webkit-transition-duration: 0.5s;
+-moz-transition-duration: 0.5s;
+-o-transition-duration: 0.5s;
+transition-duration: 0.5s;
+
+/*-webkit-transition-duration: 1s;
+-moz-transition-duration: 1s;
+-o-transition-duration: 1s;
+transition-duration: 1s;*/
+
+-webkit-transition-property: -webkit-transform;
+-moz-transition-property: -moz-transform;
+-o-transition-property: -o-transform;
+transition-property: transform;
+overflow:hidden;
+
+}
+.RBN{
+	margin-bottom: 10px;
+    margin-top: 10px;
+	font-size: 36px;
+	color: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1;	
+}
+.NV{	
+	font-size: 36px;	
+	border:thick;
+    font-family: 'Ubuntu';
+    font-weight: 500;
+    line-height: 1;	
+}
+.shadow{
+	 background:url(../img/menu-bg.jpg) repeat top left;
+	-webkit-box-shadow: 4px -2px 8px 0px rgba(0,0,0,0.19);
+	-moz-box-shadow: 4px -2px 8px 0px rgba(0,0,0,0.19);
+	box-shadow: 4px -2px 8px 0px rgba(0,0,0,0.19);
+}
+.rotate:active
+{
+-webkit-transform:rotate(90deg);
+-moz-transform:rotate(90deg);
+-o-transform:rotate(90deg);
+}
+ 
