@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sample" pageWidth="595" pageHeight="842" columnWidth="475" leftMargin="60" rightMargin="60" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="260"/>
 	<parameter name="appId" class="java.lang.String">
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
@@ -21,6 +21,8 @@
 	<parameter name="validFrom" class="java.lang.String"/>
 	<parameter name="bankAddress" class="java.lang.String"/>
 	<parameter name="officeAddress" class="java.lang.String"/>
+	<parameter name="otherRemark" class="java.lang.String"/>
+	<parameter name="servoceCode" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select sysdate from dual]]>
 	</queryString>
@@ -91,7 +93,7 @@
 		</band>
 	</title>
 	<detail>
-		<band height="669" splitType="Stretch">
+		<band height="680" splitType="Stretch">
 			<staticText>
 				<reportElement positionType="Float" x="0" y="142" width="61" height="20"/>
 				<textElement/>
@@ -129,12 +131,12 @@
 				<textFieldExpression><![CDATA[$V{Para1}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="363" y="579" width="112" height="20"/>
+				<reportElement positionType="Float" x="363" y="609" width="112" height="20"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Yours faithfully]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-2" y="632" width="477" height="20"/>
+				<reportElement positionType="Float" x="-2" y="658" width="477" height="20"/>
 				<textElement textAlignment="Right" markup="html">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -306,28 +308,28 @@
 				</textField>
 			</frame>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="20" y="512" width="455" height="20"/>
+				<reportElement positionType="Float" x="20" y="542" width="455" height="20"/>
 				<textElement textAlignment="Justified" markup="styled"/>
 				<textFieldExpression><![CDATA[$V{Para11}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="512" width="20" height="20"/>
+				<reportElement positionType="Float" x="0" y="542" width="20" height="20"/>
 				<textElement markup="styled"/>
 				<text><![CDATA[11.]]></text>
 			</staticText>
 			<textField isBlankWhenNull="false">
-				<reportElement positionType="Float" x="327" y="632" width="121" height="20"/>
+				<reportElement positionType="Float" x="327" y="658" width="121" height="20"/>
 				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
 				<anchorNameExpression><![CDATA[$V{SIGNATURE_FIELD}]]></anchorNameExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="20" y="544" width="456" height="20"/>
+				<reportElement positionType="Float" x="20" y="574" width="456" height="20"/>
 				<textElement markup="html"/>
 				<textFieldExpression><![CDATA[$V{para2}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="3" y="545" width="18" height="20"/>
+				<reportElement positionType="Float" x="3" y="575" width="18" height="20"/>
 				<textElement/>
 				<text><![CDATA[12.]]></text>
 			</staticText>
@@ -338,6 +340,20 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{officeAddress}]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="21" y="512" width="453" height="20">
+					<printWhenExpression><![CDATA[($P{otherRemark}!=null && $P{servoceCode}.equals( "03" ))? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="styled"/>
+				<textFieldExpression><![CDATA[$P{otherRemark}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="512" width="22" height="20">
+					<printWhenExpression><![CDATA[($P{otherRemark}!=null && $P{servoceCode}.equals( "03" ))? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="styled"/>
+				<text><![CDATA[10B.]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>

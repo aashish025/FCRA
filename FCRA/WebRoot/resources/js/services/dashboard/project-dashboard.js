@@ -1400,13 +1400,16 @@ function openRedFlagModal() {
 function openApprovalModal() {
 	var serviceId=$('#svcCode').val();
 	clearModal();
-	if(serviceId=="01" || serviceId=="02" ){
+	if(serviceId=="01" || serviceId=="02" || serviceId=="03"){
 		
 		$('#otherRemark-div').show();
 		if(serviceId=="01"){
 			 document.getElementById("other-remark-text").innerHTML = "Other Remark [8(B)]";
 			}else if(serviceId=="02"){
 				document.getElementById("other-remark-text").innerHTML = "Other Remark [4(A)]";
+				}
+			else if(serviceId=="03"){
+				document.getElementById("other-remark-text").innerHTML = "Other Remark [10(B)]";
 				}
 	}
 	else{

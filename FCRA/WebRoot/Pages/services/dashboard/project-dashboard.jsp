@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/services/dashboard/project-dashboard.css?Version=${version}" />
 	<script src="resources/js/iframeResizer.contentWindow.min.js?Version=${version}" type="text/javascript"></script>
 	<script type="text/javascript" src="resources/js/forAll.js?Version=${version}"></script>		
-	<script type="text/javascript" src="resources/js/services/dashboard/project-dashboard.js?Version=${version}"></script>
+	<script type="text/javascript" src="resources/js/services/dashboard/project-dashboard.js"></script>
 	<script type="text/javascript" src="resources/js/services/dashboard/nicEdit.js?Version=${version}"></script>
 	<script type="text/javascript" src="resources/js/utility/uploader.js?Version=${version}"></script>
 	<link rel="stylesheet" href="resources/font-awesome-4.3.0/css/font-awesome.min.css?Version=${version}" />
@@ -166,7 +166,7 @@
 							 </div>							 							 									 
 						</div>						
 				</div>
-		    </div> 		    
+		    </div> 		   
 		</div>
 		<div class="row">
 		  	<div class="col-xs-10 pp-form-field" id="app-info" style="display:none;">						  	
