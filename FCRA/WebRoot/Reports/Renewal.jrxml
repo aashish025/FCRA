@@ -313,7 +313,7 @@
 				<textFieldExpression><![CDATA[$V{Para11}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="542" width="20" height="20"/>
+				<reportElement positionType="Float" x="0" y="542" width="28" height="20"/>
 				<textElement markup="styled"/>
 				<text><![CDATA[11.]]></text>
 			</staticText>

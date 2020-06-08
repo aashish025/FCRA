@@ -431,7 +431,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8" isBold="true"/>
 								</textElement>
-								<text><![CDATA[Foreign amt Received(INR)]]></text>
+								<text><![CDATA[Foreign Contribution Received(INR)]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 1_TD" height="22" rowSpan="1">
