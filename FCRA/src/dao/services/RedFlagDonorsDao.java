@@ -14,6 +14,8 @@ import utilities.notifications.Notification;
 import models.master.State;
 import models.services.RedFlagAssociations;
 import models.services.RedFlagDonors;
+import models.services.requests.AbstractRequest;
+import models.services.requests.ProjectRequest;
 import dao.BaseDao;
 
 public class RedFlagDonorsDao extends BaseDao<RedFlagDonors, String, String>{
@@ -36,6 +38,7 @@ public class RedFlagDonorsDao extends BaseDao<RedFlagDonors, String, String>{
     private String remarks;
     
     private String myOfficeCode;
+    private List<AbstractRequest> applicationList = new ArrayList<AbstractRequest>();
 	public RedFlagDonorsDao(Connection connection) {
 		super(connection);
 		// TODO Auto-generated constructor stub
@@ -388,6 +391,46 @@ public class RedFlagDonorsDao extends BaseDao<RedFlagDonors, String, String>{
 	  return yellowFlag;	
 	}
 	
+	public List<RedFlagDonors> getApplicationListDetails() throws Exception{
+		PreparedStatement statement=null;
+		StringBuffer query=null;
+		String queryField=null;
+		if(connection == null) {
+			throw new Exception("Invalid connection");
+		}			
+		String assoNames="'%"+assoName+"%'";
+		String assoNamec="'%"+assoName.toUpperCase()+"%'";
+		query = new StringBuffer("select  A.DONOR_ID,A.DONOR_NAME,A.COUNTRY,(SELECT C.CTR_NAME FROM TM_COUNTRY C 		 		 WHERE C.CTR_CODE=A.COUNTRY),B.ORIGINATOR_OFFICE,to_char(B.ORIGINATOR_ORDER_DATE,'dd-mm-yyyy'), 		 		 B.ORIGINATOR_ORDER_NO,B.RED_FLAG_CATEGORY,B.REMARKS,to_char(B.RBI_CIRCULAR_ISSUE_DATE,'dd-mm-yyyy'), 		 		 (Select D.CATEGORY_DESC  		 		 from TM_RED_FLAG_CATEGORY D where D.CATEGORY_CODE=B.RED_FLAG_CATEGORY),(case when B.FLAG_TYPE ='2' then 'Yellow' ELSE case when B.FLAG_TYPE='1' then 'Red' END END )  as catogery_type ,to_char(B.Status_Date,'dd-mm-yyyy HH24:MI:SS') ,b.ACTION_BY || '[' || (SELECT user_name FROM Tm_User where USER_id= b.action_by) || ']' as ACTIONBY 		 		 from T_RED_FLAG_DONOR_NAME A,T_RED_FLAG_DONR_STATUS_HISTORY B Where A.DONOR_ID=B.DONOR_ID and A.DONOR_NAME LIKE "+assoNames+"  and A.RECORD_STATUS=0  and B.STATUS=0 AND B.STATUS_DATE=(SELECT MAX(STATUS_DATE) FROM T_RED_FLAG_DONR_STATUS_HISTORY WHERE STATUS=0 AND DONOR_ID=A.DONOR_ID)UNION            select  A.DONOR_ID,A.DONOR_NAME,A.COUNTRY,(SELECT C.CTR_NAME FROM TM_COUNTRY C 		 		 WHERE C.CTR_CODE=A.COUNTRY),B.ORIGINATOR_OFFICE,to_char(B.ORIGINATOR_ORDER_DATE,'dd-mm-yyyy'), 		 		 B.ORIGINATOR_ORDER_NO,B.RED_FLAG_CATEGORY,B.REMARKS,to_char(B.RBI_CIRCULAR_ISSUE_DATE,'dd-mm-yyyy'), 		 		 (Select D.CATEGORY_DESC  		 		 from TM_RED_FLAG_CATEGORY D where D.CATEGORY_CODE=B.RED_FLAG_CATEGORY),(case when B.FLAG_TYPE ='2' then 'Yellow' ELSE case when B.FLAG_TYPE='1' then 'Red' END END )  as catogery_type ,to_char(B.Status_Date,'dd-mm-yyyy HH24:MI:SS') ,b.ACTION_BY || '[' || (SELECT user_name FROM Tm_User where USER_id= b.action_by) || ']' as ACTIONBY 		 		 from T_RED_FLAG_DONOR_NAME A,T_RED_FLAG_DONR_STATUS_HISTORY B Where A.DONOR_ID=B.DONOR_ID and A.DONOR_NAME LIKE "+assoNamec+"  and A.RECORD_STATUS=0  and B.STATUS=0 AND B.STATUS_DATE=(SELECT MAX(STATUS_DATE) FROM T_RED_FLAG_DONR_STATUS_HISTORY WHERE STATUS=0 AND DONOR_ID=A.DONOR_ID)");
+		StringBuffer countQuery = new StringBuffer("SELECT COUNT(1) FROM ("+query+")");
+		statement = connection.prepareStatement(countQuery.toString());	
+		//statement.setString(1, assoName);		
+		ResultSet rs = statement.executeQuery();
+		if(rs.next()) {
+			totalRecords = rs.getString(1);
+		}		
+		rs.close();
+		statement.close();
+		Integer pageRequested = Integer.parseInt(pageNum);
+		Integer pageSize = Integer.parseInt(recordsPerPage);		
+		String queryForPaging = "WITH T AS("+query+" ), T2 AS ( SELECT T.*,ROWNUM RN FROM T) SELECT * FROM T2 where rn between ? and ?";
+		statement = connection.prepareStatement(queryForPaging);
+		if(pageNum == null || recordsPerPage == null) {			
+		}
+		else {			
+				//statement.setString(1, assoName);
+				statement.setInt(1, (pageRequested-1) * pageSize + 1);
+				statement.setInt(2, (pageRequested-1) * pageSize + pageSize);
+		}
+		rs = statement.executeQuery();
+		List<RedFlagDonors> redFlagAssociationsTableList=new ArrayList<RedFlagDonors>();
+		 while(rs.next()) {	
+			 redFlagAssociationsTableList.add(new RedFlagDonors(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14)));	
+		 }
+		 return redFlagAssociationsTableList;
+
+	}
+	
+	
 	public String getPageNum() {
 		return pageNum;
 	}
@@ -530,6 +573,8 @@ public class RedFlagDonorsDao extends BaseDao<RedFlagDonors, String, String>{
 	public void setMyOfficeCode(String myOfficeCode) {
 		this.myOfficeCode = myOfficeCode;
 	}
+
+	
 
 	
 }

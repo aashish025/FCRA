@@ -46,7 +46,7 @@ function  getRedFlagNgoDetailsTemp(rowdata){
 	$('#rbiCircularIssueDate').val(rowdata.rbiCircularIssueDate);
 	$('#categoryDesc').val(rowdata.categoryCode);
 	$('#remarkOriginatorOffice').val(rowdata.remarks);
-			
+	$('#appid-search').hide();
 	$('#donorName').prop('readonly', true);
 	$('#rbiCircularIssueDate').prop('readonly', true);
 	$('#donorCountry').attr("disabled", true); 
@@ -101,7 +101,8 @@ function initForm(){
 	$('#add-details-btn').show();
 	$('#delete-YellowFlag-donor').hide();
 	$('#headingforredyellowflag').hide();
-
+	$('#appid-search').hide();
+	
 }
 function showTable(){
 	$('#table-btn').hide();
@@ -116,7 +117,7 @@ function showTable(){
 	$('#delete-YellowFlag-donor').hide();
 	$('#delete-actions').hide();
 	$('#headingforredyellowflag').show();
-	
+	$('#appid-search').show();
 }
 //function addOffice(){	
 //	var url='add-office-details';
@@ -244,3 +245,30 @@ function RemoveYellowaddRedFlagDonors(flagaddred){
 		}
 		
 	}
+function getApplicationList(){	
+	/* Initialize Hide and Show for Application Details */
+		$("#red-flag-donors-table").html('');	
+		$('#bar-notify').html('');
+		$('#app-info').hide();
+		$('#actions').hide();
+		//alert(""+$('#applicationId').val());
+		$("#red-flag-donors-table").bootgrid(
+	    		{
+		    		title:'',
+		    		recordsinpage:'10',
+		    		dataobject:'propertyList',    		
+		    		dataurl:'get-search-list-red-flag-donors?applicationId='+$('#applicationId').val()+'&applicationName='+$('#donorName1').val(),
+		    		columndetails:
+					[
+						/*{title:'Association Id', name:'assoId'}, */
+						{title:'Donor Name', name:'donorName'}, 
+						{title:'Country', name:'donorCountryName'},
+						{title:'Category', name:'categoryDesc'},
+						{title:'Remark', name:'remarks'},
+						{title:'Red/Yellow Flagged By', name:'actionBy'},
+						{title:'Red/Yellow Flagged On', name:'statusDate'},
+						{title:'Flag Type', name:'categoryType'}
+					],
+					onRowSelect:function(rowdata){getRedFlagNgoDetailsTemp(rowdata)}
+		    		});	
+		}

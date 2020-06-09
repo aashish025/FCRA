@@ -7,6 +7,7 @@ import org.owasp.esapi.ESAPI;
 
 import models.services.RedFlagAssociations;
 import models.services.RedFlagDonors;
+import models.services.requests.AbstractRequest;
 import dao.master.CountryTypeDao;
 import dao.master.RedFlagCategoryDao;
 import dao.services.RedFlagAssociationsDao;
@@ -40,7 +41,8 @@ public class RedFlagDonorsServices extends Commons{
 	private String totalRecords;
 	private int yelloFlagRemove;
 	private String flagdelete;
-
+	private String appName;
+	 private List<RedFlagDonors> applicationList;
 	List<RedFlagDonors> redFlagDonorList;
 	public String execute() {
 		String result = "error";
@@ -304,6 +306,30 @@ public String initAddRedRemoveYellowFlagAssociation() throws NotificationExcepti
 		}
 		}
 	
+	public void initApplicationListDetails(){
+		begin();
+		try {
+				populateApplicationListDetails();
+		} catch(Exception e){
+			ps(e);
+		}
+		finally{
+			finish();
+		}		
+	}
+	private void populateApplicationListDetails() throws Exception{
+		RedFlagDonorsDao pdd=new RedFlagDonorsDao(connection);						
+		pdd.setPageNum(pageNum);
+		pdd.setRecordsPerPage(recordsPerPage);
+		pdd.setSortColumn(sortColumn);
+		pdd.setSortOrder(sortOrder);
+		pdd.setAssoName(appName);				
+		applicationList=pdd.getApplicationListDetails();
+		totalRecords=pdd.getTotalRecords();
+	}
+		
+	
+	
 	public List<KVPair<String, String>> getCategoryList() {
 		return categoryList;
 	}
@@ -532,6 +558,24 @@ public String initAddRedRemoveYellowFlagAssociation() throws NotificationExcepti
 	}
 
 
-	
-	
+	public String getAppName() {
+		return appName;
+	}
+
+
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
+
+
+	public List<RedFlagDonors> getApplicationList() {
+		return applicationList;
+	}
+
+
+	public void setApplicationList(List<RedFlagDonors> applicationList) {
+		this.applicationList = applicationList;
+	}
+
+
 }

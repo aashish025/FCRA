@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/common.css?Version=${version}" />
 	<script src="resources/js/iframeResizer.contentWindow.min.js?Version=${version}" type="text/javascript"></script>
 	<script type="text/javascript" src="resources/js/forAll.js?Version=${version}"></script>
-	<script type="text/javascript" src="resources/js/reports/red-flag-associations.js?Version=${version}"></script>	
+	<script type="text/javascript" src="resources/js/reports/red-flag-associations.js"></script>	
 	<script type="text/javascript" src="resources/js/utility/uploader.js?Version=${version}"></script>
 	<link rel="stylesheet" href="resources/font-awesome-4.3.0/css/font-awesome.min.css?Version=${version}" />
 	<link rel="stylesheet" href="resources/css/bootgrid/bootgrid.css?Version=${version}" />
@@ -51,7 +51,19 @@
 					<div id="text-notify"></div>
 				</div>
 			</div>
+			<div class="row">
+			<div class="col-sm-3" id="appid-search" style ="padding-top:10px; padding-bottom:10px;font-size:30px; cursor:pointer;">     					
+				           <div class="input-group">
+								<input type="text" 	class="form-control validate[maxSize[15]]" title="Please enter registration number." placeholder="Association Name" name="applicationName" id="applicationName" style="text-transform: uppercase;">
+									<div class="input-group-btn">									
+										<button class="btn btn-info title-b" onclick="javascript:getApplicationList();" title="Click to submit"><span class="glyphicon glyphicon-download"></span>&nbsp;</button>
+									</div>																	
+								</input>				
+							</div>						 
+	   				</div>
+	   				</div>
 			<div class="">
+			
 			 <div class="bs-callout bs-callout-info" id="headingforredyellowflag">
 						<span >Association which are already listed  in Yellow/Red Flag</span>
 					</div>

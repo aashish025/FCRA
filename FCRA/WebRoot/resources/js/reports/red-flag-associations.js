@@ -37,6 +37,7 @@ function initializeRedFlagAssociationTable() {
 }
 
 function  getRedFlagNgoDetailsTemp1(rowdata){
+
 	$('#headingforredyellowflag').hide();
 	$('#assoId').val(rowdata.assoId);//hidden field
 	$('#assoName').val(rowdata.assoName);
@@ -61,7 +62,9 @@ function  getRedFlagNgoDetailsTemp1(rowdata){
 		$('#bar-notify').html('');
 		$("#bar-notify").html('<div class="alert alert-info"><strong>Info: </strong>You are not authorized to perform any action. You can only view details.</div>');
 	}
+	//alert(rowdata.categoryType);
 	 populateGetDetails1(rowdata.categoryType);
+		$('#appid-search').hide();
 }
 
 function populateGetDetails1(categoryType){
@@ -106,7 +109,7 @@ function initForm(){
 	$("#form-div").show();	
 	$('#add-details-btn').show();
 	$('#removeYellowFlag-actions').hide();
-	
+	$('#appid-search').hide();
 
 }
 function showTable(){
@@ -120,6 +123,7 @@ function showTable(){
 	$( "#officeSigntorydiv" ).show();
 	$( "#officeCodeDiv-edit" ).hide();
 	$('#headingforredyellowflag').show();
+	$('#appid-search').show();
 }
 //function addOffice(){	
 //	var url='add-office-details';
@@ -289,3 +293,31 @@ function RemoveYellowaddRedFlagDonors(flagaddred){
 		}
 		
 	}
+function getApplicationList(){	
+	/* Initialize Hide and Show for Application Details */
+		$("#red-flag-associations-table").html('');	
+		$('#bar-notify').html('');
+		$('#app-info').hide();
+		$('#actions').hide();
+		//alert(""+$('#applicationId').val());
+		$("#red-flag-associations-table").bootgrid(
+	    		{
+		    		title:'',
+		    		recordsinpage:'10',
+		    		dataobject:'propertyList',    		
+		    		dataurl:'get-search-list-red-flag-associations?applicationId='+$('#applicationId').val()+'&applicationName='+$('#applicationName').val(),
+		    		columndetails:
+					[
+						/*{title:'Association Id', name:'assoId'}, */
+						{title:'Association Name', name:'assoName'}, 
+						{title:'Address', name:'assoAddress'},
+						{title:'State', name:'assoStateName'},
+						{title:'Category', name:'categoryDesc'},
+						{title:'Remark', name:'remarks'},
+						{title:'Red/Yellow Flagged By', name:'actionBy'},
+						{title:'Red/Yellow Flagged On', name:'statusDate'},
+						{title:'Flag Type', name:'categoryType'}
+					],
+					onRowSelect:function(rowdata){getRedFlagNgoDetailsTemp1(rowdata)}
+		    		});	
+		}

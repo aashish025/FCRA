@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import models.services.ListPager;
 import models.services.RedFlagAssociations;
+import models.services.requests.AbstractRequest;
 
 import org.owasp.esapi.ESAPI;
 import org.slf4j.Logger;
@@ -28,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import service.reports.RedFlagAssociationsServices;
 import service.reports.RedFlagDonorsServices;
+import service.reports.RedFlaggedRcnsService;
 import utilities.ValidationException;
 import utilities.lists.List1;
 import utilities.notifications.Notification;
@@ -53,6 +55,7 @@ public ModelAndView submit() throws Exception{
 	ModelAndView model = new ModelAndView();
 	RedFlagAssociationsServices redAssociationsServices =new RedFlagAssociationsServices();
 	redAssociationsServices.execute();
+	
 	model.addObject("categoryList",redAssociationsServices.getCategoryList());
 	model.addObject("categoryListadd", redAssociationsServices.getCategoryList());
 	model.addObject("stateList",redAssociationsServices.getStateList());
@@ -212,6 +215,22 @@ public  @ResponseBody List<String>   RemoveYellowaddredFlagAssociation(HttpServl
 	return notificationList;
 }
 
-
+@RequestMapping(value={"/get-search-list-red-flag-associations"}, method=RequestMethod.GET)
+public @ResponseBody ListPager<RedFlagAssociations> initApplicationList(@RequestParam String pageNum, 
+		@RequestParam String recordsPerPage, @RequestParam String sortColumn, @RequestParam String sortOrder,@RequestParam String applicationId
+		,@RequestParam String applicationName) throws Exception{
+	logger.debug("execute() is executed ");		
+	RedFlagAssociationsServices redflag =new RedFlagAssociationsServices();
+	redflag.setPageNum(pageNum);
+	redflag.setRecordsPerPage(recordsPerPage);
+	redflag.setSortColumn(sortColumn);
+	redflag.setSortOrder(sortOrder);	
+	redflag.setAppName(applicationName);
+	redflag.initApplicationListDetails();
+	ListPager<RedFlagAssociations> officeListPager = new ListPager<RedFlagAssociations>();
+	officeListPager.setList(redflag.getApplicationList());
+	officeListPager.setTotalRecords(redflag.getTotalRecords()); 
+	return officeListPager;
+}
 	
 }

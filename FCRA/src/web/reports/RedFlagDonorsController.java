@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import models.services.ListPager;
 import models.services.RedFlagAssociations;
 import models.services.RedFlagDonors;
+import models.services.requests.AbstractRequest;
 
 import org.owasp.esapi.ESAPI;
 import org.slf4j.Logger;
@@ -26,14 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-
-
-
-
-
-
-
+import service.reports.RedFlagAssociationsServices;
 import service.reports.RedFlagDonorsServices;
 import utilities.ValidationException;
 //import service.reports.RedFlagAssociationsServices;
@@ -192,6 +186,23 @@ public @ResponseBody List<String> deleteAcquisitionList(HttpServletRequest reque
 	notificationList.add(mapper.writeValueAsString(new List1(token)));
 	return notificationList;
 }
-
+@RequestMapping(value={"/get-search-list-red-flag-donors"}, method=RequestMethod.GET)
+public @ResponseBody ListPager<RedFlagDonors> initApplicationList(@RequestParam String pageNum, 
+		@RequestParam String recordsPerPage, @RequestParam String sortColumn, @RequestParam String sortOrder,@RequestParam String applicationId
+		,@RequestParam String applicationName) throws Exception{
+	logger.debug("execute() is executed ");		
+	RedFlagDonorsServices redflag =new RedFlagDonorsServices();
+	redflag.setPageNum(pageNum);
+	redflag.setRecordsPerPage(recordsPerPage);
+	redflag.setSortColumn(sortColumn);
+	redflag.setSortOrder(sortOrder);	
+	//redflag.setAppId(applicationId.toUpperCase());
+	redflag.setAppName(applicationName);
+	redflag.initApplicationListDetails();
+	ListPager<RedFlagDonors> officeListPager = new ListPager<RedFlagDonors>();
+	officeListPager.setList(redflag.getApplicationList()); 
+	officeListPager.setTotalRecords(redflag.getTotalRecords()); 
+	return officeListPager;
+}
 	
 }

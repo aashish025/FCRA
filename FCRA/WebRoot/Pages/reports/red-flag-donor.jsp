@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/common.css?Version=${version}" />
 	<script src="resources/js/iframeResizer.contentWindow.min.js?Version=${version}" type="text/javascript"></script>
 	<script type="text/javascript" src="resources/js/forAll.js?Version=${version}"></script>
-	<script type="text/javascript" src="resources/js/reports/red-flag-donors.js?Version=${version}"></script>	
+	<script type="text/javascript" src="resources/js/reports/red-flag-donors.js"></script>	
 	<script type="text/javascript" src="resources/js/utility/uploader.js?Version=${version}"></script>
 	<link rel="stylesheet" href="resources/font-awesome-4.3.0/css/font-awesome.min.css?Version=${version}" />
 	<link rel="stylesheet" href="resources/css/bootgrid/bootgrid.css?Version=${version}" />
@@ -48,6 +48,17 @@
 				<div id="text-notify"></div>
 			</div>
 		</div>
+		<div class="row">
+		<div class="col-sm-3" id="appid-search">     					
+				           <div class="input-group">
+								<input type="text" 	class="form-control validate[maxSize[15]]" title="Please enter registration number." placeholder="Donor Name" name="donorName1" id="donorName1" style="text-transform: uppercase;">
+									<div class="input-group-btn">									
+										<button class="btn btn-info title-b" onclick="javascript:getApplicationList();" title="Click to submit"><span class="glyphicon glyphicon-download"></span>&nbsp;</button>
+									</div>																	
+								</input>				
+							</div>						 
+	   				</div>
+	   				</div>
             <div class="">
             <!-- <div class="row">
 					<label for="headingforredyellowflag" id='headingforredyellowflag'>Donor which are captured in Yellow/Red Flag </label>
@@ -72,7 +83,8 @@
 					<div class="col-xs-2 pp-form-field" id="add-btn" >
 						<button type="button" class="btn btn-primary" onclick="javascript:initForm();">
 						<span class="fa fa-plus"></span> Add Donor to Red/Yellow Flag</button>					
-					</div>				
+					</div>
+									
 				</div>				
 		  
 		    <div id="form-div" style="display:none;">
